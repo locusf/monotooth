@@ -1,0 +1,39 @@
+<Combine name="monotooth" fileversion="2.0" outputpath="./build/bin/" MakePkgConfig="False" MakeLibPC="True">
+  <Configurations active="Debug">
+    <Configuration name="Debug" ctype="CombineConfiguration">
+      <Entry build="True" name="monotooth" configuration="Debug" />
+      <Entry build="True" name="tests" configuration="Default" />
+      <Entry build="True" name="tests" configuration="Default" />
+      <Entry build="True" name="monotooth" configuration="Debug" />
+      <Entry build="True" name="tests" configuration="Debug" />
+      <Entry build="True" name="tests-run" configuration="Default" />
+      <Entry build="True" name="ServerDemo" configuration="Debug" />
+      <Entry build="True" name="ClientDemo" configuration="Debug" />
+    </Configuration>
+    <Configuration name="Release" ctype="CombineConfiguration">
+      <Entry build="True" name="monotooth" configuration="Release" />
+      <Entry build="True" name="tests" configuration="Default" />
+      <Entry build="True" name="tests" configuration="Default" />
+      <Entry build="True" name="monotooth" configuration="Release" />
+      <Entry build="True" name="tests" configuration="Release" />
+      <Entry build="True" name="tests-run" configuration="Default" />
+      <Entry build="True" name="ServerDemo" configuration="Release" />
+      <Entry build="True" name="ClientDemo" configuration="Release" />
+    </Configuration>
+  </Configurations>
+  <DeployTargets />
+  <StartMode startupentry="monotooth" single="True">
+    <Execute type="None" entry="monotooth" />
+    <Execute type="None" entry="tests" />
+    <Execute type="None" entry="tests-run" />
+    <Execute type="None" entry="ServerDemo" />
+    <Execute type="None" entry="ClientDemo" />
+  </StartMode>
+  <Entries>
+    <Entry filename="./monotooth.mdp" />
+    <Entry filename="./tests/tests.mdp" />
+    <Entry filename="./tests-run/tests-run.md-nunit" />
+    <Entry filename="./ServerDemo/ServerDemo.mdp" />
+    <Entry filename="./ClientDemo/ClientDemo.mdp" />
+  </Entries>
+</Combine>

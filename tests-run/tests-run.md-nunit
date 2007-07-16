@@ -1,0 +1,10 @@
+<NUnitAssemblyGroupProject name="tests-run" fileversion="2.0">
+  <Configurations active="Default">
+    <Configuration name="Default" ctype="NUnitAssemblyGroupProjectConfiguration">
+      <Assemblies>
+        <Assembly Path="/home/locusf/monotooth/tests/bin/Debug/tests.dll" />
+      </Assemblies>
+    </Configuration>
+  </Configurations>
+  <DeployTargets />
+</NUnitAssemblyGroupProject>

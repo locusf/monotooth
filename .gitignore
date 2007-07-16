@@ -1,0 +1,8 @@
+git-daemon-export-ok
+.svnignore
+*.userprefs
+*.pidb
+*.swp
+*.dll
+*.exe
+*.mdb

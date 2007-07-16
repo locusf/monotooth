@@ -1,0 +1,314 @@
+<html>
+  <head>
+    <title>monotooth.Model.Device.LinuxDevice</title>
+    <style>
+					a { text-decoration: none }
+				
+					.CollectionTitle { font-weight: bold }
+					.PageTitle { font-size: 150%; font-weight: bold }
+
+					.Summary { }
+					.Signature { }					
+					.Remarks { }
+					.Members { }
+					.Copyright { }
+					
+					.Section { font-size: 125%; font-weight: bold }
+					.SectionBox { margin-left: 2em }
+					.NamespaceName { font-size: 105%; font-weight: bold }
+					.NamespaceSumary { }
+					.MemberName { font-size: 115%; font-weight: bold; margin-top: 1em }
+					.MemberSignature { font-family: monospace; margin-top: 1em; }
+					.MemberBox { }
+					.Subsection { font-size: 105%; font-weight: bold }
+					.SubsectionBox { margin-left: 2em; margin-bottom: 1em }
+
+					.SignatureTable { background-color: #c0c0c0; }
+					.EnumerationsTable th { background-color: #f2f2f2; }
+					.CodeExampleTable { background-color: #f5f5dd; border: thin solid black; padding: .25em; }
+					
+					.MembersListing td { margin: 0px; border: 1px solid black; padding: .25em }
+					
+					.TypesListing td { margin: 0px;  padding: .25em }
+					.InnerSignatureTable tr { background-color: #f2f2f2; }
+					.TypePermissionsTable tr { background-color: #f2f2f2; }
+					
+				</style>
+  </head>
+  <body>
+    <div class="CollectionTitle">
+      <a href="../index.html">monotooth</a>
+			:
+			<a href="index.html">monotooth.Model.Device Namespace</a></div>
+    <h1 class="PageTitle">LinuxDevice  Class</h1>
+    <p class="Summary"> The linux implementation of <tt><font size="-1">IDevice</font></tt></p>
+    <div class="Signature">
+      <table class="SignatureTable" cellspacing="0" width="100%">
+        <tr>
+          <td>
+            <table class="InnerSignatureTable" cellpadding="10" cellspacing="0" width="100%">
+              <tr>
+                <td>public class  <b>LinuxDevice</b> :
+		
+								<a href="../monotooth.Model.Device/IDevice.html">IDevice</a></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <br>
+      </br>
+    </div>
+    <div class="Remarks">
+      <h4 class="Subsection">Remarks</h4>
+      <div class="SubsectionBox">To be added.</div>
+      <h2 class="Section">Members</h2>
+      <div class="SectionBox">
+        <p>
+						See Also: Inherited members from
+						<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Object">object</a>.
+					</p>
+        <h3>Constructors</h3>
+        <div class="SubsectionBox">
+          <table class="MembersListing">
+            <tr valign="top">
+              <td>
+                <div>
+                  <b>
+                    <a href="#C:monotooth.Model.Device.LinuxDevice">LinuxDevice</a>
+                  </b>()</div> The default constructor for linux implementation </td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <div>
+                  <b>
+                    <a href="#C:monotooth.Model.Device.LinuxDevice(monotooth.Model.BluetoothAddress,System.String)">LinuxDevice</a>
+                  </b>(<a href="../monotooth.Model/BluetoothAddress.html">monotooth.Model.BluetoothAddress</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>)</div> This is the alternative constructor for constructing a
+            LinuxDevice with specific address and name.</td>
+            </tr>
+          </table>
+        </div>
+        <h3>Properties</h3>
+        <div class="SubsectionBox">
+          <table class="MembersListing">
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:monotooth.Model.Device.LinuxDevice.Address">Address</a>
+                </b>
+                <div>
+                </div>
+              </td>
+              <td>
+                <i>
+                  <a href="../monotooth.Model/BluetoothAddress.html">monotooth.Model.BluetoothAddress</a>
+                </i>.  Implemented properties from IDevice, this property defines address. </td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:monotooth.Model.Device.LinuxDevice.FriendlyName">FriendlyName</a>
+                </b>
+                <div>
+                </div>
+              </td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>
+                </i>.  Implemented properties from IDevice, this property defines FriendlyName of the device. </td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:monotooth.Model.Device.LinuxDevice.Services">Services</a>
+                </b>
+                <div>
+                </div>
+              </td>
+              <td>
+                <i>
+                  <a href="../monotooth.Model.Service/ServicePool.html">monotooth.Model.Service.ServicePool</a>
+                </i>.  Implemented properties from IDevice, this property defines a pool of Services. </td>
+            </tr>
+          </table>
+        </div>
+        <h3>Methods</h3>
+        <div class="SubsectionBox">
+          <table class="MembersListing">
+            <tr valign="top">
+              <td>
+              </td>
+              <td>
+                <b>
+                  <a href="#M:monotooth.Model.Device.LinuxDevice.AddressAsString">AddressAsString</a>
+                </b>()<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a></nobr><div>Returns the devices address as string. </div></td>
+            </tr>
+            <tr valign="top">
+              <td>
+              </td>
+              <td>
+                <b>
+                  <a href="#M:monotooth.Model.Device.LinuxDevice.Inquire">Inquire</a>
+                </b>()<nobr> : <a href="../monotooth.Model.Device/DevicePool.html">DevicePool</a></nobr><div> Inquire devices from the surrounding area, uses a native method to achieve good inquiry. </div></td>
+            </tr>
+            <tr valign="top">
+              <td>
+              </td>
+              <td>
+                <b>
+                  <a href="#M:monotooth.Model.Device.LinuxDevice.InquireServices(monotooth.Model.Device.IDevice,System.UInt32)">InquireServices</a>
+                </b>(<a href="../monotooth.Model.Device/IDevice.html">IDevice</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.UInt32">uint</a>)<nobr> : <a href="../monotooth.Model.Service/ServicePool.html">monotooth.Model.Service.ServicePool</a></nobr><div> Inquires services from a given device. The service UUID can also be specified. </div></td>
+            </tr>
+            <tr valign="top">
+              <td>
+              </td>
+              <td>
+                <b>
+                  <a href="#M:monotooth.Model.Device.LinuxDevice.StringAsAddress(System.String)">StringAsAddress</a>
+                </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>)<nobr> : <a href="../monotooth.Model/BluetoothAddress.html">monotooth.Model.BluetoothAddress</a></nobr><div>Returns a <tt><font size="-1">monotooth.Model.BluetoothAddress</font></tt> from a string, using a native function. </div></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="Members">
+      <h2 class="Section">Member Details</h2>
+      <div class="SectionBox">
+        <h3 id="C:monotooth.Model.Device.LinuxDevice" class="MemberName">LinuxDevice Constructor</h3>
+        <div class="MemberSignature">public  <b>LinuxDevice</b> ()</div>
+        <div class="MemberBox">
+          <p> The default constructor for linux implementation </p>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">To be added.</div>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="C:monotooth.Model.Device.LinuxDevice(monotooth.Model.BluetoothAddress,System.String)" class="MemberName">LinuxDevice Constructor</h3>
+        <div class="MemberSignature">public  <b>LinuxDevice</b> (<a href="../monotooth.Model/BluetoothAddress.html">monotooth.Model.BluetoothAddress</a> addr, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> name)</div>
+        <div class="MemberBox">
+          <p> This is the alternative constructor for constructing a
+            LinuxDevice with specific address and name.</p>
+          <h4 class="Subsection">Parameters</h4>
+          <div class="SubsectionBox">
+            <dl>
+              <dt>
+                <i>addr</i>
+              </dt>
+              <dd>To be added.</dd>
+              <dt>
+                <i>name</i>
+              </dt>
+              <dd>To be added.</dd>
+            </dl>
+          </div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">To be added.</div>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="P:monotooth.Model.Device.LinuxDevice.Address" class="MemberName">Address Property</h3>
+        <div class="MemberSignature">public <a href="../monotooth.Model/BluetoothAddress.html">monotooth.Model.BluetoothAddress</a> <b>Address</b>  { set; get; }</div>
+        <div class="MemberBox">
+          <p> Implemented properties from IDevice, this property defines address. </p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">To be added.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">To be added.</div>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="M:monotooth.Model.Device.LinuxDevice.AddressAsString" class="MemberName">AddressAsString Method</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> <b>AddressAsString</b> ()</div>
+        <div class="MemberBox">
+          <p>Returns the devices address as string. </p>
+          <h4 class="Subsection">Returns</h4>
+          <div class="SubsectionBox">A string with the native address of the device. </div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">To be added.</div>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="P:monotooth.Model.Device.LinuxDevice.FriendlyName" class="MemberName">FriendlyName Property</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> <b>FriendlyName</b>  { set; get; }</div>
+        <div class="MemberBox">
+          <p> Implemented properties from IDevice, this property defines FriendlyName of the device. </p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">To be added.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">To be added.</div>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="M:monotooth.Model.Device.LinuxDevice.Inquire" class="MemberName">Inquire Method</h3>
+        <div class="MemberSignature">public <a href="../monotooth.Model.Device/DevicePool.html">DevicePool</a> <b>Inquire</b> ()</div>
+        <div class="MemberBox">
+          <p> Inquire devices from the surrounding area, uses a native method to achieve good inquiry. </p>
+          <h4 class="Subsection">Returns</h4>
+          <div class="SubsectionBox"> A <tt><font size="-1">DevicePool</font></tt>, in which all the devices are added, if any. </div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">To be added.</div>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="M:monotooth.Model.Device.LinuxDevice.InquireServices(monotooth.Model.Device.IDevice,System.UInt32)" class="MemberName">InquireServices Method</h3>
+        <div class="MemberSignature">public <a href="../monotooth.Model.Service/ServicePool.html">monotooth.Model.Service.ServicePool</a> <b>InquireServices</b> (<a href="../monotooth.Model.Device/IDevice.html">IDevice</a> dev, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.UInt32">uint</a> uuid)</div>
+        <div class="MemberBox">
+          <p> Inquires services from a given device. The service UUID can also be specified. </p>
+          <h4 class="Subsection">Parameters</h4>
+          <div class="SubsectionBox">
+            <dl>
+              <dt>
+                <i>dev</i>
+              </dt>
+              <dd>An instance of an <tt><font size="-1">IDevice</font></tt>, used to dig up an address. </dd>
+              <dt>
+                <i>uuid</i>
+              </dt>
+              <dd>An unsigned integer to describe a certain service. </dd>
+            </dl>
+          </div>
+          <h4 class="Subsection">Returns</h4>
+          <div class="SubsectionBox">To be added.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">To be added.</div>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="P:monotooth.Model.Device.LinuxDevice.Services" class="MemberName">Services Property</h3>
+        <div class="MemberSignature">public <a href="../monotooth.Model.Service/ServicePool.html">monotooth.Model.Service.ServicePool</a> <b>Services</b>  { set; get; }</div>
+        <div class="MemberBox">
+          <p> Implemented properties from IDevice, this property defines a pool of Services. </p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">To be added.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">To be added.</div>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="M:monotooth.Model.Device.LinuxDevice.StringAsAddress(System.String)" class="MemberName">StringAsAddress Method</h3>
+        <div class="MemberSignature">public <a href="../monotooth.Model/BluetoothAddress.html">monotooth.Model.BluetoothAddress</a> <b>StringAsAddress</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> addr)</div>
+        <div class="MemberBox">
+          <p>Returns a <tt><font size="-1">monotooth.Model.BluetoothAddress</font></tt> from a string, using a native function. </p>
+          <h4 class="Subsection">Parameters</h4>
+          <div class="SubsectionBox">
+            <dl>
+              <dt>
+                <i>addr</i>
+              </dt>
+              <dd>To be added.</dd>
+            </dl>
+          </div>
+          <h4 class="Subsection">Returns</h4>
+          <div class="SubsectionBox">New address. </div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">To be added.</div>
+          <hr size="1">
+          </hr>
+        </div>
+      </div>
+    </div>
+    <hr size="1" />
+    <div class="Copyright">
+    </div>
+  </body>
+</html>

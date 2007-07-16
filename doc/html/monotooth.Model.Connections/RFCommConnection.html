@@ -1,0 +1,218 @@
+<html>
+  <head>
+    <title>monotooth.Model.Connections.RFCommConnection</title>
+    <style>
+					a { text-decoration: none }
+				
+					.CollectionTitle { font-weight: bold }
+					.PageTitle { font-size: 150%; font-weight: bold }
+
+					.Summary { }
+					.Signature { }					
+					.Remarks { }
+					.Members { }
+					.Copyright { }
+					
+					.Section { font-size: 125%; font-weight: bold }
+					.SectionBox { margin-left: 2em }
+					.NamespaceName { font-size: 105%; font-weight: bold }
+					.NamespaceSumary { }
+					.MemberName { font-size: 115%; font-weight: bold; margin-top: 1em }
+					.MemberSignature { font-family: monospace; margin-top: 1em; }
+					.MemberBox { }
+					.Subsection { font-size: 105%; font-weight: bold }
+					.SubsectionBox { margin-left: 2em; margin-bottom: 1em }
+
+					.SignatureTable { background-color: #c0c0c0; }
+					.EnumerationsTable th { background-color: #f2f2f2; }
+					.CodeExampleTable { background-color: #f5f5dd; border: thin solid black; padding: .25em; }
+					
+					.MembersListing td { margin: 0px; border: 1px solid black; padding: .25em }
+					
+					.TypesListing td { margin: 0px;  padding: .25em }
+					.InnerSignatureTable tr { background-color: #f2f2f2; }
+					.TypePermissionsTable tr { background-color: #f2f2f2; }
+					
+				</style>
+  </head>
+  <body>
+    <div class="CollectionTitle">
+      <a href="../index.html">monotooth</a>
+			:
+			<a href="index.html">monotooth.Model.Connections Namespace</a></div>
+    <h1 class="PageTitle">RFCommConnection  Interface</h1>
+    <p class="Summary">The superinterface for RFCOMM connections. </p>
+    <div class="Signature">
+      <table class="SignatureTable" cellspacing="0" width="100%">
+        <tr>
+          <td>
+            <table class="InnerSignatureTable" cellpadding="10" cellspacing="0" width="100%">
+              <tr>
+                <td>public interface  <b>RFCommConnection</b> :
+		
+								,	<a href="../monotooth.Model.Connections/IConnection.html">IConnection</a></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <br>
+      </br>
+    </div>
+    <div class="Remarks">
+      <h4 class="Subsection">Remarks</h4>
+      <div class="SubsectionBox">To be added.</div>
+      <h2 class="Section">Members</h2>
+      <div class="SectionBox">
+        <h3>Properties</h3>
+        <div class="SubsectionBox">
+          <table class="MembersListing">
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:monotooth.Model.Connections.RFCommConnection.Channel">Channel</a>
+                </b>
+                <div>
+                </div>
+              </td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>
+                </i>. Gives the current channel for the connection, it doesn't matter wether this channel is being listened or connected to.</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:monotooth.Model.Connections.RFCommConnection.Connected">Connected</a>
+                </b>
+                <div>
+                </div>
+              </td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a>
+                </i>. Tells wether this connection is connected or not. </td>
+            </tr>
+          </table>
+        </div>
+        <h3>Methods</h3>
+        <div class="SubsectionBox">
+          <table class="MembersListing">
+            <tr valign="top">
+              <td>
+              </td>
+              <td>
+                <b>
+                  <a href="#M:monotooth.Model.Connections.RFCommConnection.connect(System.Int32)">connect</a>
+                </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>)<div>Connects this connection. A RFCOMM channel is also specified. </div></td>
+            </tr>
+            <tr valign="top">
+              <td>
+              </td>
+              <td>
+                <b>
+                  <a href="#M:monotooth.Model.Connections.RFCommConnection.listen(System.Int32)">listen</a>
+                </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>)<div>Listens for a RFCOMM connection in the specified channel. </div></td>
+            </tr>
+            <tr valign="top">
+              <td>
+              </td>
+              <td>
+                <b>
+                  <a href="#M:monotooth.Model.Connections.RFCommConnection.listen(System.Int32,System.Int32)">listen</a>
+                </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>)<div>Listens for a RFCOMM connection in the specified channel and maximum connections. </div></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="Members">
+      <h2 class="Section">Member Details</h2>
+      <div class="SectionBox">
+        <h3 id="P:monotooth.Model.Connections.RFCommConnection.Channel" class="MemberName">Channel Property</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> <b>Channel</b>  { set; get; }</div>
+        <div class="MemberBox">
+          <p>Gives the current channel for the connection, it doesn't matter wether this channel is being listened or connected to.</p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">An integer between 1-31.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">To be added.</div>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="M:monotooth.Model.Connections.RFCommConnection.connect(System.Int32)" class="MemberName">connect Method</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>connect</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> channel)</div>
+        <div class="MemberBox">
+          <p>Connects this connection. A RFCOMM channel is also specified. </p>
+          <h4 class="Subsection">Parameters</h4>
+          <div class="SubsectionBox">
+            <dl>
+              <dt>
+                <i>channel</i>
+              </dt>
+              <dd>The RFCOMM channel to connect to.</dd>
+            </dl>
+          </div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">The connection()-method described in <tt><font size="-1">IConnection</font></tt> makes the port default to 0.</div>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="P:monotooth.Model.Connections.RFCommConnection.Connected" class="MemberName">Connected Property</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a> <b>Connected</b>  { set; get; }</div>
+        <div class="MemberBox">
+          <p>Tells wether this connection is connected or not. </p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">true/false</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">To be added.</div>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="M:monotooth.Model.Connections.RFCommConnection.listen(System.Int32)" class="MemberName">listen Method</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>listen</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> channel)</div>
+        <div class="MemberBox">
+          <p>Listens for a RFCOMM connection in the specified channel. </p>
+          <h4 class="Subsection">Parameters</h4>
+          <div class="SubsectionBox">
+            <dl>
+              <dt>
+                <i>channel</i>
+              </dt>
+              <dd>The RFCOMM channel to listen for. </dd>
+            </dl>
+          </div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">To be added.</div>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="M:monotooth.Model.Connections.RFCommConnection.listen(System.Int32,System.Int32)" class="MemberName">listen Method</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>listen</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> channel, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> maxconns)</div>
+        <div class="MemberBox">
+          <p>Listens for a RFCOMM connection in the specified channel and maximum connections. </p>
+          <h4 class="Subsection">Parameters</h4>
+          <div class="SubsectionBox">
+            <dl>
+              <dt>
+                <i>channel</i>
+              </dt>
+              <dd>The RFCOMM channel to listen to. </dd>
+              <dt>
+                <i>maxconns</i>
+              </dt>
+              <dd>Number of connections to listen.</dd>
+            </dl>
+          </div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">To be added.</div>
+          <hr size="1">
+          </hr>
+        </div>
+      </div>
+    </div>
+    <hr size="1" />
+    <div class="Copyright">
+    </div>
+  </body>
+</html>

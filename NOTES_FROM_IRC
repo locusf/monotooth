@@ -1,0 +1,422 @@
+(21:20:39) [@>] by determining the views on windows and my mobile phone, I could actually
+                create Mono UI widgets for bluetooth as well
+(21:21:12) [@[ava]] uh ?
+(21:21:14) [@[ava]] explain
+(21:21:27) [@>] like "BluetoothPanel"
+(21:21:37) [@>] that can search devices
+(21:21:48) [@>] OBEXPanel
+(21:21:51) [@>] you name it
+
+
+(21:13:34) [@[ava]] oh
+(21:14:12) [@[ava]] and what about pdas ?
+(21:15:52) [@>] hmm
+(21:15:57) [@>] dunno about those so much
+(21:16:27) [@>] but I could basically use the OBEX transfer provided by ircomm.cpl
+(21:16:32) [@>] or whatever it was
+
+22:06:16) [@[ava]] yep
+(22:06:37) [@[ava]] knowing that the classes for marshaling will be split in two
+(22:06:48) [@[ava]] so you probably need to make use of interfaces a lot
+(22:06:53) [@[ava]] to stay transaprent
+(22:06:58) [@[ava]] that is the adapter pattern
+(22:09:01) [@[ava]] you've got work to do ;)
+	
+(21:52:25) [@>] http://msdn2.microsoft.com/en-us/library/aa362795.aspx
+http://www.mono-project.com/Interop_with_Native_Libraries
+
+(21:51:19) [@>] it has started as I told you :)
+(21:51:25) [@[ava]] ok
+(21:51:38) [@[ava]] i guess a little 'svn update' is in order 
+(21:52:05) [@[ava]] WOW
+(21:52:08) [@[ava]] OMG
+(21:52:11) [@>] yep :)
+(21:52:16) [@[ava]] you coded like a monkey !
+(21:52:25) [@>] just bare-bone classes :)
+(21:52:27) [@>] yet
+(21:52:41) [@[ava]] which editor do you use ? monodevelop ?
+(21:52:43) [@>] now I just have to find an IDE for the native library development :)
+(21:52:49) [@>] yep
+(21:52:51) [@>] for the Mono part
+(21:53:30) [@[ava]] which version of mono do you have ?
+(21:53:51) [@>] Mono JIT compiler version 1.2.3.1
+(21:54:01) [@[ava]] cool
+(21:54:03) [@[ava]] and ncs ?
+(21:54:07) [@>] ie that what I got from ubuntu repos
+(21:54:08) [@[ava]] mcs sorry
+(21:54:28) [@>] Mono C# compiler version 1.2.3.1
+(21:54:56) [@[ava]] good
+(21:55:01) [@[ava]] just to be sure we have the same
+(21:55:06) [@>] yep
+(21:56:04) [@[ava]] how do you compile the native code ?
+(21:56:12) [@>] I was just thinking about that :)
+(21:56:19) [@>] I think I'm falling to use eclipse
+(21:56:55) [@>] + cdt
+(21:57:08) [@[ava]] hum heavy
+(21:57:16) [@>] since anjuta won't create IJW library project and KDevelop was weird
+(21:57:26) [@[ava]] that + monodevelop running will put the pc on its knees
+(21:57:27) [@>] IJW = It Just Works
+(21:57:31) [@>] yep
+(21:57:46) [@>] maybe gvim will do :)
+(21:57:48) [@>] + makefiles :)
+(21:57:50) [@[ava]] eclipse can create IJW ?
+(21:57:57) [@>] dunno
+(21:57:57) [@[ava]] mixed mode assemblies ?
+(21:58:02) [@>] dunno :)
+(21:58:06) [@[ava]] i would think not
+(21:58:19) [@[ava]] i don't think mixed mode assemblies exist on linux
+(21:58:21) [@>] does kdevelop?
+(21:58:24) [@>] oh
+(21:58:40) [@[ava]] at least last time i looked, mono did not support them
+(21:59:02) [@[ava]] interaction is always through dll import and marshalling
+(21:59:11) [@>] yep
+(21:59:26) [@[ava]] kdevelop is heavy also
+(21:59:40) [@[ava]] actually maybe i will use kate personally
+(21:59:59) [@[ava]] but then we need some nice build system
+(22:00:10) [@>] well kdevelop is good
+(22:00:13) [@>] it uses cmake
+(22:00:36) [@[ava]] well cmake is not easily redistributable
+(22:00:47) [@[ava]] + you will have to compile windows code right
+(22:00:49) [@[ava]] ?
+(22:01:12) [@>] yep at some point
+(22:01:22) [@>] are you thinking about scons?
+(22:01:34) [@[ava]] http://www.freehackers.org/~tnagy/waf.html <== i am thinking about this
+(22:01:42) [@[ava]] as we already used it :)
+(22:01:45) [@>] heheh from dvdb :)
+(22:02:08) [@[ava]] it is easy to distribute
+(22:02:15) [@[ava]] and the only requirement is python
+(22:02:21) [@[ava]] which works on windblows
+(22:02:35) [@>] yep
+(22:02:47) [@[ava]] well your choice anyway
+(22:02:55) [@[ava]] but pls do not use the autotools
+(22:02:58) [@[ava]] PLEASE
+(22:03:03) [@>] yea I know :)
+(22:03:06) [@>] I won't
+(22:03:10) [@>] I'll use waf
+(22:03:17) [@>] for starters
+(22:03:25) [@[ava]] cool
+(22:03:44) [@[ava]] it's made by a friend, so if we have sugs, i can always ask him :)
+(22:03:55) [@>] sugs?
+(22:04:18) [@[ava]] suggestions
+(22:04:40) [@[ava]] (sorry company language)
+(22:04:46) [@>] ok :)
+(22:05:43) [@>] joined #waf
+(22:05:52) [@[ava]] btw are you sure you still need to write C++ :) ?
+(22:06:00) [@[ava]] is there someone on #waf ?
+(22:06:52) [@>] yes I'm sure
+(22:06:56) [@>] at least for the linux part
+(22:07:11) [@[ava]] hum pity
+(22:07:27) [@[ava]] it would have been nice to be able to do everything in C#
+(22:07:39) [@[ava]] now we'll have to create a .so file
+(22:08:27) [@>] yep
+(22:08:41) [@[ava]] yurgh
+(22:08:50) [@>] we just need to have it some place for mono to find it
+(22:09:04) [@>] hey its a necessary evil since bluez is sucky :)
+(22:09:16) [@[ava]] oh
+(22:09:30) [@[ava]] are you sayng that you'll have to rewrite parts of bluez ?
+(22:11:07) [@>] nope :)
+(22:11:11) [@>] hell no :)
+(22:11:51) [@>] there just isn't any other alternative than bsd-socket bluetooth library (bluez)
+(22:12:02) [@>] and those bsd-sockets are the bad things
+(22:12:03) [@[ava]] i am reading your readme 
+(22:12:10) [@[ava]] damn
+(22:12:20) [@[ava]] i told you bsd sucks ;))))))))))
+(22:12:25) [@>] LOL :)
+(22:12:38) [@>] every clever operating system uses bsd-sockets
+(22:12:44) [@>] even linux (and windows)
+(22:12:56) [@[ava]] i know
+(22:13:09) [@[ava]] and i also know that the windows api also sucks
+(22:13:13) [@>] http://www.bleepsoft.com/tyler/index.php?itemid=109
+(22:13:28) [@>] I need to add that link to the Links section at README
+(22:13:50) [@[ava]] yep
+(22:14:03) [@[ava]] maybe you can put your bookmarks.html in SVN
+(22:14:25) [@[ava]] (btw i feel rather like a jonin when i read your README LOL)
+(22:14:27) [@>] nah
+(22:14:38) [@>] wtf :)
+(22:14:48) [@[ava]] "I decided to start up this project, with of course the support of my friend and mentor Alexandre Vaughan."
+(22:14:57) [@>] hehe :)
+(22:15:59) [@[ava]] i will have to review your design again :)
+(22:16:37) [@>] ok :)
+(22:16:49) [@>] it isn't quite ready yet but somewhat
+(22:17:15) [@[ava]] let(s have a look
+(22:18:26) [@[ava]] do you have sequence diagrams ?
+(22:18:53) [@>] yep
+(22:18:59) [@>] they should be in the tar.bz2
+(22:19:22) [@>] just above View-folder :)
+(22:20:01) [@>] hmm, maybe I should make a complete scan-discover-connect diagram
+(22:21:36) [@[ava]] well here you just show the connect right ?
+(22:21:45) [@>] yep
+(22:23:38) [@[ava]] in your model you only have this bluez class
+(22:23:51) [@[ava]] shouldn't it be derived from an interface ?
+(22:23:57) [@>] yep
+(22:24:06) [@>] it is a little out of sync with the source :)
+(22:24:56) [@[ava]] device is the view ?
+(22:25:39) [@[ava]] how does that work ?
+(22:26:04) [@>] well you could see it in detail if you'd just run hciconfig :)
+(22:26:24) [@>] [locusf@locusf-desktop monotooth (master)]$ hciconfig hci0
+(22:26:24) [@>] hci0:   Type: USB
+(22:26:24) [@>]         BD Address: 00:10:60:A2:48:2F ACL MTU: 192:8 SCO MTU: 64:8
+(22:26:24) [@>]         UP RUNNING PSCAN ISCAN
+(22:26:24) [@>]         RX bytes:2769 acl:16 sco:0 events:358 errors:0
+(22:26:25) [@>]         TX bytes:1903 acl:13 sco:0 commands:180 errors:
+(22:26:47) [@>] since it is handled as a view in the bluez, then it is a view in monotooth
+(22:27:57) [@[ava]] uh ?
+(22:28:06) [@[ava]] i am lost i must say :)
+(22:28:11) [@>] that shows the devices information
+(22:28:16) [@[ava]] yes
+(22:28:24) [@>] and if there is a connection then rfcomm connection information is printed
+(22:28:46) [@[ava]] so it seems that thedevice is the model and whatever showsthis information is the view
+(22:28:47) [@>] and if there is a need to create a new connection then just call the ConnectionHandler
+(22:29:08) [@>] yep
+(22:29:14) [@>] I guess :)
+(22:29:22) [@[ava]] now you're all confusing me
+(22:29:41) [@[ava]] controllers are your actionas and handlers, called by the app
+(22:29:43) [@[ava]] this is good
+(22:29:49) [@[ava]] model i s what ?
+(22:30:00) [@>] the interface to bluez
+(22:30:09) [@>] and connections
+(22:30:48) [@>] and information of the discovery and scanning
+(22:31:01) [@[ava]] ok
+(22:31:17) [@[ava]] but why isn't the device itself part of the model ?
+(22:31:29) [@>] could it be?
+(22:31:42) [@>] I don't know that specifically
+(22:31:42) [@[ava]] well why not ?
+(22:31:48) [@[ava]] what made you separate it ?
+(22:32:09) [@>] the idea of that the device is just a way to present data
+(22:32:20) [@>] and everything else just results as a device
+(22:32:45) [@[ava]] uh
+(22:32:49) [@>] hmm
+(22:32:58) [@[ava]] well data is sent to a deviceright ?
+(22:33:00) [@>] well I just wrote dev.close(); to the README :)
+(22:33:04) [@>] yep
+(22:33:21) [@>] so it is a part of the model
+(22:33:31) [@[ava]] then the connection has to listen to data coming from thedevice right ?
+(22:33:52) [@>] yeah
+(22:34:07) [@>] oh yeah, I forgot the listening totally :)
+(22:34:20) [@[ava]] if i see it that way it seems to me that what you call model is actually a view
+(22:34:28) [@[ava]] and the device is the actual model
+(22:34:39) [@>] and the connection the view?
+(22:34:39) [@[ava]] which sounds rather logical, come to think of it
+(22:34:47) [@[ava]] well it would seem so
+(22:34:57) [@[ava]] from what you explained to me
+(22:35:13) [@[ava]] but i am no bluetooth expert so  i might have misunderstood sthg
+(22:35:31) [@>] well the connection goes like this:
+(22:35:53) [@>] scan for devices -> show the found devices if any -> connect to a selected device
+(22:36:09) [@>] in, for example, the cell-phone
+(22:36:14) [@>] same goes for a dongle
+(22:36:32) [@[ava]] ok
+(22:36:48) [@[ava]] this is rather straightforward
+(22:36:59) [@>] yep
+(22:37:05) [@[ava]] actually your model is a pool of devices
+(22:37:29) [@[ava]] DevicePool <>*---- IDevice
+(22:37:41) [@>] wtf
+(22:37:57) [@>] oh a composition?
+(22:37:59) [@[ava]] you have several devices right ?
+(22:38:02) [@>] yep
+(22:38:04) [@>] if there are
+(22:38:10) [@[ava]] indeed
+(22:38:16) [@[ava]] so you need a pool
+(22:38:38) [@>] hmm, you're right
+(22:38:42) [@[ava]] let's concentrate on the model now
+(22:38:50) [@[ava]] what needs to be in IDevice
+(22:38:50) [@>] there must always be one device, the local one
+(22:38:57) [@[ava]] what can a device do ?
+(22:39:13) [@[ava]] DevicePool.getLocalDevice()
+(22:39:35) [@>] connect, disconnect, listen, offer a service etc..
+(22:39:44) [@[ava]] ok
+(22:39:47) [@>] show its information
+(22:39:56) [@[ava]] so you have IDevice.connect
+(22:40:03) [@[ava]] IDevice.disconnect
+(22:40:07) [@[ava]] IDevice.listen
+(22:40:27) [@[ava]] what do you mean by offer a service ?
+(22:40:50) [@>] a SDP service
+(22:41:00) [@[ava]] uh ?
+(22:41:08) [@>] do you know OBEX?
+(22:41:13) [@[ava]] nope
+(22:41:25) [@>] the protocol that can send/receive files
+(22:41:33) [@[ava]] ok
+(22:41:38) [@>] anyways there is a special service called "OBEX Push"
+(22:41:47) [@[ava]] so a service is also a kind of object
+(22:41:50) [@>] it has a channel (RFCOMM) and UUID
+(22:41:51) [@>] yep
+(22:41:55) [@>] part of the model
+(22:42:04) [@[ava]] and a device can offer one or several services ?
+(22:42:10) [@>] several
+(22:42:13) [@>] so a pool again :)
+(22:42:19) [@[ava]] IDevice *--------------- IService
+(22:42:21) [@>] zero or more actually
+(22:42:34) [@[ava]] see we're getting somewhere
+(22:42:38) [@>] is that a association?
+(22:42:45) [@[ava]] yes
+(22:42:47) [@>] yep :)
+(22:43:00) [@[ava]] i cannot use aggregation as IDevice is an interface
+(22:43:04) [@[ava]] what can a service do ?
+(22:43:42) [@>] service is just a structure
+(22:43:56) [@>] it just offers information on its attributes
+(22:44:13) [@>] actually a record
+(22:44:21) [@[ava]] like getAttribute(AttributeName) ?
+(22:44:24) [@>] wait I'll show you a sample record
+(22:44:25) [@>] yep
+(22:44:40) [@[ava]] ok Service.getAttribute(AttributeName)
+(22:44:52) [@[ava]] is an Attribute a specific object ?
+(22:44:56) [@>] yep
+(22:45:03) [@[ava]] or just a String ?
+(22:45:13) [@>] Service Name: Imaging
+(22:45:13) [@>] Service RecHandle: 0x10017
+(22:45:13) [@>] Service Class ID List:
+(22:45:13) [@>]   "Imaging Responder" (0x111b)
+(22:45:13) [@>] Protocol Descriptor List:
+(22:45:13) [@>]   "L2CAP" (0x0100)
+(22:45:13) [@>]   "RFCOMM" (0x0003)
+(22:45:13) [@>]     Channel: 15
+(22:45:13) [@>]   "OBEX" (0x0008)
+(22:45:13) [@>] Language Base Attr List:
+(22:45:13) [@>]   code_ISO639: 0x454e
+(22:45:13) [@>]   encoding:    0x6a
+(22:45:13) [@>]   base_offset: 0x100
+(22:45:13) [@>] Profile Descriptor List:
+(22:45:13) [@>]   "Imaging" (0x111a)
+(22:45:14) [@>]     Version: 0x0100
+(22:45:24) [@[ava]] ok so we have IService *----------------------- IServiceAttribute
+(22:45:38) [@[ava]] and the association here is a map 
+(22:45:47) [@>] cool :)
+(22:45:54) [@>] its starting to open up :)
+(22:46:19) [@[ava]] see that is your model shping up 
+(22:46:36) [@[ava]] now actually, suppose we have a model like that, why do we need controllers ?
+(22:46:54) [@>] hmm
+(22:47:56) [@[ava]] well a controller is sthg that performs an action on the model right ?
+(22:48:20) [@>] yep
+(22:48:24) [@>] like scan
+(22:48:38) [@[ava]] sso what can perform an action on the model ?
+(22:49:37) [@>] I dunno
+(22:49:55) [@[ava]] well maybe we don't have controllers :)
+(22:50:20) [@>] well ok if they are not yet mandatory
+(22:50:41) [@[ava]] what about the views ?
+(22:50:50) [@[ava]] who is listening to the model changes ?
+(22:51:38) [@>] well there could be a view that is listening for new devices
+(22:51:44) [@>] and incoming connections
+(22:51:56) [@>] new registered remote services etc
+(22:52:28) [@[ava]] so that the application implements this view and is notified ?
+(22:52:30) [@[ava]] ok
+(22:52:54) [@>] so yes there is a view but only as an example
+(22:53:07) [@[ava]] indeed
+(22:53:15) [@[ava]] my point exactly
+(22:53:21) [@[ava]] you got my point ?
+(22:53:26) [@>] I have a wonderful gift on thinking too complicatedly :)
+(22:53:31) [@>] yep
+(22:53:33) [@[ava]] yes
+(22:53:38) [@[ava]] you got it :)
+(22:53:47) [@>] so I just need the model
+(22:53:48) [@>] ?
+(22:53:51) [@[ava]] i think you were overengineering
+(22:53:56) [@[ava]] yes i think so
+(22:54:07) [@[ava]] and maybe the view for the app, but later :)
+(22:54:18) [@>] well that could be the GUI component part
+(22:54:26) [@[ava]] for example
+(22:55:05) [@[ava]] but don't get mistaken
+(22:55:11) [@[ava]] the model is not that simple
+(22:55:19) [@[ava]] you have now three interfaces :
+(22:55:24) [@[ava]] IDevice
+(22:55:26) [@[ava]] IService
+(22:55:32) [@[ava]] IServceAttribute
+(22:55:42) [@[ava]] you'll need to create implmentations for them
+(22:55:52) [@[ava]] and factories to createthese implmentations
+(22:56:36) [@>] ok so a factory pattern that is :)
+(22:56:47) [@>] MVC is a overshoot in this case
+(22:56:55) [@[ava]] you got it
+(22:57:03) [@[ava]] seems i was clear for once
+(22:57:12) [@>] what about different connection types?
+(22:57:22) [@>] bluetooth has rfcomm,l2cap,hci?
+(22:57:29) [@[ava]] well IDevice has a connect right ?
+(22:57:46) [@[ava]] so probbably the connect will take an IConnection parameter
+(22:57:58) [@[ava]] and here you can make your different impls 
+(22:58:04) [@[ava]] plus your factory :)
+(22:58:05) [@>] ye
+(22:58:08) [@>] +p
+(22:58:36) [@[ava]] you see the approach ?
+(22:58:59) [@[ava]] also one thing i suggest you write, is how you want your API to be at client level
+(22:59:10) [@[ava]] actually you should write tests beforehand
+(22:59:16) [@>] OH YEAH
+(22:59:19) [@>] TDD
+(22:59:20) [@[ava]] so that you know where you are going
+(22:59:32) [@>] yes I can see the approach
+(22:59:37) [@>] very clearly
+(22:59:45) [@[ava]] then you'll have a clear idea of what to implment
+(23:00:00) [@[ava]] it is rather easy as the tests (and the client) will use the model directly
+(23:00:34) [@[ava]] i think you should write your requirements down as well
+(23:00:40) [@>] its a good thing that you are a engineer :)
+(23:00:52) [@[ava]] well thetest can be your requirement in fact
+(23:01:04) [@[ava]] hehe what do you mean ?
+(23:01:14) [@[ava]] i also write bugs and make mistakes ;)
+(23:01:19) [@>] I as a computer scientist I take these huge visions and then the whole thing is just a huge blob :)
+(23:01:55) [@[ava]] yes
+(23:01:57) [@>] http://philip.greenspun.com/humor/eecs-difference-explained
+(23:02:07) [@>] The king wisely had the computer scientist beheaded, and they all lived happily ever after. <- LOL
+(23:02:16) [@[ava]] heheheh
+(23:02:49) [@[ava]] well i am guessing you'll have to start from scratch your design :)
+(23:03:10) [@>] AAAAAAAAAAAAAAAAAAAAAAAGGGGGGGGGGGGGGGGGGGGGHHHHHHHHHHHHHHHHHHHHH
+(23:03:15) [@>] umbrello crashed
+(23:03:20) [@[ava]] oops
+(23:03:27) [@[ava]] never forget to save :)
+(23:03:40) [@[ava]] you should also put this conversation on the IRC :)
+(23:03:47) [@>] hehehheheheh :)
+(23:03:48) [@[ava]] i mean on SVN
+(23:03:50) [@[ava]] damn
+(23:03:54) [@>] LOL
+(23:04:13) [@[ava]] what is important is that you rememeber the approach
+(23:04:17) [@>] yep
+(23:04:25) [@>] read that links as a thanks from me :)
+(23:04:26) [@[ava]] start simple from a suubproblem, and extend little by little
+(23:04:56) [@>] yep
+(23:05:01) [@[ava]] hhee ok :)
+(23:05:13) [@>] I just exploded the whole MVC with all the nice thingies :)
+(23:05:36) [@[ava]] well yeah
+(23:05:40) [@[ava]] you're learning
+(23:05:43) [@>] yep
+(23:05:49) [@[ava]] first you underdesigned (PHP)
+(23:05:51) [@>] very greaply
+(23:05:54) [@>] WTF no
+(23:06:01) [@>] I didn't underdesign that
+(23:06:03) [@[ava]] then you overdesign (monotooth)
+(23:06:16) [@>] I think I didn't
+(23:06:22) [@[ava]] well in the beginning yes
+(23:06:28) [@[ava]] not the final version
+(23:06:45) [@>] yep
+(23:06:53) [@>] learning learning learning
+(23:06:57) [@[ava]] indeed
+(23:07:14) [@>] experience is a tough teacher, she gives the exam of the days lecture before the lecture :)
+(23:07:19) [@[ava]] actually i showed you MVC and you liked it so much that you wanted to use it again :)
+(23:07:26) [@>] yep :)
+(23:07:30) [@>] and it overheated
+(23:07:49) [@[ava]] well it's good you make that mistake now
+(23:07:57) [@[ava]] cos you won't make it later
+(23:08:15) [@>] yep
+(23:08:24) [@[ava]] so tomorrow i will see a nice new xmi ?
+(23:08:45) [@[ava]] + the tests ?
+(23:08:50) [@>] well now if you want to
+(23:09:04) [@>] since its ready now
+(23:09:07) [@[ava]] wow already ?
+(23:09:28) [@>] yep
+(23:09:34) [@>] it wasn't too much to do
+(23:09:39) [@[ava]] send it then
+(23:09:46) [@[ava]] i mean svn
+(23:09:50) [@>] there is the The thing in the xmi.tar.bz2
+(23:09:52) [@>] done
+(23:10:22) [@[ava]] ok
+(23:11:38) [@[ava]] actually this listen stuff, is it called by the connection ?
+(23:11:52) [@[ava]] maybe you need to work this out in sequence diagrams  as well :)
+(23:12:31) [@[ava]] and you forgot the devicepool
+(23:12:39) [@[ava]] but maybe it is too much for one day :)
+(23:12:45) [@>] yep :))
+(23:13:19) [@[ava]] well if you have time to update that tomorrow, i 'll take a look tomorrow evening :)
+(23:13:54) [@[ava]] in the meanwhile you can also write the tests or try to work out this bluez thingy :)
+(23:14:10) [@>] well not yet
+(23:14:25) [@>] since I havent written the waf script and there isn't much code yet
+(23:14:39) [@>] but I'm doing the device pool now
+(23:14:54) [@[ava]] ok
+(23:14:56) [@>] hmm
+(23:15:06) [@>] the pool could have iterators, right?
+(23:16:37) [@>] or just a vector to keep things simple again :)
+(23:16:39) [@[ava]] well yeah, but i suggest you use and standard container from .NET
+(23:16:48) [@[ava]] you read my mind :)
+(23:17:43) [@>] heheh :)

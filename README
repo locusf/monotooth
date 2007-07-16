@@ -1,0 +1,82 @@
+README by Aleksi Suomalainen
+------
+Contents:
+1. Preface
+2. General Idea
+3. Multiple OS's
+4. Things to be supported
+5. Links
+
+1. Preface ----------------------
+
+Monotooth was created with a vision of integrating Bluetooth in to the
+Mono platform. Originally the idea was to create a Bluetooth-ready environment with
+Windows API. With my recent good experiences about Bluetooth and the use of MVC in 
+software development, I decided to start up this project, with of course the support of
+my friend and mentor Alexandre Vaughan.
+
+2. General Idea -----------------
+
+MonoTooth uses factories to create devices. See example code from project itself and an
+example below.
+
+
+3. Multiple OS's ----------------
+
+Multiple OS-wide Bluetooth integration is handled via marshalling. Mono is quite good at
+marshaling things and is well supported by many platforms. With the help of custom C
+library, Mono can access Bluetooth-interfaces via software level (where marshaling won't
+work as easily, for example bind() and connect() functions, which need a special cast).
+
+The multiple OS identification is done with the multiple factories, each which create
+factories with System.Environment.OSVersion.Platform's value. Then for each OS, there are
+corresponding factories to create devices and several different connections. Here is an
+example of a client connecting to a server, which has registered service with UUID 0xABCD:
+
+using System;
+using Monotooth;
+
+public class App
+{
+	public static void Main(String[] args)
+	{
+		    monotooth.Model.Device.DeviceFactory fac =  monotooth.Model.Device.DeviceFactory.GetFactory();         
+            monotooth.Model.Device.IDevice devi = fac.CreateDevice();
+            Console.WriteLine("Information of the local device: ");
+            Console.WriteLine("Name: "+devi.FriendlyName+ " Address: "+ devi.AddressAsString());
+            Console.WriteLine("Searching for devices...");
+            monotooth.Model.Device.DevicePool pool = devi.Inquire();                        
+            foreach(monotooth.Model.Device.IDevice dev in pool)
+            {
+                Console.WriteLine("Name: "+ dev.FriendlyName + " Address:"+ dev.AddressAsString()+"\n Now searching for services..");
+                // Search only services with a specific UUID
+                dev.Services = devi.InquireServices(dev,(uint)0xABCD);
+                Console.WriteLine("Services in :"+dev.FriendlyName);
+                foreach(monotooth.Model.Device.LinuxDevice.Service serv in dev.Services)
+                {
+                    Console.WriteLine("Service name: "+(new string(serv.name))+"\nService description: "+(new string(serv.description))+"\nService Port: "+serv.rfcomm_port);
+                    monotooth.Model.Connections.RFCommConnectionFactory connfac = monotooth.Model.Connections.RFCommConnectionFactory.GetFactory();
+                    monotooth.Model.Connections.RFCommConnection conn = connfac.CreateRFCommConnection(devi.Address,dev.Address);
+                    conn.connect(serv.rfcomm_port);         
+                    System.Text.StringBuilder bld = new System.Text.StringBuilder("Hello there!");
+                    conn.Write(bld);
+            
+                }
+            }           
+            }
+	}
+}
+
+4. Things to be supported -------
+
+The windows port of monotooth will be the next big step, and integrating linux's bluez and
+windows' bluetooth API. For the linux side, there are many many things to do. These things
+include wide use of the SDP-functions from bluez, HCI-parameter settings and use of more 
+complex service records.
+
+5. Links ------------------------
+http://sourceforge.net/projects/monotooth/
+http://www.mono-project.com/Interop_with_Native_Libraries
+http://msdn.microsoft.com/library/default.asp?url=/library/en-us/Bluetooth/bluetooth/bluetooth_start_page.asp
+http://www.bleepsoft.com/tyler/index.php?itemid=109
+http://people.csail.mit.edu/albert/bluez-intro/index.html

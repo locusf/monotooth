@@ -1,0 +1,52 @@
+#! /usr/bin/env python
+# encoding: utf-8
+# Aleksi Suomalainen, 2007
+
+
+VERSION='0.0.1'
+APPNAME='libmonotooth'
+
+# these variables are mandatory ('/' are converted automatically)
+srcdir = '.'
+blddir = '../../../bin'
+def set_options(opt):
+        # the gcc module provides a --debug-level option
+        opt.tool_options('gcc')
+
+def configure(conf):
+        conf.check_tool('gcc')
+	env = conf.env.copy()
+	env.set_variant('Debug')
+	conf.set_env_name('Debug',env)
+	conf.setenv('Debug')
+	# Looks for the bluetooth lib in the specified directories
+        libconf = conf.create_library_configurator()
+        libconf.uselib = 'bluetooth'
+        libconf.name   = 'bluetooth'
+        libconf.paths = ['/usr/X11R6/lib','/usr/lib','/usr/local/lib']
+        libconf.run()
+	libconf = conf.create_library_configurator()
+	libconf.uselib = 'c'
+	libconf.name = 'c'
+	libconf.paths = ['/usr/X11R6/lib','/usr/lib','/usr/local/lib']
+	libconf.run()
+
+def build(bld):
+        # process subfolders from here
+	obj = bld.create_obj('cc','shlib')
+	obj.env = bld.env_of_name('Debug').copy()
+	obj.env['CCFLAGS'] = '-g3'
+	obj.target = 'monotooth'
+	obj.cxxflags = "-g"
+	obj.source = '''
+	hci/hcifuncs.c
+	sdp/sdpfuncs.c
+	rfcomm/rfcommfuncs.c
+	l2cap/l2capfuncs.c
+	libmonotooth.c
+	'''
+	obj.uselib = """
+	bluetooth
+	c
+	"""
+	

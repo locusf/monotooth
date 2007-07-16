@@ -1,0 +1,13 @@
+To compile monotooth, you will have to have MonoDevelop. This is by far the easiest way to compile the entire project, demos and tests. To compile the native sources, I use waf (http://www.freehackers.org/~tnagy/waf.html, latest SVN), since it has a very intuitive build system. 
+
+PREREQUISITES:
+* Bluez libraries (for example in Ubuntu, libbluetooth2)
+* Some kind of bluetooth device attached and installed on the system
+* A linux-based operating system
+
+So the steps are:
+1. Compile the entire solution with monodevelop (open monotooth.mds from the root directory)
+2. cd to src/native/linux
+3. run waf configure
+4. run waf, the binaries are put to $MONOTOOTHDIR/bin/Debug
+5. Try out the demos, make sure you have a bluetooth dongle ( and 2 computers :) ).

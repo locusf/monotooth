@@ -1,0 +1,9 @@
+Linux:
+- Service searching with UUID128
+- HCI-connections (mainly for LocalDevice)
+- Debug L2CAP connections
+- Make more tests
+
+Windows:
+- Everything :)
+
