@@ -73,6 +73,8 @@ namespace monotooth.Model.Device
 			{
 				for(int i = 0; i < count;i++)
 				{
+					try
+					{
 					element = Marshal.ReadIntPtr(devs,i*IntPtr.Size);
 					info = (InquiryInformation)Marshal.PtrToStructure(element,typeof(InquiryInformation));					
 					System.Text.StringBuilder bld = new System.Text.StringBuilder(18), bld2 = new System.Text.StringBuilder(248);
@@ -81,6 +83,12 @@ namespace monotooth.Model.Device
 					{					
 						LinuxDevice dev = new LinuxDevice(info.bdaddr,bld2.ToString());
 						pool.Add(dev);						
+					}
+					// this catch is meant to skip invalid pointers
+					} catch(NullReferenceException nre)
+					{
+						
+						nre.Equals(nre);
 					}
 					//Marshal.FreeHGlobal(element);
 				}
@@ -127,6 +135,7 @@ namespace monotooth.Model.Device
 					pool.Add(serv);
 					}
 					}
+					// this catch is meant to skip invalid pointers
 					} catch (NullReferenceException nre)
 					{		
 						nre.Equals(nre);
