@@ -144,6 +144,13 @@
                 </b>()<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a></nobr><div>Returns the devices address as string. </div></td>
             </tr>
             <tr valign="top">
+              <td>static </td>
+              <td>
+                <b>
+                  <a href="#M:monotooth.Model.Device.LinuxDevice.AddressAsString(monotooth.Model.BluetoothAddress)">AddressAsString</a>
+                </b>(<a href="../monotooth.Model/BluetoothAddress.html">monotooth.Model.BluetoothAddress</a>)<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a></nobr><div>Returns an address as string. </div></td>
+            </tr>
+            <tr valign="top">
               <td>
               </td>
               <td>
@@ -166,6 +173,13 @@
                 <b>
                   <a href="#M:monotooth.Model.Device.LinuxDevice.StringAsAddress(System.String)">StringAsAddress</a>
                 </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>)<nobr> : <a href="../monotooth.Model/BluetoothAddress.html">monotooth.Model.BluetoothAddress</a></nobr><div>Returns a <tt><font size="-1">monotooth.Model.BluetoothAddress</font></tt> from a string, using a native function. </div></td>
+            </tr>
+            <tr valign="top">
+              <td>static </td>
+              <td>
+                <b>
+                  <a href="#M:monotooth.Model.Device.LinuxDevice.StringAsAddressStatic(System.String)">StringAsAddressStatic</a>
+                </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>)<nobr> : <a href="../monotooth.Model/BluetoothAddress.html">monotooth.Model.BluetoothAddress</a></nobr><div>Returns an address as string. </div></td>
             </tr>
           </table>
         </div>
@@ -223,6 +237,26 @@
           <p>Returns the devices address as string. </p>
           <h4 class="Subsection">Returns</h4>
           <div class="SubsectionBox">A string with the native address of the device. </div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">To be added.</div>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="M:monotooth.Model.Device.LinuxDevice.AddressAsString(monotooth.Model.BluetoothAddress)" class="MemberName">AddressAsString Method</h3>
+        <div class="MemberSignature">public static <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> <b>AddressAsString</b> (<a href="../monotooth.Model/BluetoothAddress.html">monotooth.Model.BluetoothAddress</a> ba)</div>
+        <div class="MemberBox">
+          <p>Returns an address as string. </p>
+          <h4 class="Subsection">Parameters</h4>
+          <div class="SubsectionBox">
+            <dl>
+              <dt>
+                <i>ba</i>
+              </dt>
+              <dd>To be added.</dd>
+            </dl>
+          </div>
+          <h4 class="Subsection">Returns</h4>
+          <div class="SubsectionBox">A string from the address.</div>
           <h4 class="Subsection">Remarks</h4>
           <div class="SubsectionBox">To be added.</div>
           <hr size="1">
@@ -300,6 +334,26 @@
           </div>
           <h4 class="Subsection">Returns</h4>
           <div class="SubsectionBox">New address. </div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">Will return an 0-address if the address string is not in the 48-bit form. </div>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="M:monotooth.Model.Device.LinuxDevice.StringAsAddressStatic(System.String)" class="MemberName">StringAsAddressStatic Method</h3>
+        <div class="MemberSignature">public static <a href="../monotooth.Model/BluetoothAddress.html">monotooth.Model.BluetoothAddress</a> <b>StringAsAddressStatic</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> addr)</div>
+        <div class="MemberBox">
+          <p>Returns an address as string. </p>
+          <h4 class="Subsection">Parameters</h4>
+          <div class="SubsectionBox">
+            <dl>
+              <dt>
+                <i>addr</i>
+              </dt>
+              <dd> string presentation of the address. </dd>
+            </dl>
+          </div>
+          <h4 class="Subsection">Returns</h4>
+          <div class="SubsectionBox">A string from the address.</div>
           <h4 class="Subsection">Remarks</h4>
           <div class="SubsectionBox">To be added.</div>
           <hr size="1">

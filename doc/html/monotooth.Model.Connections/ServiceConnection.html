@@ -76,8 +76,9 @@
               </td>
               <td>
                 <b>
-                  <a href="#M:monotooth.Model.Connections.ServiceConnection.RegisterService(System.String,System.String,System.String,System.Int32,System.UInt32)">RegisterService</a>
-                </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.UInt32">uint</a>)<div>Registers a service to the local SDP server. This server must be running before any action can be undertaken.</div></td>
+                  <a href="#M:monotooth.Model.Connections.ServiceConnection.connect(System.UInt32)">connect</a>
+                </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.UInt32">uint</a>)<div>Connects this connection to a specific service.
+            <table class="CodeExampleTable"><tr><td><b><font size="-1">C# Example</font></b></td></tr><tr><td><pre></pre></td></tr></table></div></td>
             </tr>
             <tr valign="top">
               <td>
@@ -94,37 +95,22 @@
     <div class="Members">
       <h2 class="Section">Member Details</h2>
       <div class="SectionBox">
-        <h3 id="M:monotooth.Model.Connections.ServiceConnection.RegisterService(System.String,System.String,System.String,System.Int32,System.UInt32)" class="MemberName">RegisterService Method</h3>
-        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>RegisterService</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> name, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> description, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> vendor, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> rfcomm_channel, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.UInt32">uint</a> uuid)</div>
+        <h3 id="M:monotooth.Model.Connections.ServiceConnection.connect(System.UInt32)" class="MemberName">connect Method</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>connect</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.UInt32">uint</a> uuid)</div>
         <div class="MemberBox">
-          <p>Registers a service to the local SDP server. This server must be running before any action can be undertaken.</p>
+          <p>Connects this connection to a specific service.
+            <table class="CodeExampleTable"><tr><td><b><font size="-1">C# Example</font></b></td></tr><tr><td><pre></pre></td></tr></table></p>
           <h4 class="Subsection">Parameters</h4>
           <div class="SubsectionBox">
             <dl>
               <dt>
-                <i>name</i>
-              </dt>
-              <dd>A name of the service. </dd>
-              <dt>
-                <i>description</i>
-              </dt>
-              <dd>Description of the service. </dd>
-              <dt>
-                <i>vendor</i>
-              </dt>
-              <dd>Possible vendor for the service. </dd>
-              <dt>
-                <i>rfcomm_channel</i>
-              </dt>
-              <dd>The rfcomm channel to listen for service connections. </dd>
-              <dt>
                 <i>uuid</i>
               </dt>
-              <dd>The services UUID as unsigned integer. </dd>
+              <dd>The uuid to search for.</dd>
             </dl>
           </div>
           <h4 class="Subsection">Remarks</h4>
-          <div class="SubsectionBox">The UUID of the service is now implemented for simplicity as an unsigned integer.</div>
+          <div class="SubsectionBox">To be added.</div>
           <hr size="1">
           </hr>
         </div>
