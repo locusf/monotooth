@@ -11,3 +11,4 @@ So the steps are:
 3. run waf configure
 4. run waf, the binaries are put to $MONOTOOTHDIR/bin/Debug
 5. Try out the demos, make sure you have a bluetooth dongle ( and 2 computers :) ).
+6. (optional) To run the tests, make sure you have correct reference set to "tests->References", you usually need to change this. Just remove the current "monotooth" reference and then re-add it by searching the monotooth.dll from the bin/Debug folder.
