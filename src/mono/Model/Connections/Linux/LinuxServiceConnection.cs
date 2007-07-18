@@ -20,6 +20,21 @@ namespace monotooth.Model.Connections
 		private IntPtr session;		
 		public void connect()
 		{
+		}
+		public void connect(uint uuid)
+		{
+			monotooth.Model.Device.LinuxDevice remotedev = new monotooth.Model.Device.LinuxDevice(this.usedconn.to,"somename");
+			monotooth.Model.Device.DeviceFactory fac = monotooth.Model.Device.DeviceFactory.GetFactory();
+			monotooth.Model.Device.IDevice localdev = fac.CreateDevice();
+			monotooth.Model.Service.ServicePool servpool = localdev.InquireServices(remotedev,uuid);
+			monotooth.Model.Connections.RFCommConnectionFactory rfcommfac = monotooth.Model.Connections.RFCommConnectionFactory.GetFactory();
+			monotooth.Model.Connections.RFCommConnection conn =  rfcommfac.CreateRFCommConnection(localdev.Address,remotedev.Address);
+			if(servpool.Count>0)
+			{			
+				this.usedconn = conn;
+				this.usedconn.Connected = true;
+				this.usedconn.connect(servpool[0].rfcomm_port);
+			}
 		}		
 		~LinuxServiceConnection()
 		{
@@ -32,11 +47,17 @@ namespace monotooth.Model.Connections
 		private bool isconnected;
 		public void Write(System.Text.StringBuilder bld)
 		{
+			if(this.usedconn.Connected)
+			{
 			this.usedconn.Write(bld);
+			}
 		}
 		public void Read(System.Text.StringBuilder bld)
 		{
+			if(this.usedconn.Connected)
+			{
 			this.usedconn.Read(bld);
+			}
 		}
 		public bool isConnected()
 		{
@@ -54,38 +75,35 @@ namespace monotooth.Model.Connections
 		[DllImport("monotooth")]
 		private static extern IntPtr register_service(string name, string descr, string vendor, int channel, uint uuid);
 		// Interface members
-		private int sockf;
 		public int SocketDescriptor
 		{
 			get
 			{
-				return this.sockf;
+				return this.usedconn.SocketDescriptor;
 			}
-		}
-		private monotooth.Model.BluetoothAddress fromaddr;
+		}		
 		public monotooth.Model.BluetoothAddress from
 		{
 			get
 			{
-				return this.fromaddr;
+				return this.usedconn.from;
 			}
 			set
 			{
-				this.fromaddr = value;
+				this.usedconn.from = value;
 			}
 			
-		}
-		private monotooth.Model.BluetoothAddress toaddr;
+		}		
 		
 		public monotooth.Model.BluetoothAddress to
 		{
 			get
 			{
-				return this.toaddr;
+				return this.usedconn.to;
 			}
 			set
 			{
-				this.toaddr = value;
+				this.usedconn.to = value;
 			}
 		}
 		

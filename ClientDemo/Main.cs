@@ -22,15 +22,16 @@ namespace ClientDemo
 				Console.WriteLine("Services in :"+dev.FriendlyName);
 				foreach(monotooth.Model.Device.LinuxDevice.Service serv in dev.Services)
 				{
-					Console.WriteLine("Service name: "+(new string(serv.name))+"\nService description: "+(new string(serv.description))+"\nService Port: "+serv.rfcomm_port);
-					/*monotooth.Model.Connections.RFCommConnectionFactory connfac = monotooth.Model.Connections.RFCommConnectionFactory.GetFactory();
-					monotooth.Model.Connections.RFCommConnection conn = connfac.CreateRFCommConnection(devi.Address,dev.Address);
-					conn.connect(serv.rfcomm_port);			
-					System.Text.StringBuilder bld = new System.Text.StringBuilder("Hello there!");
-					conn.Write(bld);*/
-			
+					Console.WriteLine("Service name: "+(new string(serv.name))+"\nService description: "+(new string(serv.description))+"\nService Port: "+serv.rfcomm_port);			
 				}
-			}			
+			}
+			monotooth.Model.Connections.RFCommConnectionFactory connfac = monotooth.Model.Connections.RFCommConnectionFactory.GetFactory();
+			monotooth.Model.Connections.RFCommConnection conn = connfac.CreateRFCommConnection(devi.Address,devi.Address);
+			monotooth.Model.Connections.ServiceConnectionFactory servfac = monotooth.Model.Connections.ServiceConnectionFactory.GetFactory();
+			monotooth.Model.Connections.ServiceConnection servconn = servfac.CreateServiceConnection(conn);
+			servconn.connect((uint)0xABCD);
+			System.Text.StringBuilder bld = new System.Text.StringBuilder("Hello there!");
+			servconn.Write(bld);
 			}
 	}
 }

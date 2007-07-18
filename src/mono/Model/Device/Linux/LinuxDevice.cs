@@ -11,16 +11,22 @@ namespace monotooth.Model.Device
 		/// <summary> The default constructor for linux implementation </summary>
 		public LinuxDevice()
 		{
-			int dev_id = hci_get_route(IntPtr.Zero);
-			int dd = hci_open_dev(dev_id);
+			this.dev_id = hci_get_route(IntPtr.Zero);
+			if(this.dev_id != -1)
+			{
+			int dd = hci_open_dev(this.dev_id);
 			this.address = new monotooth.Model.BluetoothAddress();
 			IntPtr ptr = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(monotooth.Model.BluetoothAddress)));
-			hci_devba(dev_id,ptr);
+			hci_devba(this.dev_id,ptr);
 			Marshal.PtrToStructure(ptr,this.address);		
 			System.Text.StringBuilder bld = new System.Text.StringBuilder(248);
 			hci_read_local_name(dd,bld.Capacity,bld,1000);
 			this.name = bld.ToString();
 			Marshal.FreeHGlobal(ptr);
+			} else
+			{
+				Console.WriteLine("You do not have a bluetooth device in your system.");
+			}
 		}
 		/// <summary> This is the alternative constructor for constructing a
 		/// LinuxDevice with specific address and name.</summary>
@@ -30,6 +36,7 @@ namespace monotooth.Model.Device
 			this.name = name;
 		}
 		// Instance variables
+		private int dev_id = -1;
 		private monotooth.Model.BluetoothAddress address;
 		private string name;
 		private monotooth.Model.Service.ServicePool services;
@@ -55,8 +62,10 @@ namespace monotooth.Model.Device
 		/// <returns> A <c>DevicePool</c>, in which all the devices are added, if any. </returns> 
 		public DevicePool Inquire()
 		{			
-			int dev_id = hci_get_route(IntPtr.Zero);
-			int sock = hci_open_dev(dev_id);
+			this.dev_id = hci_get_route(IntPtr.Zero);
+			if( this.dev_id != -1)
+			{
+			int sock = hci_open_dev(this.dev_id);
 			DevicePool pool = new DevicePool();
 			int count=0;			
 			InquiryInformation info = new InquiryInformation();		
@@ -77,8 +86,7 @@ namespace monotooth.Model.Device
 					{
 					element = Marshal.ReadIntPtr(devs,i*IntPtr.Size);
 					info = (InquiryInformation)Marshal.PtrToStructure(element,typeof(InquiryInformation));					
-					System.Text.StringBuilder bld = new System.Text.StringBuilder(18), bld2 = new System.Text.StringBuilder(248);
-					ba2str(info.bdaddr,bld);
+					System.Text.StringBuilder bld2 = new System.Text.StringBuilder(248);					
 					if(hci_read_remote_name(sock,info.bdaddr,248,bld2,0)==0)
 					{					
 						LinuxDevice dev = new LinuxDevice(info.bdaddr,bld2.ToString());
@@ -97,6 +105,11 @@ namespace monotooth.Model.Device
 			Marshal.FreeHGlobal(devs);			
 			close(sock);
 			return pool;
+			} else 
+			{
+			Console.WriteLine("You do not have a bluetooth device in your system.");
+			return null;
+			}
 		}
 		/// <summary> Inquires services from a given device. The service UUID can also be specified. </summary>
 		/// <param name="dev">An instance of an <c>IDevice</c>, used to dig up an address. </param>
@@ -150,23 +163,45 @@ namespace monotooth.Model.Device
 		/// <returns>A string with the native address of the device. </returns>
 		public string AddressAsString()
 		{
-			System.Text.StringBuilder bld = new System.Text.StringBuilder(18);
-			ba2str(this.address,bld);
-			return bld.ToString();
+			string ret = Marshal.PtrToStringAnsi(batostr(this.address));
+			return ret;
 		}
-		/// <summary>Returns a <c>monotooth.Model.BluetoothAddress</c> from a string, using a native function. </summary>
-		/// <returns>New address. </returns>
-		public monotooth.Model.BluetoothAddress StringAsAddress(string addr)
+		/// <summary>Returns an address as string. </summary>
+		/// <returns>A string from the address.</returns>
+		public static string AddressAsString(monotooth.Model.BluetoothAddress ba)
+		{			
+			string ret = Marshal.PtrToStringAnsi(batostr(ba));
+			return ret;
+		}
+		/// <summary>Returns an address as string. </summary>
+		/// <returns>A string from the address.</returns>
+		/// <param name="addr"> string presentation of the address. </param>
+		public static monotooth.Model.BluetoothAddress StringAsAddressStatic(string addr)
 		{
+			
+			if(addr.LastIndexOfAny(new char[1]{':'})==14)
+			{
 			monotooth.Model.BluetoothAddress ba = new monotooth.Model.BluetoothAddress();
 			Marshal.PtrToStructure(strtoba(addr),ba);
 			return ba;
+			} else {
+			return new monotooth.Model.BluetoothAddress();
+			}
 		}
-		/*
-		
-			Some helper methods
-			
-		*/
+		/// <summary>Returns a <c>monotooth.Model.BluetoothAddress</c> from a string, using a native function. </summary>
+		/// <returns>New address. </returns>
+		/// <remarks>Will return an 0-address if the address string is not in the 48-bit form. </remarks>
+		public monotooth.Model.BluetoothAddress StringAsAddress(string addr)
+		{
+			if(addr.LastIndexOfAny(new char[1]{':'})==15)
+			{
+			monotooth.Model.BluetoothAddress ba = new monotooth.Model.BluetoothAddress();
+			Marshal.PtrToStructure(strtoba(addr),ba);
+			return ba;
+			} else {
+			return new monotooth.Model.BluetoothAddress();
+			}
+		}		
 		
 		/*		
 		
@@ -198,7 +233,7 @@ namespace monotooth.Model.Device
 			Utility functions
 		*/
 		[DllImport("bluetooth")]
-		private static extern void ba2str(monotooth.Model.BluetoothAddress ba, System.Text.StringBuilder b);
+		private static extern IntPtr batostr(monotooth.Model.BluetoothAddress ba);
 		[DllImport("bluetooth")]
 		private static extern IntPtr strtoba(string addr);
 		/*

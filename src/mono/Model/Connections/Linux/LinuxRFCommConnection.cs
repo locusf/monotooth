@@ -50,23 +50,30 @@ namespace monotooth.Model.Connections
 		}
 		public void Write(System.Text.StringBuilder bytes)
 		{
+			if(this.connected)
+			{
 			bytes.Capacity = 1024;
 			write(this.sockf,bytes,bytes.Capacity);
+			}
 		}
 		public void Read(System.Text.StringBuilder bytes)
 		{
+			if(this.connected)
+			{
 			bytes.Capacity = 1024;
 			read(this.sockf,bytes,bytes.Capacity);
+			}
 		}
 		public void listen(int channel)
 		{
 			this.chan = channel;
 			if(!isConnected())
 			{
-				this.sockf = rfcomm_listen(this.fromaddr,channel,1);				
+				this.sockf = rfcomm_listen(this.fromaddr,channel,1);
+				this.Connected = true;
 			} else
 			{
-				Console.WriteLine("Can't listen to an alReady open connection!");
+				Console.WriteLine("Can't listen to an already open connection!");
 			}
 	
 		}
