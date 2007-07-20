@@ -87,7 +87,7 @@ namespace monotooth.Model.Device
 					element = Marshal.ReadIntPtr(devs,i*IntPtr.Size);
 					info = (InquiryInformation)Marshal.PtrToStructure(element,typeof(InquiryInformation));					
 					System.Text.StringBuilder bld2 = new System.Text.StringBuilder(248);					
-					if(hci_read_remote_name(sock,info.bdaddr,248,bld2,0)==0)
+					if(hci_read_remote_name(sock,info.bdaddr,bld2.Capacity,bld2,0)==0)
 					{					
 						LinuxDevice dev = new LinuxDevice(info.bdaddr,bld2.ToString());
 						pool.Add(dev);						
