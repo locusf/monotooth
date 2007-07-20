@@ -1,0 +1,171 @@
+<html>
+  <head>
+    <title>monotooth.Model.Connections.ServiceConnection</title>
+    <style>
+					a { text-decoration: none }
+				
+					.CollectionTitle { font-weight: bold }
+					.PageTitle { font-size: 150%; font-weight: bold }
+
+					.Summary { }
+					.Signature { }					
+					.Remarks { }
+					.Members { }
+					.Copyright { }
+					
+					.Section { font-size: 125%; font-weight: bold }
+					.SectionBox { margin-left: 2em }
+					.NamespaceName { font-size: 105%; font-weight: bold }
+					.NamespaceSumary { }
+					.MemberName { font-size: 115%; font-weight: bold; margin-top: 1em }
+					.MemberSignature { font-family: monospace; margin-top: 1em; }
+					.MemberBox { }
+					.Subsection { font-size: 105%; font-weight: bold }
+					.SubsectionBox { margin-left: 2em; margin-bottom: 1em }
+
+					.SignatureTable { background-color: #c0c0c0; }
+					.EnumerationsTable th { background-color: #f2f2f2; }
+					.CodeExampleTable { background-color: #f5f5dd; border: thin solid black; padding: .25em; }
+					
+					.MembersListing td { margin: 0px; border: 1px solid black; padding: .25em }
+					
+					.TypesListing td { margin: 0px;  padding: .25em }
+					.InnerSignatureTable tr { background-color: #f2f2f2; }
+					.TypePermissionsTable tr { background-color: #f2f2f2; }
+					
+				</style>
+  </head>
+  <body>
+    <div class="CollectionTitle">
+      <a href="../index.html">monotooth</a>
+			:
+			<a href="index.html">monotooth.Model.Connections Namespace</a></div>
+    <h1 class="PageTitle">ServiceConnection  Interface</h1>
+    <p class="Summary">A superinterface for service-oriented connections.</p>
+    <div class="Signature">
+      <table class="SignatureTable" cellspacing="0" width="100%">
+        <tr>
+          <td>
+            <table class="InnerSignatureTable" cellpadding="10" cellspacing="0" width="100%">
+              <tr>
+                <td>public interface  <b>ServiceConnection</b> :
+		
+								,	<a href="../monotooth.Model.Connections/IConnection.html">IConnection</a></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <br>
+      </br>
+    </div>
+    <div class="Remarks">
+      <h4 class="Subsection">Remarks</h4>
+      <div class="SubsectionBox">
+        <p>This interface only has service registration as a feature.</p>
+        <p>To connect to a specific service, first inquire devices,
+            then use InquireServices with an UUID to connect to this specific service</p>
+      </div>
+      <h2 class="Section">Members</h2>
+      <div class="SectionBox">
+        <h3>Methods</h3>
+        <div class="SubsectionBox">
+          <table class="MembersListing">
+            <tr valign="top">
+              <td>
+              </td>
+              <td>
+                <b>
+                  <a href="#M:monotooth.Model.Connections.ServiceConnection.RegisterService(System.String,System.String,System.String,System.Int32,System.UInt32)">RegisterService</a>
+                </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.UInt32">uint</a>)<div>Registers a service to the local SDP server. This server must be running before any action can be undertaken.</div></td>
+            </tr>
+            <tr valign="top">
+              <td>
+              </td>
+              <td>
+                <b>
+                  <a href="#M:monotooth.Model.Connections.ServiceConnection.RegisterService(System.String,System.String,System.String,System.Int32,System.UInt32)">RegisterService</a>
+                </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.UInt32">uint</a>)<div>Registers a service to the local SDP server. This server must be running before any action can be undertaken.</div></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="Members">
+      <h2 class="Section">Member Details</h2>
+      <div class="SectionBox">
+        <h3 id="M:monotooth.Model.Connections.ServiceConnection.RegisterService(System.String,System.String,System.String,System.Int32,System.UInt32)" class="MemberName">RegisterService Method</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>RegisterService</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> name, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> description, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> vendor, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> rfcomm_channel, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.UInt32">uint</a> uuid)</div>
+        <div class="MemberBox">
+          <p>Registers a service to the local SDP server. This server must be running before any action can be undertaken.</p>
+          <h4 class="Subsection">Parameters</h4>
+          <div class="SubsectionBox">
+            <dl>
+              <dt>
+                <i>name</i>
+              </dt>
+              <dd>A name of the service. </dd>
+              <dt>
+                <i>description</i>
+              </dt>
+              <dd>Description of the service. </dd>
+              <dt>
+                <i>vendor</i>
+              </dt>
+              <dd>Possible vendor for the service. </dd>
+              <dt>
+                <i>rfcomm_channel</i>
+              </dt>
+              <dd>The rfcomm channel to listen for service connections. </dd>
+              <dt>
+                <i>uuid</i>
+              </dt>
+              <dd>The services UUID as unsigned integer. </dd>
+            </dl>
+          </div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">The UUID of the service is now implemented for simplicity as an unsigned integer.</div>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="M:monotooth.Model.Connections.ServiceConnection.RegisterService(System.String,System.String,System.String,System.Int32,System.UInt32)" class="MemberName">RegisterService Method</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>RegisterService</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> name, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> description, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> vendor, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> rfcomm_channel, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.UInt32">uint</a> uuid)</div>
+        <div class="MemberBox">
+          <p>Registers a service to the local SDP server. This server must be running before any action can be undertaken.</p>
+          <h4 class="Subsection">Parameters</h4>
+          <div class="SubsectionBox">
+            <dl>
+              <dt>
+                <i>name</i>
+              </dt>
+              <dd>A name of the service. </dd>
+              <dt>
+                <i>description</i>
+              </dt>
+              <dd>Description of the service. </dd>
+              <dt>
+                <i>vendor</i>
+              </dt>
+              <dd>Possible vendor for the service. </dd>
+              <dt>
+                <i>rfcomm_channel</i>
+              </dt>
+              <dd>The rfcomm channel to listen for service connections. </dd>
+              <dt>
+                <i>uuid</i>
+              </dt>
+              <dd>The services UUID as unsigned integer. </dd>
+            </dl>
+          </div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">The UUID of the service is now implemented for simplicity as an unsigned integer.</div>
+          <hr size="1">
+          </hr>
+        </div>
+      </div>
+    </div>
+    <hr size="1" />
+    <div class="Copyright">
+    </div>
+  </body>
+</html>

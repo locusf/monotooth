@@ -1,0 +1,260 @@
+<html>
+  <head>
+    <title>monotooth.Model.Device.IDevice</title>
+    <style>
+					a { text-decoration: none }
+				
+					.CollectionTitle { font-weight: bold }
+					.PageTitle { font-size: 150%; font-weight: bold }
+
+					.Summary { }
+					.Signature { }					
+					.Remarks { }
+					.Members { }
+					.Copyright { }
+					
+					.Section { font-size: 125%; font-weight: bold }
+					.SectionBox { margin-left: 2em }
+					.NamespaceName { font-size: 105%; font-weight: bold }
+					.NamespaceSumary { }
+					.MemberName { font-size: 115%; font-weight: bold; margin-top: 1em }
+					.MemberSignature { font-family: monospace; margin-top: 1em; }
+					.MemberBox { }
+					.Subsection { font-size: 105%; font-weight: bold }
+					.SubsectionBox { margin-left: 2em; margin-bottom: 1em }
+
+					.SignatureTable { background-color: #c0c0c0; }
+					.EnumerationsTable th { background-color: #f2f2f2; }
+					.CodeExampleTable { background-color: #f5f5dd; border: thin solid black; padding: .25em; }
+					
+					.MembersListing td { margin: 0px; border: 1px solid black; padding: .25em }
+					
+					.TypesListing td { margin: 0px;  padding: .25em }
+					.InnerSignatureTable tr { background-color: #f2f2f2; }
+					.TypePermissionsTable tr { background-color: #f2f2f2; }
+					
+				</style>
+  </head>
+  <body>
+    <div class="CollectionTitle">
+      <a href="../index.html">monotooth</a>
+			:
+			<a href="index.html">monotooth.Model.Device Namespace</a></div>
+    <h1 class="PageTitle">IDevice  Interface</h1>
+    <p class="Summary">The superinterface for all devices. The sole purpose for this
+            interface is to offer as much information as possible for the means
+            of using devices.</p>
+    <div class="Signature">
+      <table class="SignatureTable" cellspacing="0" width="100%">
+        <tr>
+          <td>
+            <table class="InnerSignatureTable" cellpadding="10" cellspacing="0" width="100%">
+              <tr>
+                <td>public interface  <b>IDevice</b></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <br>
+      </br>
+    </div>
+    <div class="Remarks">
+      <h4 class="Subsection">Remarks</h4>
+      <div class="SubsectionBox">To be added.</div>
+      <h2 class="Section">Members</h2>
+      <div class="SectionBox">
+        <h3>Properties</h3>
+        <div class="SubsectionBox">
+          <table class="MembersListing">
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:monotooth.Model.Device.IDevice.Address">Address</a>
+                </b>
+                <div>
+                </div>
+              </td>
+              <td>
+                <i>
+                  <a href="../monotooth.Model/BluetoothAddress.html">monotooth.Model.BluetoothAddress</a>
+                </i>. The devices address. </td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:monotooth.Model.Device.IDevice.FriendlyName">FriendlyName</a>
+                </b>
+                <div>
+                </div>
+              </td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>
+                </i>. The friendly name of this device (the human readable form). </td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:monotooth.Model.Device.IDevice.Services">Services</a>
+                </b>
+                <div>
+                </div>
+              </td>
+              <td>
+                <i>
+                  <a href="../monotooth.Model.Service/ServicePool.html">monotooth.Model.Service.ServicePool</a>
+                </i>. The services that this device offers. </td>
+            </tr>
+          </table>
+        </div>
+        <h3>Methods</h3>
+        <div class="SubsectionBox">
+          <table class="MembersListing">
+            <tr valign="top">
+              <td>
+              </td>
+              <td>
+                <b>
+                  <a href="#M:monotooth.Model.Device.IDevice.AddressAsString">AddressAsString</a>
+                </b>()<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a></nobr><div>Returns the 48-bit bluetooth address of this device as a string .</div></td>
+            </tr>
+            <tr valign="top">
+              <td>
+              </td>
+              <td>
+                <b>
+                  <a href="#M:monotooth.Model.Device.IDevice.Inquire">Inquire</a>
+                </b>()<nobr> : <a href="../monotooth.Model.Device/DevicePool.html">DevicePool</a></nobr><div> This method searches the surrounding area for devices,
+            and then adds them to a device pool.</div></td>
+            </tr>
+            <tr valign="top">
+              <td>
+              </td>
+              <td>
+                <b>
+                  <a href="#M:monotooth.Model.Device.IDevice.InquireServices(monotooth.Model.Device.IDevice,System.UInt32)">InquireServices</a>
+                </b>(<a href="../monotooth.Model.Device/IDevice.html">IDevice</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.UInt32">uint</a>)<nobr> : <a href="../monotooth.Model.Service/ServicePool.html">monotooth.Model.Service.ServicePool</a></nobr><div>Inquires services from the specified device, then adding them to service pool.</div></td>
+            </tr>
+            <tr valign="top">
+              <td>
+              </td>
+              <td>
+                <b>
+                  <a href="#M:monotooth.Model.Device.IDevice.StringAsAddress(System.String)">StringAsAddress</a>
+                </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>)<nobr> : <a href="../monotooth.Model/BluetoothAddress.html">monotooth.Model.BluetoothAddress</a></nobr><div>Converts a string presentation of a bluetooth address to a <tt><font size="-1">BluetoothAddress</font></tt>.</div></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="Members">
+      <h2 class="Section">Member Details</h2>
+      <div class="SectionBox">
+        <h3 id="P:monotooth.Model.Device.IDevice.Address" class="MemberName">Address Property</h3>
+        <div class="MemberSignature">public <a href="../monotooth.Model/BluetoothAddress.html">monotooth.Model.BluetoothAddress</a> <b>Address</b>  { set; get; }</div>
+        <div class="MemberBox">
+          <p>The devices address. </p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">A 48-bit bluetooth address. </div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">To be added.</div>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="M:monotooth.Model.Device.IDevice.AddressAsString" class="MemberName">AddressAsString Method</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> <b>AddressAsString</b> ()</div>
+        <div class="MemberBox">
+          <p>Returns the 48-bit bluetooth address of this device as a string .</p>
+          <h4 class="Subsection">Returns</h4>
+          <div class="SubsectionBox">String presentation of this devices bluetooth address.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">To be added.</div>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="P:monotooth.Model.Device.IDevice.FriendlyName" class="MemberName">FriendlyName Property</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> <b>FriendlyName</b>  { set; get; }</div>
+        <div class="MemberBox">
+          <p>The friendly name of this device (the human readable form). </p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">A string. </div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">To be added.</div>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="M:monotooth.Model.Device.IDevice.Inquire" class="MemberName">Inquire Method</h3>
+        <div class="MemberSignature">public <a href="../monotooth.Model.Device/DevicePool.html">DevicePool</a> <b>Inquire</b> ()</div>
+        <div class="MemberBox">
+          <p> This method searches the surrounding area for devices,
+            and then adds them to a device pool.</p>
+          <h4 class="Subsection">Returns</h4>
+          <div class="SubsectionBox">A pool of devices, see <a href="../monotooth.Model.Device/DevicePool.html">monotooth.Model.Device.DevicePool</a>.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">To be added.</div>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="M:monotooth.Model.Device.IDevice.InquireServices(monotooth.Model.Device.IDevice,System.UInt32)" class="MemberName">InquireServices Method</h3>
+        <div class="MemberSignature">public <a href="../monotooth.Model.Service/ServicePool.html">monotooth.Model.Service.ServicePool</a> <b>InquireServices</b> (<a href="../monotooth.Model.Device/IDevice.html">IDevice</a> dev, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.UInt32">uint</a> uuid)</div>
+        <div class="MemberBox">
+          <p>Inquires services from the specified device, then adding them to service pool.</p>
+          <h4 class="Subsection">Parameters</h4>
+          <div class="SubsectionBox">
+            <dl>
+              <dt>
+                <i>dev</i>
+              </dt>
+              <dd>The device to search services from.</dd>
+              <dt>
+                <i>uuid</i>
+              </dt>
+              <dd>The uuid of the service to search for, to search all services, set this parameter to 0.</dd>
+            </dl>
+          </div>
+          <h4 class="Subsection">Returns</h4>
+          <div class="SubsectionBox">A pool of services, see <a href="../monotooth.Model.Service/ServicePool.html">monotooth.Model.Service.ServicePool</a>.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">To be added.</div>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="P:monotooth.Model.Device.IDevice.Services" class="MemberName">Services Property</h3>
+        <div class="MemberSignature">public <a href="../monotooth.Model.Service/ServicePool.html">monotooth.Model.Service.ServicePool</a> <b>Services</b>  { set; get; }</div>
+        <div class="MemberBox">
+          <p>The services that this device offers. </p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">A pool of services. </div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">To be added.</div>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="M:monotooth.Model.Device.IDevice.StringAsAddress(System.String)" class="MemberName">StringAsAddress Method</h3>
+        <div class="MemberSignature">public <a href="../monotooth.Model/BluetoothAddress.html">monotooth.Model.BluetoothAddress</a> <b>StringAsAddress</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> addr)</div>
+        <div class="MemberBox">
+          <p>Converts a string presentation of a bluetooth address to a <tt><font size="-1">BluetoothAddress</font></tt>.</p>
+          <h4 class="Subsection">Parameters</h4>
+          <div class="SubsectionBox">
+            <dl>
+              <dt>
+                <i>addr</i>
+              </dt>
+              <dd> A bluetooth address as string. </dd>
+            </dl>
+          </div>
+          <h4 class="Subsection">Returns</h4>
+          <div class="SubsectionBox">A bluetooth address wrapped to a class. </div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">To be added.</div>
+          <hr size="1">
+          </hr>
+        </div>
+      </div>
+    </div>
+    <hr size="1" />
+    <div class="Copyright">
+    </div>
+  </body>
+</html>
