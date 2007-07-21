@@ -18,11 +18,11 @@ namespace ClientDemo
 			foreach(monotooth.Model.Device.IDevice dev in pool)
 			{
 				Console.WriteLine("Name: "+ dev.FriendlyName + " Address:"+ dev.AddressAsString()+"\n Now searching for services..");
-				dev.Services = devi.InquireServices(dev,(uint)0xABCD);
+				dev.Services = devi.InquireServices(dev,(uint)0x0);
 				Console.WriteLine("Services in :"+dev.FriendlyName);
 				foreach(monotooth.Model.Device.LinuxDevice.Service serv in dev.Services)
 				{
-					Console.WriteLine("Service name: "+(new string(serv.name))+"\nService description: "+(new string(serv.description))+"\nService Port: "+serv.rfcomm_port);
+					Console.WriteLine("Service name: "+serv.name+"\nService description: "+serv.description+"\nService Port: "+serv.rfcomm_port);
 					monotooth.Model.Connections.RFCommConnectionFactory connfac = monotooth.Model.Connections.RFCommConnectionFactory.GetFactory();
 					monotooth.Model.Connections.RFCommConnection conn = connfac.CreateRFCommConnection(devi.Address,dev.Address);
 					monotooth.Model.Connections.ServiceConnectionFactory servfac = monotooth.Model.Connections.ServiceConnectionFactory.GetFactory();

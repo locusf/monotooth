@@ -10,15 +10,9 @@ namespace monotooth.Model.Connections
 	
 	public interface ServiceConnection : IConnection
 	{
-		/// <summary>Connects this connection to a specific service.
-		/// <example>
-		/// <code lang="C#">
-		
-		/// </code>
-		/// </example>
+		/// <summary>Connects this connection to a specific service.		
 		/// </summary>
-		/// <param name="uuid">The uuid to search for.</param>
-		
+		/// <param name="uuid">The uuid to search for.</param>		
 		void connect(uint uuid);
 		/// <summary>Registers a service to the local SDP server. This server must be running before any action can be undertaken.</summary>
 		/// <param name="name">A name of the service. </param>

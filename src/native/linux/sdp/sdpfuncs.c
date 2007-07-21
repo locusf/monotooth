@@ -1,94 +1,5 @@
 #include "sdpfuncs.h"
 
-service_record** search_services_from(bdaddr_t* target)
-{	
-    	uuid_t svc_uuid;
-    	int err,i=0;    	
-    	sdp_list_t *response_list = NULL, *search_list, *attrid_list;
-    	sdp_session_t *session = 0;
-	    service_record** services = NULL;
-    	// connect to the SDP server running on the remote machine
-    	session = sdp_connect( BDADDR_ANY, target, SDP_RETRY_IF_BUSY );
-
-    	// specify the UUID of all services
-    	sdp_uuid16_create( &svc_uuid, PUBLIC_BROWSE_GROUP );
-    	search_list = sdp_list_append( NULL, &svc_uuid );
-
-    	// specify that we want a list of all the matching applications' attributes
-    	uint32_t range = 0x0000ffff;
-    	attrid_list = sdp_list_append( NULL, &range );
-    	
-    	err = sdp_service_search_attr_req( session, search_list, \
-        	SDP_ATTR_REQ_RANGE, attrid_list, &response_list);
-	sdp_list_t *r = response_list;
-	if(sdp_list_len(r)>0)
-	{
-	services = (service_record**) calloc(sdp_list_len(r),sizeof(service_record*));	
-    	// go through each of the service records
-    	for (; r; r = r->next ) 
-	{
-        sdp_record_t *rec = (sdp_record_t*) r->data;
-        sdp_list_t *proto_list;
-        sdp_data_t *d = sdp_data_get(rec, SDP_ATTR_SVCNAME_PRIMARY);		
-	services[i] = (service_record*)malloc(sizeof(service_record));
-	if(d)
-	{
-		char servname[256];
-		strcpy(servname,d->val.str);		
-		//services[i]->name = malloc(256);
-		strcpy(services[i]->name,servname);
-	}
-	d = sdp_data_get(rec,SDP_ATTR_SVCDESC_PRIMARY);
-	if(d)
-	{		
-		char servdescr[256];
-		strcpy(servdescr,d->val.str);
-		//services[i]->description = malloc(256);
-		strcpy(services[i]->description,servdescr);
-	}
-        // get a list of the protocol sequences
-        if( sdp_get_access_protos( rec, &proto_list ) == 0 ) {
-        sdp_list_t *p = proto_list;
-
-        // go through each protocol sequence
-        for( ; p ; p = p->next ) {
-            sdp_list_t *pds = (sdp_list_t*)p->data;
-
-            // go through each protocol list of the protocol sequence
-            for( ; pds ; pds = pds->next ) {
-
-                // check the protocol attributes
-                sdp_data_t *d = (sdp_data_t*)pds->data;
-                int proto = 0;
-                for( ; d; d = d->next ) {
-                    switch( d->dtd ) { 
-                        case SDP_UUID16:
-                        case SDP_UUID32:
-                        case SDP_UUID128:
-                            proto = sdp_uuid_to_proto( &d->val.uuid );
-                            break;
-                        case SDP_UINT8:
-                            if( proto == RFCOMM_UUID ) {
-				services[i]->rfcomm_port = (int) malloc(sizeof(int));
-				services[i]->rfcomm_port = d->val.int8;                    
-                            }			    
-                            break;
-                    }
-                }
-            }
-            sdp_list_free( (sdp_list_t*)p->data, 0 );
-        }
-        sdp_list_free( proto_list, 0 );
-
-        }        
-        sdp_record_free( rec );	
-	i++;
-    	}
-	}
-    sdp_close(session);
-	return services;
-}
-
 service_record** search_services_from_with_uuid(bdaddr_t* target, uint32_t uuid)
 {   
         uuid_t svc_uuid;
@@ -98,8 +9,14 @@ service_record** search_services_from_with_uuid(bdaddr_t* target, uint32_t uuid)
         service_record** services = NULL;
         // connect to the SDP server running on the remote machine
         session = sdp_connect( BDADDR_ANY, target, SDP_RETRY_IF_BUSY );        
+        if(uuid != 0)
+        {
         // specify the UUID of a service
         sdp_uuid32_create( &svc_uuid, uuid );
+        } else
+        {
+        sdp_uuid16_create( &svc_uuid, PUBLIC_BROWSE_GROUP);
+        }
         search_list = sdp_list_append( NULL, &svc_uuid );
 
         // specify that we want a list of all the matching applications' attributes
@@ -119,18 +36,12 @@ service_record** search_services_from_with_uuid(bdaddr_t* target, uint32_t uuid)
     services[i] = (service_record*)malloc(sizeof(service_record));
     if(d)
     {
-        char servname[256];
-        strcpy(servname,d->val.str);        
-        //services[i]->name = malloc(256);
-        strcpy(services[i]->name,servname);
+        strncpy(services[i]->name,d->val.str,sizeof(services[i]->name));
     }
     d = sdp_data_get(rec,SDP_ATTR_SVCDESC_PRIMARY);
     if(d)
-    {       
-        char servdescr[256];
-        strcpy(servdescr,d->val.str);
-        //services[i]->description = malloc(256);
-        strcpy(services[i]->description,servdescr);
+    {   
+        strncpy(services[i]->description,d->val.str,sizeof(services[i]->description));
     }
         // get a list of the protocol sequences
         if( sdp_get_access_protos( rec, &proto_list ) == 0 ) {

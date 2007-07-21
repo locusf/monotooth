@@ -116,14 +116,8 @@ namespace monotooth.Model.Device
 		/// <param name="uuid">An unsigned integer to describe a certain service. </param>
 		public monotooth.Model.Service.ServicePool InquireServices(IDevice dev,uint uuid)
 		{			
-			IntPtr element,services;
-			if(uuid == 0)
-			{
-			services = search_services_from(dev.Address);
-			} else
-			{
-			services = search_services_from_with_uuid(dev.Address,uuid);
-			}
+			IntPtr element,services;			
+			services = search_services_from_with_uuid(dev.Address,uuid);			
 			monotooth.Model.Service.ServicePool pool = new monotooth.Model.Service.ServicePool();
 			Service serv = new Service();			
 			int count = 0;
@@ -143,7 +137,7 @@ namespace monotooth.Model.Device
 					if(element != IntPtr.Zero)
 					{
 					serv = (Service) Marshal.PtrToStructure(element,typeof(Service));
-					if(serv.rfcomm_port<32 && serv.rfcomm_port != 0)
+					if(serv.rfcomm_port<32 && serv.rfcomm_port != 0 && serv.name.Length > 1)
 					{
 					pool.Add(serv);
 					}
@@ -163,15 +157,17 @@ namespace monotooth.Model.Device
 		/// <returns>A string with the native address of the device. </returns>
 		public string AddressAsString()
 		{
-			string ret = Marshal.PtrToStringAnsi(batostr(this.address));
-			return ret;
+			System.Text.StringBuilder bld = new System.Text.StringBuilder(18);			
+			ba2str(this.address,bld);			
+			return bld.ToString();
 		}
 		/// <summary>Returns an address as string. </summary>
 		/// <returns>A string from the address.</returns>
 		public static string AddressAsString(monotooth.Model.BluetoothAddress ba)
 		{			
-			string ret = Marshal.PtrToStringAnsi(batostr(ba));
-			return ret;
+			System.Text.StringBuilder bld = new System.Text.StringBuilder(18);			
+			ba2str(ba,bld);			
+			return bld.ToString();
 		}
 		/// <summary>Returns an address as string. </summary>
 		/// <returns>A string from the address.</returns>
@@ -224,16 +220,14 @@ namespace monotooth.Model.Device
 		private static extern int hci_read_local_name(int dd, int len, System.Text.StringBuilder b,int timeout);
 		[DllImport("monotooth")]
 		// Search for devices with this function
-		private static extern IntPtr inquire_devices();
-		[DllImport("monotooth")]
-		private static extern IntPtr search_services_from(monotooth.Model.BluetoothAddress ba);
+		private static extern IntPtr inquire_devices();		
 		[DllImport("monotooth")]
 		private static extern IntPtr search_services_from_with_uuid(monotooth.Model.BluetoothAddress ba, uint uuid);
 		/*
 			Utility functions
 		*/
 		[DllImport("bluetooth")]
-		private static extern IntPtr batostr(monotooth.Model.BluetoothAddress ba);
+		private static extern int ba2str(monotooth.Model.BluetoothAddress ba, System.Text.StringBuilder bld);
 		[DllImport("bluetooth")]
 		private static extern IntPtr strtoba(string addr);
 		/*
@@ -248,11 +242,11 @@ namespace monotooth.Model.Device
 		/// <summary>A port of the service. </summary>
 		public int rfcomm_port;
 		/// <summary>Name of the service. </summary>
-		[MarshalAs(UnmanagedType.ByValArray,SizeConst=256)]
-		public char[] name;
+		[MarshalAs(UnmanagedType.ByValTStr,SizeConst=256)]
+		public string name;
 		/// <summary>Description of the service.</summary>
-		[MarshalAs(UnmanagedType.ByValArray,SizeConst=256)]
-		public char[] description;
+		[MarshalAs(UnmanagedType.ByValTStr,SizeConst=256)]
+		public string description;
 		}
 		[StructLayout (LayoutKind.Sequential)]
 		private class InquiryInformation
