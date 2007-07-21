@@ -22,10 +22,12 @@ namespace monotooth.Model.Connections
 		{
 		}
 		public void connect(uint uuid)
-		{
-			monotooth.Model.Device.LinuxDevice remotedev = new monotooth.Model.Device.LinuxDevice(this.usedconn.to,"somename");
+		{			
 			monotooth.Model.Device.DeviceFactory fac = monotooth.Model.Device.DeviceFactory.GetFactory();
 			monotooth.Model.Device.IDevice localdev = fac.CreateDevice();
+			monotooth.Model.Device.DevicePool devpool = localdev.Inquire();
+			foreach(monotooth.Model.Device.IDevice remotedev in devpool)
+			{
 			monotooth.Model.Service.ServicePool servpool = localdev.InquireServices(remotedev,uuid);
 			monotooth.Model.Connections.RFCommConnectionFactory rfcommfac = monotooth.Model.Connections.RFCommConnectionFactory.GetFactory();
 			monotooth.Model.Connections.RFCommConnection conn =  rfcommfac.CreateRFCommConnection(localdev.Address,remotedev.Address);
@@ -34,8 +36,9 @@ namespace monotooth.Model.Connections
 				this.usedconn = conn;
 				this.usedconn.Connected = true;
 				this.usedconn.connect(servpool[0].rfcomm_port);
+			} 
 			}
-		}		
+		}
 		~LinuxServiceConnection()
 		{
 			this.usedconn.disconnect();
