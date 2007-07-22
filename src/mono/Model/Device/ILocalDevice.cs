@@ -4,7 +4,7 @@ using System;
 namespace monotooth.Model.Device
 {
 	
-	
+	/// <summary>An interface for all local device implementations.</summary>
 	public interface ILocalDevice: IDevice
 	{
 		/// <summary> This method searches the surrounding area for devices,

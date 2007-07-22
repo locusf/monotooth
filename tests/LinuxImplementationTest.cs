@@ -28,7 +28,7 @@ namespace Testing
 		{
 			monotooth.Model.Device.DeviceFactory fac = monotooth.Model.Device.DeviceFactory.GetFactory();
 			Assert.IsNotNull(fac);
-			monotooth.Model.Device.IDevice dev = fac.CreateDevice();
+			monotooth.Model.Device.ILocalDevice dev = fac.CreateLocalDevice();
 			Assert.IsNotNull(dev);
 			monotooth.Model.Connections.RFCommConnectionFactory rfcommfac = monotooth.Model.Connections.RFCommConnectionFactory.GetFactory();
 			Assert.IsNotNull(rfcommfac);
@@ -43,17 +43,16 @@ namespace Testing
 		public void TestLocalDeviceInformations()
 		{
 			monotooth.Model.Device.DeviceFactory fac = monotooth.Model.Device.DeviceFactory.GetFactory();			
-			monotooth.Model.Device.IDevice dev = fac.CreateDevice();
+			monotooth.Model.Device.ILocalDevice dev = fac.CreateLocalDevice();
 			Assert.IsNotNull(dev.Address);
-			Assert.IsNotNull(dev.FriendlyName);
-			Assert.IsNull(dev.Services);
+			Assert.IsNotNull(dev.FriendlyName);		
 		}
 		[Test]
 		[Ignore("Remove this ignoration if you have more than 1 device in the piconet.")]
 		public void TestInquiryOfDevices()
 		{
 			monotooth.Model.Device.DeviceFactory fac = monotooth.Model.Device.DeviceFactory.GetFactory();			
-			monotooth.Model.Device.IDevice dev = fac.CreateDevice();
+			monotooth.Model.Device.ILocalDevice dev = fac.CreateLocalDevice();
 			monotooth.Model.Device.DevicePool pool = dev.Inquire();
 			Assert.IsNotNull(pool[0]);
 		}
@@ -62,9 +61,9 @@ namespace Testing
 		public void TestServiceInquiry()
 		{
 			monotooth.Model.Device.DeviceFactory fac = monotooth.Model.Device.DeviceFactory.GetFactory();			
-			monotooth.Model.Device.IDevice dev = fac.CreateDevice();
+			monotooth.Model.Device.ILocalDevice dev = fac.CreateLocalDevice();
 			monotooth.Model.Device.DevicePool pool = dev.Inquire();
-			monotooth.Model.Service.ServicePool servpool = dev.InquireServices(pool[0],0);
+			monotooth.Model.Service.ServicePool servpool = pool[0].InquireServices(0);
 			Assert.IsNotNull(servpool[0]);
 		}
 	}
