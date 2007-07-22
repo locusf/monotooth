@@ -41,7 +41,7 @@
 			:
 			<a href="index.html">monotooth.Model.Device Namespace</a></div>
     <h1 class="PageTitle">IRemoteDevice  Interface</h1>
-    <p class="Summary">To be added.</p>
+    <p class="Summary">An interface for all remote device implementation.</p>
     <div class="Signature">
       <table class="SignatureTable" cellspacing="0" width="100%">
         <tr>
@@ -78,7 +78,7 @@
               <td>
                 <i>
                   <a href="../monotooth.Model.Service/ServicePool.html">monotooth.Model.Service.ServicePool</a>
-                </i>. To be added.</td>
+                </i>. The services that this device offers. </td>
             </tr>
           </table>
         </div>
@@ -91,7 +91,7 @@
               <td>
                 <b>
                   <a href="#M:monotooth.Model.Device.IRemoteDevice.InquireServices(System.UInt32)">InquireServices</a>
-                </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.UInt32">uint</a>)<nobr> : <a href="../monotooth.Model.Service/ServicePool.html">monotooth.Model.Service.ServicePool</a></nobr><div>To be added.</div></td>
+                </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.UInt32">uint</a>)<nobr> : <a href="../monotooth.Model.Service/ServicePool.html">monotooth.Model.Service.ServicePool</a></nobr><div>Inquires services from this device, then adds them to service pool.</div></td>
             </tr>
           </table>
         </div>
@@ -103,18 +103,18 @@
         <h3 id="M:monotooth.Model.Device.IRemoteDevice.InquireServices(System.UInt32)" class="MemberName">InquireServices Method</h3>
         <div class="MemberSignature">public <a href="../monotooth.Model.Service/ServicePool.html">monotooth.Model.Service.ServicePool</a> <b>InquireServices</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.UInt32">uint</a> uuid)</div>
         <div class="MemberBox">
-          <p>To be added.</p>
+          <p>Inquires services from this device, then adds them to service pool.</p>
           <h4 class="Subsection">Parameters</h4>
           <div class="SubsectionBox">
             <dl>
               <dt>
                 <i>uuid</i>
               </dt>
-              <dd>To be added.</dd>
+              <dd>The uuid of the service to search for, to search all services, set this parameter to 0.</dd>
             </dl>
           </div>
           <h4 class="Subsection">Returns</h4>
-          <div class="SubsectionBox">To be added.</div>
+          <div class="SubsectionBox">A pool of services, see <a href="../monotooth.Model.Service/ServicePool.html">monotooth.Model.Service.ServicePool</a>.</div>
           <h4 class="Subsection">Remarks</h4>
           <div class="SubsectionBox">To be added.</div>
           <hr size="1">
@@ -123,9 +123,9 @@
         <h3 id="P:monotooth.Model.Device.IRemoteDevice.Services" class="MemberName">Services Property</h3>
         <div class="MemberSignature">public <a href="../monotooth.Model.Service/ServicePool.html">monotooth.Model.Service.ServicePool</a> <b>Services</b>  { set; get; }</div>
         <div class="MemberBox">
-          <p>To be added.</p>
+          <p>The services that this device offers. </p>
           <h4 class="Subsection">Value</h4>
-          <div class="SubsectionBox">To be added.</div>
+          <div class="SubsectionBox">A pool of services. </div>
           <h4 class="Subsection">Remarks</h4>
           <div class="SubsectionBox">To be added.</div>
           <hr size="1">

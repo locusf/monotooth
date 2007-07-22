@@ -41,7 +41,7 @@
 			:
 			<a href="index.html">monotooth.Model.Device Namespace</a></div>
     <h1 class="PageTitle">DevicePool  Class</h1>
-    <p class="Summary">To be added.</p>
+    <p class="Summary">A simple class to hold the devices in. </p>
     <div class="Signature">
       <table class="SignatureTable" cellspacing="0" width="100%">
         <tr>
@@ -77,7 +77,7 @@
                 <div>
                   <b>
                     <a href="#C:monotooth.Model.Device.DevicePool">DevicePool</a>
-                  </b>()</div>To be added.</td>
+                  </b>()</div>The default constructor.</td>
             </tr>
           </table>
         </div>
@@ -92,7 +92,8 @@
               <td>
                 <i>
                   <a href="../monotooth.Model.Device/IRemoteDevice.html">IRemoteDevice</a>
-                </i>. To be added.</td>
+                </i>. A special index operator. This is needed to make this collection
+            <tt><font size="-1">foreach</font></tt> compatible. </td>
             </tr>
           </table>
         </div>
@@ -105,7 +106,7 @@
               <td>
                 <b>
                   <a href="#M:monotooth.Model.Device.DevicePool.Add(monotooth.Model.Device.IRemoteDevice)">Add</a>
-                </b>(<a href="../monotooth.Model.Device/IRemoteDevice.html">IRemoteDevice</a>)<div>To be added.</div></td>
+                </b>(<a href="../monotooth.Model.Device/IRemoteDevice.html">IRemoteDevice</a>)<div>Adds a device to this pool.</div></td>
             </tr>
             <tr valign="top">
               <td>
@@ -113,7 +114,7 @@
               <td>
                 <b>
                   <a href="#M:monotooth.Model.Device.DevicePool.Remove(monotooth.Model.Device.IRemoteDevice)">Remove</a>
-                </b>(<a href="../monotooth.Model.Device/IRemoteDevice.html">IRemoteDevice</a>)<div>To be added.</div></td>
+                </b>(<a href="../monotooth.Model.Device/IRemoteDevice.html">IRemoteDevice</a>)<div>Remove a device from the pool.</div></td>
             </tr>
           </table>
         </div>
@@ -125,7 +126,7 @@
         <h3 id="C:monotooth.Model.Device.DevicePool" class="MemberName">DevicePool Constructor</h3>
         <div class="MemberSignature">public  <b>DevicePool</b> ()</div>
         <div class="MemberBox">
-          <p>To be added.</p>
+          <p>The default constructor.</p>
           <h4 class="Subsection">Remarks</h4>
           <div class="SubsectionBox">To be added.</div>
           <hr size="1">
@@ -134,14 +135,14 @@
         <h3 id="M:monotooth.Model.Device.DevicePool.Add(monotooth.Model.Device.IRemoteDevice)" class="MemberName">Add Method</h3>
         <div class="MemberSignature">public virtual <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>Add</b> (<a href="../monotooth.Model.Device/IRemoteDevice.html">IRemoteDevice</a> dev)</div>
         <div class="MemberBox">
-          <p>To be added.</p>
+          <p>Adds a device to this pool.</p>
           <h4 class="Subsection">Parameters</h4>
           <div class="SubsectionBox">
             <dl>
               <dt>
                 <i>dev</i>
               </dt>
-              <dd>To be added.</dd>
+              <dd>The device to add. </dd>
             </dl>
           </div>
           <h4 class="Subsection">Remarks</h4>
@@ -155,18 +156,19 @@
           <p>
             <i>This is the default property for this class.</i>
           </p>
-          <p>To be added.</p>
+          <p>A special index operator. This is needed to make this collection
+            <tt><font size="-1">foreach</font></tt> compatible. </p>
           <h4 class="Subsection">Parameters</h4>
           <div class="SubsectionBox">
             <dl>
               <dt>
                 <i>index</i>
               </dt>
-              <dd>To be added.</dd>
+              <dd>Index for device.</dd>
             </dl>
           </div>
           <h4 class="Subsection">Value</h4>
-          <div class="SubsectionBox">To be added.</div>
+          <div class="SubsectionBox">A device.</div>
           <h4 class="Subsection">Remarks</h4>
           <div class="SubsectionBox">To be added.</div>
           <hr size="1">
@@ -175,14 +177,14 @@
         <h3 id="M:monotooth.Model.Device.DevicePool.Remove(monotooth.Model.Device.IRemoteDevice)" class="MemberName">Remove Method</h3>
         <div class="MemberSignature">public virtual <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>Remove</b> (<a href="../monotooth.Model.Device/IRemoteDevice.html">IRemoteDevice</a> dev)</div>
         <div class="MemberBox">
-          <p>To be added.</p>
+          <p>Remove a device from the pool.</p>
           <h4 class="Subsection">Parameters</h4>
           <div class="SubsectionBox">
             <dl>
               <dt>
                 <i>dev</i>
               </dt>
-              <dd>To be added.</dd>
+              <dd>The device to remove from the pool.</dd>
             </dl>
           </div>
           <h4 class="Subsection">Remarks</h4>

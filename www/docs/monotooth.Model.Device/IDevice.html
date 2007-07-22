@@ -41,7 +41,9 @@
 			:
 			<a href="index.html">monotooth.Model.Device Namespace</a></div>
     <h1 class="PageTitle">IDevice  Interface</h1>
-    <p class="Summary">To be added.</p>
+    <p class="Summary">The superinterface for all devices. The sole purpose for this
+            interface is to offer as much information as possible for the means
+            of using devices.</p>
     <div class="Signature">
       <table class="SignatureTable" cellspacing="0" width="100%">
         <tr>
@@ -76,7 +78,7 @@
               <td>
                 <i>
                   <a href="../monotooth.Model/BluetoothAddress.html">monotooth.Model.BluetoothAddress</a>
-                </i>. To be added.</td>
+                </i>. The devices address. </td>
             </tr>
             <tr valign="top">
               <td>
@@ -89,7 +91,7 @@
               <td>
                 <i>
                   <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>
-                </i>. To be added.</td>
+                </i>. The friendly name of this device (the human readable form). </td>
             </tr>
           </table>
         </div>
@@ -102,7 +104,7 @@
               <td>
                 <b>
                   <a href="#M:monotooth.Model.Device.IDevice.AddressAsString">AddressAsString</a>
-                </b>()<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a></nobr><div>To be added.</div></td>
+                </b>()<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a></nobr><div>Returns the 48-bit bluetooth address of this device as a string .</div></td>
             </tr>
             <tr valign="top">
               <td>
@@ -110,7 +112,7 @@
               <td>
                 <b>
                   <a href="#M:monotooth.Model.Device.IDevice.StringAsAddress(System.String)">StringAsAddress</a>
-                </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>)<nobr> : <a href="../monotooth.Model/BluetoothAddress.html">monotooth.Model.BluetoothAddress</a></nobr><div>To be added.</div></td>
+                </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>)<nobr> : <a href="../monotooth.Model/BluetoothAddress.html">monotooth.Model.BluetoothAddress</a></nobr><div>Converts a string presentation of a bluetooth address to a <tt><font size="-1">BluetoothAddress</font></tt>.</div></td>
             </tr>
           </table>
         </div>
@@ -122,9 +124,9 @@
         <h3 id="P:monotooth.Model.Device.IDevice.Address" class="MemberName">Address Property</h3>
         <div class="MemberSignature">public <a href="../monotooth.Model/BluetoothAddress.html">monotooth.Model.BluetoothAddress</a> <b>Address</b>  { set; get; }</div>
         <div class="MemberBox">
-          <p>To be added.</p>
+          <p>The devices address. </p>
           <h4 class="Subsection">Value</h4>
-          <div class="SubsectionBox">To be added.</div>
+          <div class="SubsectionBox">A 48-bit bluetooth address. </div>
           <h4 class="Subsection">Remarks</h4>
           <div class="SubsectionBox">To be added.</div>
           <hr size="1">
@@ -133,9 +135,9 @@
         <h3 id="M:monotooth.Model.Device.IDevice.AddressAsString" class="MemberName">AddressAsString Method</h3>
         <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> <b>AddressAsString</b> ()</div>
         <div class="MemberBox">
-          <p>To be added.</p>
+          <p>Returns the 48-bit bluetooth address of this device as a string .</p>
           <h4 class="Subsection">Returns</h4>
-          <div class="SubsectionBox">To be added.</div>
+          <div class="SubsectionBox">String presentation of this devices bluetooth address.</div>
           <h4 class="Subsection">Remarks</h4>
           <div class="SubsectionBox">To be added.</div>
           <hr size="1">
@@ -144,9 +146,9 @@
         <h3 id="P:monotooth.Model.Device.IDevice.FriendlyName" class="MemberName">FriendlyName Property</h3>
         <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> <b>FriendlyName</b>  { set; get; }</div>
         <div class="MemberBox">
-          <p>To be added.</p>
+          <p>The friendly name of this device (the human readable form). </p>
           <h4 class="Subsection">Value</h4>
-          <div class="SubsectionBox">To be added.</div>
+          <div class="SubsectionBox">A string. </div>
           <h4 class="Subsection">Remarks</h4>
           <div class="SubsectionBox">To be added.</div>
           <hr size="1">
@@ -155,18 +157,18 @@
         <h3 id="M:monotooth.Model.Device.IDevice.StringAsAddress(System.String)" class="MemberName">StringAsAddress Method</h3>
         <div class="MemberSignature">public <a href="../monotooth.Model/BluetoothAddress.html">monotooth.Model.BluetoothAddress</a> <b>StringAsAddress</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> addr)</div>
         <div class="MemberBox">
-          <p>To be added.</p>
+          <p>Converts a string presentation of a bluetooth address to a <tt><font size="-1">BluetoothAddress</font></tt>.</p>
           <h4 class="Subsection">Parameters</h4>
           <div class="SubsectionBox">
             <dl>
               <dt>
                 <i>addr</i>
               </dt>
-              <dd>To be added.</dd>
+              <dd> A bluetooth address as string. </dd>
             </dl>
           </div>
           <h4 class="Subsection">Returns</h4>
-          <div class="SubsectionBox">To be added.</div>
+          <div class="SubsectionBox">A bluetooth address wrapped to a class. </div>
           <h4 class="Subsection">Remarks</h4>
           <div class="SubsectionBox">To be added.</div>
           <hr size="1">

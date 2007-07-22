@@ -94,7 +94,7 @@
               <td>
                 <i>
                   <a href="../monotooth.Model/BluetoothAddress.html">monotooth.Model.BluetoothAddress</a>
-                </i>. To be added.</td>
+                </i>.  Implemented properties from IDevice, this property defines address. </td>
             </tr>
             <tr valign="top">
               <td>
@@ -107,7 +107,7 @@
               <td>
                 <i>
                   <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>
-                </i>. To be added.</td>
+                </i>.  Implemented properties from IDevice, this property defines FriendlyName of the device. </td>
             </tr>
             <tr valign="top">
               <td>
@@ -120,7 +120,7 @@
               <td>
                 <i>
                   <a href="../monotooth.Model.Service/ServicePool.html">monotooth.Model.Service.ServicePool</a>
-                </i>. To be added.</td>
+                </i>.  Implemented properties from IDevice, this property defines a pool of Services. </td>
             </tr>
           </table>
         </div>
@@ -133,7 +133,7 @@
               <td>
                 <b>
                   <a href="#M:monotooth.Model.Device.LinuxRemoteDevice.AddressAsString">AddressAsString</a>
-                </b>()<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a></nobr><div>To be added.</div></td>
+                </b>()<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a></nobr><div>Returns the devices address as string. </div></td>
             </tr>
             <tr valign="top">
               <td>
@@ -141,7 +141,7 @@
               <td>
                 <b>
                   <a href="#M:monotooth.Model.Device.LinuxRemoteDevice.InquireServices(System.UInt32)">InquireServices</a>
-                </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.UInt32">uint</a>)<nobr> : <a href="../monotooth.Model.Service/ServicePool.html">monotooth.Model.Service.ServicePool</a></nobr><div>To be added.</div></td>
+                </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.UInt32">uint</a>)<nobr> : <a href="../monotooth.Model.Service/ServicePool.html">monotooth.Model.Service.ServicePool</a></nobr><div> Inquires services from a this device. The service UUID can also be specified. </div></td>
             </tr>
             <tr valign="top">
               <td>
@@ -149,7 +149,7 @@
               <td>
                 <b>
                   <a href="#M:monotooth.Model.Device.LinuxRemoteDevice.StringAsAddress(System.String)">StringAsAddress</a>
-                </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>)<nobr> : <a href="../monotooth.Model/BluetoothAddress.html">monotooth.Model.BluetoothAddress</a></nobr><div>To be added.</div></td>
+                </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>)<nobr> : <a href="../monotooth.Model/BluetoothAddress.html">monotooth.Model.BluetoothAddress</a></nobr><div>Returns a <tt><font size="-1">monotooth.Model.BluetoothAddress</font></tt> from a string, using a native function. </div></td>
             </tr>
           </table>
         </div>
@@ -183,7 +183,7 @@
         <h3 id="P:monotooth.Model.Device.LinuxRemoteDevice.Address" class="MemberName">Address Property</h3>
         <div class="MemberSignature">public <a href="../monotooth.Model/BluetoothAddress.html">monotooth.Model.BluetoothAddress</a> <b>Address</b>  { set; get; }</div>
         <div class="MemberBox">
-          <p>To be added.</p>
+          <p> Implemented properties from IDevice, this property defines address. </p>
           <h4 class="Subsection">Value</h4>
           <div class="SubsectionBox">To be added.</div>
           <h4 class="Subsection">Remarks</h4>
@@ -194,9 +194,9 @@
         <h3 id="M:monotooth.Model.Device.LinuxRemoteDevice.AddressAsString" class="MemberName">AddressAsString Method</h3>
         <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> <b>AddressAsString</b> ()</div>
         <div class="MemberBox">
-          <p>To be added.</p>
+          <p>Returns the devices address as string. </p>
           <h4 class="Subsection">Returns</h4>
-          <div class="SubsectionBox">To be added.</div>
+          <div class="SubsectionBox">A string with the native address of the device. </div>
           <h4 class="Subsection">Remarks</h4>
           <div class="SubsectionBox">To be added.</div>
           <hr size="1">
@@ -205,7 +205,7 @@
         <h3 id="P:monotooth.Model.Device.LinuxRemoteDevice.FriendlyName" class="MemberName">FriendlyName Property</h3>
         <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> <b>FriendlyName</b>  { set; get; }</div>
         <div class="MemberBox">
-          <p>To be added.</p>
+          <p> Implemented properties from IDevice, this property defines FriendlyName of the device. </p>
           <h4 class="Subsection">Value</h4>
           <div class="SubsectionBox">To be added.</div>
           <h4 class="Subsection">Remarks</h4>
@@ -216,14 +216,14 @@
         <h3 id="M:monotooth.Model.Device.LinuxRemoteDevice.InquireServices(System.UInt32)" class="MemberName">InquireServices Method</h3>
         <div class="MemberSignature">public <a href="../monotooth.Model.Service/ServicePool.html">monotooth.Model.Service.ServicePool</a> <b>InquireServices</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.UInt32">uint</a> uuid)</div>
         <div class="MemberBox">
-          <p>To be added.</p>
+          <p> Inquires services from a this device. The service UUID can also be specified. </p>
           <h4 class="Subsection">Parameters</h4>
           <div class="SubsectionBox">
             <dl>
               <dt>
                 <i>uuid</i>
               </dt>
-              <dd>To be added.</dd>
+              <dd>An unsigned integer to describe a certain service. </dd>
             </dl>
           </div>
           <h4 class="Subsection">Returns</h4>
@@ -236,7 +236,7 @@
         <h3 id="P:monotooth.Model.Device.LinuxRemoteDevice.Services" class="MemberName">Services Property</h3>
         <div class="MemberSignature">public <a href="../monotooth.Model.Service/ServicePool.html">monotooth.Model.Service.ServicePool</a> <b>Services</b>  { set; get; }</div>
         <div class="MemberBox">
-          <p>To be added.</p>
+          <p> Implemented properties from IDevice, this property defines a pool of Services. </p>
           <h4 class="Subsection">Value</h4>
           <div class="SubsectionBox">To be added.</div>
           <h4 class="Subsection">Remarks</h4>
@@ -247,7 +247,7 @@
         <h3 id="M:monotooth.Model.Device.LinuxRemoteDevice.StringAsAddress(System.String)" class="MemberName">StringAsAddress Method</h3>
         <div class="MemberSignature">public <a href="../monotooth.Model/BluetoothAddress.html">monotooth.Model.BluetoothAddress</a> <b>StringAsAddress</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> addr)</div>
         <div class="MemberBox">
-          <p>To be added.</p>
+          <p>Returns a <tt><font size="-1">monotooth.Model.BluetoothAddress</font></tt> from a string, using a native function. </p>
           <h4 class="Subsection">Parameters</h4>
           <div class="SubsectionBox">
             <dl>
@@ -258,9 +258,9 @@
             </dl>
           </div>
           <h4 class="Subsection">Returns</h4>
-          <div class="SubsectionBox">To be added.</div>
+          <div class="SubsectionBox">New address. </div>
           <h4 class="Subsection">Remarks</h4>
-          <div class="SubsectionBox">To be added.</div>
+          <div class="SubsectionBox">Will return an 0-address if the address string is not in the 48-bit form. </div>
           <hr size="1">
           </hr>
         </div>
