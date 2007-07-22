@@ -33,7 +33,13 @@ namespace monotooth.Model.Device
 		private int dev_id = -1;
 		private monotooth.Model.BluetoothAddress address;
 		private string name;
-		private monotooth.Model.Service.ServicePool services;
+		public int Device_Indentifier
+		{
+			get
+			{
+				return dev_id;
+			}
+		}
 		/// <summary> Implemented properties from IDevice, this property defines address. </summary>
 		public monotooth.Model.BluetoothAddress Address 
 		{
@@ -45,13 +51,7 @@ namespace monotooth.Model.Device
 		{
 			get { return this.name; }
 			set { this.name = value; }
-		}			
-		/// <summary> Implemented properties from IDevice, this property defines a pool of Services. </summary>
-		public monotooth.Model.Service.ServicePool Services
-		{
-			get { return this.services; }
-			set { this.services = value; }
-		}
+		}					
 		/// <summary> Inquire devices from the surrounding area, uses a native method to achieve good inquiry. </summary>
 		/// <returns> A <c>DevicePool</c>, in which all the devices are added, if any. </returns> 
 		public DevicePool Inquire()

@@ -27,7 +27,6 @@
     <File name="./src/mono/Model/Connections/Windows" subtype="Directory" buildaction="Compile" />
     <File name="./src/mono/Model/Connections/Linux" subtype="Directory" buildaction="Compile" />
     <File name="./src/mono/Model/Connections/Linux/LinuxHCIConnection.cs" subtype="Code" buildaction="Compile" />
-    <File name="./src/mono/Model/Connections/Windows/WindowsHCIConnection.cs" subtype="Code" buildaction="Compile" />
     <File name="./src/mono/Model/Connections/Linux/LinuxRFCommConnection.cs" subtype="Code" buildaction="Compile" />
     <File name="./src/mono/Model/Connections/Windows/WindowsRFCommConnection.cs" subtype="Code" buildaction="Compile" />
     <File name="./src/mono/Model/Connections/Linux/LinuxL2CAPConnection.cs" subtype="Code" buildaction="Compile" />

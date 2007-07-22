@@ -32,5 +32,11 @@ namespace monotooth.Model.Connections
 			get;
 			set;
 		}
+		/// <summary>A read-only value that describes the number last read/written bytes.</summary>
+		/// <value>An integer describing the number of bytes last written/read. </value>
+		int BytesUsed
+		{
+			get;
+		}
 	}
 }

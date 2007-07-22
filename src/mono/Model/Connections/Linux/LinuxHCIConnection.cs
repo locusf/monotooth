@@ -24,7 +24,7 @@ namespace monotooth.Model.Connections
 		{
 			get
 			{
-			return fromaddr;
+				return fromaddr;
 			}			
 			set
 			{
@@ -41,6 +41,43 @@ namespace monotooth.Model.Connections
 			set
 			{
 			this.toaddr = value;
+			}
+		}
+		private bool enc = false;
+		public bool Encryption
+		{
+			get
+			{
+				return enc;
+			}
+			set
+			{
+				enc = value;
+			}
+			
+		}
+		private bool auth = false;
+		public bool Authentication
+		{
+			get
+			{
+				return auth;
+			}
+			set
+			{
+				auth = value;
+			}
+		}
+		private bool role = false; 
+		public bool Role
+		{
+			get
+			{
+				return role;
+			}
+			set
+			{
+				this.role = value;
 			}
 		}
 		public void connect()

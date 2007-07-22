@@ -92,5 +92,13 @@ namespace monotooth.Model.Connections
 				this.chan = value;
 			}
 		}
+		private int usedbytes;
+		public int BytesUsed
+		{
+			get
+			{
+				return usedbytes;
+			}
+		}
 	}
 }

@@ -141,6 +141,15 @@ namespace monotooth.Model.Connections
 			toaddr = value;
 			}
 		}
+		private int usedbytes;
+		public int BytesUsed
+		{
+			get
+			{
+				return usedbytes;
+			}
+		}
+		
 		private int chan;
 		public int Channel
 		{

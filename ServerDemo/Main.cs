@@ -21,8 +21,9 @@ namespace ServerDemo
 			Console.WriteLine(uuid);
 			System.Text.StringBuilder bld = new System.Text.StringBuilder();
 			servconn.RegisterService("Testing service","Testing service","Testing service",13,uuid);
-			servconn.Read(bld);			
-			Console.WriteLine(bld.ToString());
+			servconn.Read(bld);
+			bld = new System.Text.StringBuilder("Hello to you too there!");
+			servconn.Write(bld);
 		}
 	}
 }

@@ -32,6 +32,9 @@ namespace ClientDemo
 			servconn.connect((uint)0xABCD);
 			System.Text.StringBuilder bld = new System.Text.StringBuilder("Hello there!");
 			servconn.Write(bld);
+			bld = new System.Text.StringBuilder();
+			servconn.Read(bld);
+			Console.WriteLine(bld.ToString());
 			}
 	}
 }
