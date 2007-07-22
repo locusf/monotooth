@@ -6,7 +6,7 @@ namespace monotooth.Model.Device
 {
 	
 	/// <summary> The linux implementation of <c>IDevice</c></summary>	
-	public class LinuxDevice : IDevice
+	public class LinuxDevice : ILocalDevice
 	{
 		/// <summary> The default constructor for linux implementation </summary>
 		public LinuxDevice()
@@ -28,13 +28,7 @@ namespace monotooth.Model.Device
 				Console.WriteLine("You do not have a bluetooth device in your system.");
 			}
 		}
-		/// <summary> This is the alternative constructor for constructing a
-		/// LinuxDevice with specific address and name.</summary>
-		public LinuxDevice(monotooth.Model.BluetoothAddress addr, string name)
-		{
-			this.address = addr;
-			this.name = name;
-		}
+		
 		// Instance variables
 		private int dev_id = -1;
 		private monotooth.Model.BluetoothAddress address;
@@ -89,7 +83,7 @@ namespace monotooth.Model.Device
 					System.Text.StringBuilder bld2 = new System.Text.StringBuilder(248);					
 					if(hci_read_remote_name(sock,info.bdaddr,bld2.Capacity,bld2,0)==0)
 					{					
-						LinuxDevice dev = new LinuxDevice(info.bdaddr,bld2.ToString());
+						LinuxRemoteDevice dev = new LinuxRemoteDevice(info.bdaddr,bld2.ToString());
 						pool.Add(dev);						
 					}
 					// this catch is meant to skip invalid pointers
@@ -111,48 +105,7 @@ namespace monotooth.Model.Device
 			return null;
 			}
 		}
-		/// <summary> Inquires services from a given device. The service UUID can also be specified. </summary>
-		/// <param name="dev">An instance of an <c>IDevice</c>, used to dig up an address. </param>
-		/// <param name="uuid">An unsigned integer to describe a certain service. </param>
-		public monotooth.Model.Service.ServicePool InquireServices(IDevice dev,uint uuid)
-		{			
-			IntPtr element,services;			
-			services = search_services_from_with_uuid(dev.Address,uuid);			
-			monotooth.Model.Service.ServicePool pool = new monotooth.Model.Service.ServicePool();
-			Service serv = new Service();			
-			int count = 0;
-			while(Marshal.ReadIntPtr(services,count*IntPtr.Size) != IntPtr.Zero)
-			{
-				++count;
-			}			
-			if(!(services==IntPtr.Zero))
-			{									
-			if (count>0)
-			{
-				for(int i = 0; i < count;i++)
-				{
-					try
-					{
-					element = Marshal.ReadIntPtr(services,i*IntPtr.Size);
-					if(element != IntPtr.Zero)
-					{
-					serv = (Service) Marshal.PtrToStructure(element,typeof(Service));
-					if(serv.rfcomm_port<32 && serv.rfcomm_port != 0 && serv.name.Length > 1)
-					{
-					pool.Add(serv);
-					}
-					}
-					// this catch is meant to skip invalid pointers
-					} catch (NullReferenceException nre)
-					{		
-						nre.Equals(nre);
-					}
-				}
-			}
-			}
-			Marshal.FreeHGlobal(services);
-			return pool;
-		}
+		
 		/// <summary>Returns the devices address as string. </summary>
 		/// <returns>A string with the native address of the device. </returns>
 		public string AddressAsString()
@@ -221,8 +174,7 @@ namespace monotooth.Model.Device
 		[DllImport("monotooth")]
 		// Search for devices with this function
 		private static extern IntPtr inquire_devices();		
-		[DllImport("monotooth")]
-		private static extern IntPtr search_services_from_with_uuid(monotooth.Model.BluetoothAddress ba, uint uuid);
+		
 		/*
 			Utility functions
 		*/
@@ -235,19 +187,7 @@ namespace monotooth.Model.Device
 		Native library helper classes
 		
 		*/
-		/// <summary>A structure to describe a service.</summary>
-		[StructLayout (LayoutKind.Sequential, Pack = 1)]
-		public struct Service
-		{
-		/// <summary>A port of the service. </summary>
-		public int rfcomm_port;
-		/// <summary>Name of the service. </summary>
-		[MarshalAs(UnmanagedType.ByValTStr,SizeConst=256)]
-		public string name;
-		/// <summary>Description of the service.</summary>
-		[MarshalAs(UnmanagedType.ByValTStr,SizeConst=256)]
-		public string description;
-		}
+		
 		[StructLayout (LayoutKind.Sequential)]
 		private class InquiryInformation
 		{

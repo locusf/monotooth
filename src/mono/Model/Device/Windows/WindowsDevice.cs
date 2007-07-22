@@ -5,7 +5,7 @@ namespace monotooth.Model.Device
 {
 	
 	
-	public class WindowsDevice : IDevice
+	public class WindowsDevice : ILocalDevice
 	{
 		
 		public WindowsDevice()

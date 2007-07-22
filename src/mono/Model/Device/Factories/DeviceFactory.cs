@@ -19,8 +19,8 @@ namespace monotooth.Model.Device
 				return new WindowsDeviceFactory();
 			}
 		}
-		/// <summary>An abstract method to create devices. The sub-class factories must implement this method.</summary>
-		/// <returns>A device.</returns>
-		public abstract IDevice CreateDevice();
+		/// <summary>An abstract method to create a local device. The sub-class factories must implement this method.</summary>
+		/// <returns>A local device.</returns>
+		public abstract ILocalDevice CreateLocalDevice();		
 	}
 }

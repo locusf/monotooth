@@ -11,7 +11,7 @@ namespace monotooth.Model.Device
 		public WindowsDeviceFactory()
 		{
 		}
-		public override IDevice CreateDevice()
+		public override ILocalDevice CreateLocalDevice()
 		{
 			return new WindowsDevice();
 		}

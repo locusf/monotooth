@@ -10,17 +10,17 @@ namespace ClientDemo
 			monotooth.Model.Device.DeviceFactory fac = monotooth.Model.Device.DeviceFactory.GetFactory();
 			Console.WriteLine((fac is monotooth.Model.Device.LinuxDeviceFactory));
 			Console.WriteLine((fac is monotooth.Model.Device.WindowsDeviceFactory));			
-			monotooth.Model.Device.IDevice devi = fac.CreateDevice();
+			monotooth.Model.Device.ILocalDevice devi = fac.CreateLocalDevice();
 			Console.WriteLine("Information of the local device: ");
 			Console.WriteLine("Name: "+devi.FriendlyName+ " Address: "+ devi.AddressAsString());
 			Console.WriteLine("Searching for devices...");
 			monotooth.Model.Device.DevicePool pool = devi.Inquire();						
-			foreach(monotooth.Model.Device.IDevice dev in pool)
+			foreach(monotooth.Model.Device.IRemoteDevice dev in pool)
 			{
 				Console.WriteLine("Name: "+ dev.FriendlyName + " Address:"+ dev.AddressAsString()+"\n Now searching for services..");
-				dev.Services = devi.InquireServices(dev,(uint)0x0);
+				dev.Services = dev.InquireServices((uint)0x0);
 				Console.WriteLine("Services in :"+dev.FriendlyName);
-				foreach(monotooth.Model.Device.LinuxDevice.Service serv in dev.Services)
+				foreach(monotooth.Model.Service.Service serv in dev.Services)
 				{
 					Console.WriteLine("Service name: "+serv.name+"\nService description: "+serv.description+"\nService Port: "+serv.rfcomm_port);									
 				}

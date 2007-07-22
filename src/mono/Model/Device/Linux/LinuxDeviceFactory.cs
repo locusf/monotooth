@@ -11,7 +11,7 @@ namespace monotooth.Model.Device
 		public LinuxDeviceFactory()
 		{
 		}
-		public override IDevice CreateDevice()
+		public override ILocalDevice CreateLocalDevice()
 		{
 			return new LinuxDevice();
 		}

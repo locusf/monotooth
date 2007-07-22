@@ -24,11 +24,11 @@ namespace monotooth.Model.Connections
 		public void connect(uint uuid)
 		{			
 			monotooth.Model.Device.DeviceFactory fac = monotooth.Model.Device.DeviceFactory.GetFactory();
-			monotooth.Model.Device.IDevice localdev = fac.CreateDevice();
+			monotooth.Model.Device.ILocalDevice localdev = fac.CreateLocalDevice();
 			monotooth.Model.Device.DevicePool devpool = localdev.Inquire();
-			foreach(monotooth.Model.Device.IDevice remotedev in devpool)
+			foreach(monotooth.Model.Device.IRemoteDevice remotedev in devpool)
 			{
-			monotooth.Model.Service.ServicePool servpool = localdev.InquireServices(remotedev,uuid);
+			monotooth.Model.Service.ServicePool servpool = remotedev.InquireServices(uuid);
 			monotooth.Model.Connections.RFCommConnectionFactory rfcommfac = monotooth.Model.Connections.RFCommConnectionFactory.GetFactory();
 			monotooth.Model.Connections.RFCommConnection conn =  rfcommfac.CreateRFCommConnection(localdev.Address,remotedev.Address);
 			if(servpool.Count>0)

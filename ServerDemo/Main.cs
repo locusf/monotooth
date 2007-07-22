@@ -10,7 +10,7 @@ namespace ServerDemo
 			monotooth.Model.Device.DeviceFactory fac = monotooth.Model.Device.DeviceFactory.GetFactory();
 			Console.WriteLine((fac is monotooth.Model.Device.LinuxDeviceFactory));
 			Console.WriteLine((fac is monotooth.Model.Device.WindowsDeviceFactory));			
-			monotooth.Model.Device.IDevice devi = fac.CreateDevice();
+			monotooth.Model.Device.ILocalDevice devi = fac.CreateLocalDevice();
 			Console.WriteLine("Information of the local device: ");
 			Console.WriteLine("Name: "+devi.FriendlyName+ " Address: "+ devi.AddressAsString());
 			monotooth.Model.Connections.RFCommConnectionFactory connfac = monotooth.Model.Connections.RFCommConnectionFactory.GetFactory();

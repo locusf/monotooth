@@ -13,13 +13,13 @@ namespace monotooth.Model.Device
 		}				
 		/// <summary>Adds a device to this pool.</summary>
 		/// <param name="dev">The device to add. </param>
-		public virtual void Add(IDevice dev)
+		public virtual void Add(IRemoteDevice dev)
 		{
 			this.List.Add(dev);
 		}
 		/// <summary>Remove a device from the pool.</summary>
 		/// <param name="dev">The device to remove from the pool.</param>
-		public virtual void Remove(IDevice dev)
+		public virtual void Remove(IRemoteDevice dev)
 		{
 			this.List.Remove(dev);			
 		}		
@@ -27,11 +27,11 @@ namespace monotooth.Model.Device
 		/// <c>foreach</c> compatible. </summary>
 		/// <param name="index">Index for device.</param>
 		/// <value>A device.</value>
-		public virtual IDevice this[int index]
+		public virtual IRemoteDevice this[int index]
 		{
 			get
 			{
-				return (IDevice)this.List[index];
+				return (IRemoteDevice)this.List[index];
 			}
 			set
 			{
