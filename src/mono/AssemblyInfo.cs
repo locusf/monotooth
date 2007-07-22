@@ -9,7 +9,7 @@ using System.Runtime.CompilerServices;
 
 [assembly: AssemblyTitle("monotooth")]
 [assembly: AssemblyDescription("Monotooth is a library that offers an intuitive way to add bluetooth support to programs.")]
-[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyConfiguration("Debug")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("")]
 [assembly: AssemblyCopyright("(C) Aleksi Suomalainen, 2007")]
@@ -23,7 +23,7 @@ using System.Runtime.CompilerServices;
 // You can specify all values by your own or you can build default build and revision
 // numbers with the '*' character (the default):
 
-[assembly: AssemblyVersion("1.0.*")]
+[assembly: AssemblyVersion("0.0.*")]
 
 // The following attributes specify the key for the sign of your assembly. See the
 // .NET Framework documentation for more information about signing.
