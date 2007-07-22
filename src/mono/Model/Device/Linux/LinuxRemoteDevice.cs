@@ -13,6 +13,8 @@ namespace monotooth.Model.Device
 		}
 		public LinuxRemoteDevice(monotooth.Model.BluetoothAddress ba, string name)
 		{
+			this.address = ba;
+			this.name = name;
 		}
 		// Instance variables
 		private monotooth.Model.BluetoothAddress address;
