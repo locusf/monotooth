@@ -3,8 +3,8 @@
     <Configuration name="Debug" ctype="DotNetProjectConfiguration">
       <Output directory="./bin/Debug" assembly="monotooth" />
       <Build debugmode="True" target="Library" />
-      <Execution runwithwarnings="True" commandlineparameters="-doc:monotooth.xml" consolepause="False" runtime="MsNet" clr-version="Net_1_1" />
-      <CodeGeneration compiler="Csc" warninglevel="4" optimize="True" unsafecodeallowed="True" generateoverflowchecks="True" mainclass="" generatexmldocumentation="True" ctype="CSharpCompilerParameters" />
+      <Execution runwithwarnings="True" commandlineparameters="--debug -doc:monotooth.xml" consolepause="False" runtime="MsNet" clr-version="Net_1_1" />
+      <CodeGeneration compiler="Csc" warninglevel="4" optimize="True" unsafecodeallowed="False" generateoverflowchecks="True" mainclass="" generatexmldocumentation="True" ctype="CSharpCompilerParameters" />
     </Configuration>
     <Configuration name="Release" ctype="DotNetProjectConfiguration">
       <Output directory="./bin/Release" assembly="monotooth" />

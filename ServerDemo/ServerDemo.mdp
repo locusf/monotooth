@@ -3,8 +3,8 @@
     <Configuration name="Debug" ctype="DotNetProjectConfiguration">
       <Output directory="../bin/Debug" assembly="ServerDemo" />
       <Build debugmode="True" target="Exe" />
-      <Execution runwithwarnings="True" consolepause="True" runtime="MsNet" clr-version="Net_1_1" />
-      <CodeGeneration compiler="Csc" warninglevel="4" optimize="True" unsafecodeallowed="False" generateoverflowchecks="True" mainclass="" generatexmldocumentation="False" ctype="CSharpCompilerParameters" />
+      <Execution runwithwarnings="True" commandlineparameters="-debug" consolepause="True" runtime="MsNet" clr-version="Net_1_1" />
+      <CodeGeneration compiler="Csc" warninglevel="4" optimize="True" unsafecodeallowed="False" generateoverflowchecks="True" mainclass="ServerDemo.MainClass" generatexmldocumentation="False" ctype="CSharpCompilerParameters" />
     </Configuration>
     <Configuration name="Release" ctype="DotNetProjectConfiguration">
       <Output directory="./bin/Release" assembly="ServerDemo" />
