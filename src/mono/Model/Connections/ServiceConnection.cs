@@ -3,11 +3,7 @@ using System;
 
 namespace monotooth.Model.Connections
 {
-	/// <summary>A superinterface for service-oriented connections.</summary>
-	/// <remarks><para>This interface only has service registration as a feature.</para>
-	/// <para>To connect to a specific service, first inquire devices,
-	/// then use InquireServices with an UUID to connect to this specific service</para></remarks>
-	
+	/// <summary>A superinterface for service-oriented connections.</summary>	
 	public interface ServiceConnection : IConnection
 	{
 		/// <summary>Connects this connection to a specific service.		
