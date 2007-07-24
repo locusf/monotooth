@@ -7,12 +7,12 @@ namespace monotooth.Model.Socket
 {
 	
 	/// <summary>A simple stream to handle bluetooth streams. </summary>
-	public class BluetoothStream : Stream
+	public class BluetoothStream : Stream, IDisposable
 	{
 		private monotooth.Model.Connections.RFCommConnection sock;
 		private BluetoothStream()
 		{
-		}
+		}		
 		/// <summary>The default constructor.</summary>
 		/// <param name="conn">The used connection that this stream will use. </param>
 		public BluetoothStream(monotooth.Model.Connections.RFCommConnection conn)
@@ -29,19 +29,27 @@ namespace monotooth.Model.Socket
             get { return false; }
         }
         public override long Length {
-            get { return 0; }
+            get { throw new NotSupportedException (); }
         }
         public override long Position {
-                 get { return 0; }
-                 set {}
+                 get { throw new NotSupportedException (); }
+                 set { throw new NotSupportedException (); }
         }
         public override void Close()
+        {
+        	((IDisposable) this).Dispose ();        	
+        }
+        protected virtual void Dispose(bool disposing)
         {
         	this.sock.disconnect();
         }
         public override void Flush()
         {
         }
+        void IDisposable.Dispose ()
+		{
+			Dispose (true);		
+		}
         private System.Text.StringBuilder ConvertBytesToStringBuilder(byte[] buf)
         {
         	System.Text.UTF8Encoding enc = new System.Text.UTF8Encoding();
@@ -63,6 +71,7 @@ namespace monotooth.Model.Socket
         	buffer = ConvertStringBuilderToBytes(bld);
             return this.sock.BytesUsed;
         }
+        
  		public void Write(byte[] buf)
  		{
  			Write(buf,0,buf.Length);
@@ -75,10 +84,14 @@ namespace monotooth.Model.Socket
         }
         public override long Seek(long offset, SeekOrigin origin)
         {
-        	return 0;
+        	// NetworkStream objects do not support seeking.
+			throw new NotSupportedException ();
+        	
         }
         public override void SetLength(long length)
         {
+        	// NetworkStream objects do not support setting of length.			
+			throw new NotSupportedException ();
         }
 	}
 }
