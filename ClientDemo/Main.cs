@@ -1,6 +1,7 @@
 // project created on 7/4/2007 at 8:47 PM
 using System;
-using System.Runtime.InteropServices;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 namespace ClientDemo
 {
 	class MainClass
@@ -35,6 +36,11 @@ namespace ClientDemo
 			bld = new System.Text.StringBuilder();
 			servconn.Read(bld);
 			Console.WriteLine(bld.ToString());
+			monotooth.Model.Socket.BluetoothStream bs = new monotooth.Model.Socket.BluetoothStream(servconn.Connection);
+			BinaryFormatter bin = new BinaryFormatter();
+			bin.Serialize(bs, "Hello via bluetooth stream!");
+			Console.WriteLine((string)bin.Deserialize(bs));
+			bs.Close();
 			}
 	}
 }

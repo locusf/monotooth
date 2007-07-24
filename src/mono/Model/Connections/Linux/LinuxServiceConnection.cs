@@ -17,6 +17,13 @@ namespace monotooth.Model.Connections
 			this.usedconn = conn;
 		}
 		private monotooth.Model.Connections.RFCommConnection usedconn;
+		public monotooth.Model.Connections.RFCommConnection Connection
+		{
+			get
+			{
+				return usedconn;
+			}
+		}
 		private IntPtr session;		
 		public void connect()
 		{

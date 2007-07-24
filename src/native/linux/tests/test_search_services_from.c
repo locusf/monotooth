@@ -3,12 +3,12 @@
 
 int main()
 {
-	bdaddr_t *addr;
+	bdaddr_t* addr;
 	const char* addrstr = "00:10:60:AF:28:CE";
 	str2ba(addrstr,addr);
-	printf("%d\n",sizeof(service_record));
 	uint32_t uuid = 0;
-	search_services_from_with_uuid(addr,uuid);
-	
+	service_record** rec = search_services_from_with_uuid(addr,uuid);
+	free(rec);
+	return 0;	
 }
 

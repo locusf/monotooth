@@ -53,7 +53,7 @@ namespace monotooth.Model.Connections
 			if(this.connected)
 			{
 			bytes.Capacity = 1024;
-			write(this.sockf,bytes,bytes.Capacity);
+			this.usedbytes = write(this.sockf,bytes,bytes.Capacity);
 			}
 		}
 		public void Read(System.Text.StringBuilder bytes)
@@ -61,7 +61,7 @@ namespace monotooth.Model.Connections
 			if(this.connected)
 			{
 			bytes.Capacity = 1024;
-			read(this.sockf,bytes,bytes.Capacity);
+			this.usedbytes = read(this.sockf,bytes,bytes.Capacity);
 			}
 		}
 		public void listen(int channel)

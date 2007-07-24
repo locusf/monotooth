@@ -18,5 +18,10 @@ namespace monotooth.Model.Connections
 		/// <param name="uuid">The services UUID as unsigned integer. </param>
 		/// <remarks>The UUID of the service is now implemented for simplicity as an unsigned integer.</remarks>
 		void RegisterService(string name, string description, string vendor, int rfcomm_channel, uint uuid);
+		/// <summary>The connection that was used for this service connection.</summary>
+		monotooth.Model.Connections.RFCommConnection Connection
+		{
+			get;
+		}
 	}
 }

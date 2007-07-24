@@ -118,8 +118,10 @@ namespace monotooth.Model.Device
 		/// <returns>A string from the address.</returns>
 		public static string AddressAsString(monotooth.Model.BluetoothAddress ba)
 		{			
-			System.Text.StringBuilder bld = new System.Text.StringBuilder(18);			
-			ba2str(ba,bld);			
+			System.Text.StringBuilder bld = new System.Text.StringBuilder(18);
+			monotooth.Model.BluetoothAddress b = new monotooth.Model.BluetoothAddress();
+			baswap(b,ba);
+			ba2str(b,bld);			
 			return bld.ToString();
 		}
 		/// <summary>Returns an address as string. </summary>
@@ -182,6 +184,8 @@ namespace monotooth.Model.Device
 		private static extern int ba2str(monotooth.Model.BluetoothAddress ba, System.Text.StringBuilder bld);
 		[DllImport("bluetooth")]
 		private static extern IntPtr strtoba(string addr);
+		[DllImport("bluetooth")]
+		private static extern void baswap(monotooth.Model.BluetoothAddress ba, monotooth.Model.BluetoothAddress ba2);
 		/*
 		
 		Native library helper classes
