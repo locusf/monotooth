@@ -70,7 +70,7 @@ namespace monotooth.Model.Connections
 			if(this.connected)
 			{
 				onebyte.Capacity = 1024;
-				this.usedbytes = pread(this.sockf,onebyte,onebyte.Capacity,offset);
+				this.usedbytes = pread(this.sockf,onebyte,count,offset);
 			}
 		}
 		///
@@ -78,8 +78,8 @@ namespace monotooth.Model.Connections
 		{
 			if(this.connected)
 			{
-				onebyte.Capacity = 1;
-				this.usedbytes = pwrite(this.sockf,onebyte,onebyte.Capacity,offset);
+				onebyte.Capacity = 1024;
+				this.usedbytes = pwrite(this.sockf,onebyte,count,offset);
 			}
 		}
 		public void listen(int channel)
