@@ -65,21 +65,21 @@ namespace monotooth.Model.Connections
 			}
 		}
 		///
-		public void ReadByte(System.Text.StringBuilder onebyte)
+		public void ReadWithOffset(System.Text.StringBuilder onebyte, int offset, int count)
 		{
 			if(this.connected)
 			{
-				onebyte.Capacity = 1;
-				this.usedbytes = read(this.sockf,onebyte,1);
+				onebyte.Capacity = 1024;
+				this.usedbytes = pread(this.sockf,onebyte,onebyte.Capacity,offset);
 			}
 		}
 		///
-		public void WriteByte(System.Text.StringBuilder onebyte)
+		public void WriteWithOffset(System.Text.StringBuilder onebyte, int offset, int count)
 		{
 			if(this.connected)
 			{
 				onebyte.Capacity = 1;
-				this.usedbytes = write(this.sockf,onebyte,1);
+				this.usedbytes = pwrite(this.sockf,onebyte,onebyte.Capacity,offset);
 			}
 		}
 		public void listen(int channel)
@@ -120,6 +120,10 @@ namespace monotooth.Model.Connections
 		private static extern int read(int sockf,System.Text.StringBuilder buf, int len);
 		[DllImport("bluetooth")]
 		private static extern int write(int sockf,System.Text.StringBuilder buf, int len);
+		[DllImport("c")]
+		private static extern int pread(int sockf, System.Text.StringBuilder buf, int len, int offset);
+		[DllImport("c")]
+		private static extern int pwrite(int sockf, System.Text.StringBuilder buf, int len, int offset);
 		/*
 			Helper structures
 		*/

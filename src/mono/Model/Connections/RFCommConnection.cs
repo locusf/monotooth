@@ -19,9 +19,9 @@ namespace monotooth.Model.Connections
 		/// <param name="maxconns">Number of connections to listen.</param>
 		void listen(int channel, int maxconns);
 		///
-		void ReadByte(System.Text.StringBuilder onebyte);
+		void ReadWithOffset(System.Text.StringBuilder onebyte, int offset, int count);
 		///
-		void WriteByte(System.Text.StringBuilder onebyte);
+		void WriteWithOffset(System.Text.StringBuilder onebyte, int offset, int count);
 		/// <summary>Tells wether this connection is connected or not. </summary>
 		/// <value>true/false</value>
 		bool Connected

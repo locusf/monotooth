@@ -67,9 +67,9 @@ namespace monotooth.Model.Socket
         public override int Read([In, Out] byte[] buffer, int offset, int count)
         {
         	System.Text.StringBuilder bld = ConvertBytesToStringBuilder(buffer);
-        	this.sock.Read(bld);
+        	this.sock.ReadWithOffset(bld,offset,count);
         	buffer = ConvertStringBuilderToBytes(bld);
-            return 1;
+            return this.sock.BytesUsed;
         }
         
  		public void Write(byte[] buf)
@@ -79,7 +79,7 @@ namespace monotooth.Model.Socket
         public override void Write(byte[] buffer, int offset, int count)
         {
         	System.Text.StringBuilder bld = ConvertBytesToStringBuilder(buffer);
-        	this.sock.Write(bld);
+        	this.sock.WriteWithOffset(bld,offset,count);
         	
         }
         public override long Seek(long offset, SeekOrigin origin)
