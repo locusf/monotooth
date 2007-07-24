@@ -6,6 +6,27 @@ namespace ServerDemo
 {
 	class MainClass
 	{
+		[Serializable()]
+		private class DemoClass: ISerializable
+		{			 
+			 public int jee;
+			 public string joo;
+			 public DemoClass()
+			 {
+			 	jee = 0;
+			 	joo = "joo";
+			 }
+			 public DemoClass(SerializationInfo info, StreamingContext ctxt)
+			 {
+			 	jee = (int)info.GetValue("jee", typeof(int));
+			 	joo = (string)info.GetValue("joo",typeof(string));
+			 }
+			 public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
+			 {
+			 info.AddValue("jee", jee);
+			 info.AddValue("joo", joo);
+			 }
+		}
 		public static void Main(string[] args)
 		{
 			monotooth.Model.Device.DeviceFactory fac = monotooth.Model.Device.DeviceFactory.GetFactory();
@@ -27,8 +48,10 @@ namespace ServerDemo
 			servconn.Write(bld);
 			monotooth.Model.Socket.BluetoothStream bs = new monotooth.Model.Socket.BluetoothStream(servconn.Connection);
 			BinaryFormatter bin = new BinaryFormatter();
-			Console.WriteLine((string)bin.Deserialize(bs));			
-			bin.Serialize(bs,"Response, serialized.");
+			DemoClass demo = new DemoClass();
+			Console.WriteLine(((DemoClass)bin.Deserialize(bs)).joo);
+			demo.joo = "Response, serialized.";
+			bin.Serialize(bs,demo);
 			bs.Close();
 		}
 	}
