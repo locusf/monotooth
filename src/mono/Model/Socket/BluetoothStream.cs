@@ -69,7 +69,7 @@ namespace monotooth.Model.Socket
         	System.Text.StringBuilder bld = ConvertBytesToStringBuilder(buffer);
         	this.sock.Read(bld);
         	buffer = ConvertStringBuilderToBytes(bld);
-            return this.sock.BytesUsed;
+            return 1;
         }
         
  		public void Write(byte[] buf)

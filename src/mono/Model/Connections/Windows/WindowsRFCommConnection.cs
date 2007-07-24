@@ -42,6 +42,12 @@ namespace monotooth.Model.Connections
 		public void Read(System.Text.StringBuilder bytes)
 		{
 		}
+		public void ReadByte(System.Text.StringBuilder onebyte)
+		{
+		}
+		public void WriteByte(System.Text.StringBuilder onebyte)
+		{
+		}
 		public void listen(int channel)
 		{
 		}

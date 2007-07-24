@@ -64,6 +64,24 @@ namespace monotooth.Model.Connections
 			this.usedbytes = read(this.sockf,bytes,bytes.Capacity);
 			}
 		}
+		///
+		public void ReadByte(System.Text.StringBuilder onebyte)
+		{
+			if(this.connected)
+			{
+				onebyte.Capacity = 1;
+				this.usedbytes = read(this.sockf,onebyte,1);
+			}
+		}
+		///
+		public void WriteByte(System.Text.StringBuilder onebyte)
+		{
+			if(this.connected)
+			{
+				onebyte.Capacity = 1;
+				this.usedbytes = write(this.sockf,onebyte,1);
+			}
+		}
 		public void listen(int channel)
 		{
 			this.chan = channel;

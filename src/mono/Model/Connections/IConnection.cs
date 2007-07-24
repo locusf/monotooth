@@ -20,6 +20,7 @@ namespace monotooth.Model.Connections
 		/// <summary>Reads bytes to a <c>System.Text.StringBuilder</c> from the connection.</summary>
 		/// <param name="bytes">Bytes to be read from connection, wrapped in <c>System.Text.StringBuilder</c>.</param>
 		void Read(System.Text.StringBuilder bytes);		
+		
 		/// <summary>An optional property that stores the current socket descriptor.</summary>
 		/// <value>The socket descriptor that is a part of the connection. </value>
 		int SocketDescriptor

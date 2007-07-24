@@ -27,7 +27,7 @@ namespace ServerDemo
 			servconn.Write(bld);
 			monotooth.Model.Socket.BluetoothStream bs = new monotooth.Model.Socket.BluetoothStream(servconn.Connection);
 			BinaryFormatter bin = new BinaryFormatter();
-			Console.WriteLine((string)bin.Deserialize(bs));
+			Console.WriteLine((string)bin.Deserialize(bs));			
 			bin.Serialize(bs,"Response, serialized.");
 			bs.Close();
 		}

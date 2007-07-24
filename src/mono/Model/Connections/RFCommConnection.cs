@@ -18,6 +18,10 @@ namespace monotooth.Model.Connections
 		/// <param name="channel">The RFCOMM channel to listen to. </param>	
 		/// <param name="maxconns">Number of connections to listen.</param>
 		void listen(int channel, int maxconns);
+		///
+		void ReadByte(System.Text.StringBuilder onebyte);
+		///
+		void WriteByte(System.Text.StringBuilder onebyte);
 		/// <summary>Tells wether this connection is connected or not. </summary>
 		/// <value>true/false</value>
 		bool Connected
