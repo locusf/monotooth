@@ -69,7 +69,7 @@ namespace monotooth.Model.Connections
 		{
 			if(this.connected)
 			{
-				onebyte.Capacity = 1024;
+				//onebyte.Capacity = 1024;
 				this.usedbytes = read(this.sockf,onebyte,count);
 			}
 		}
@@ -78,7 +78,7 @@ namespace monotooth.Model.Connections
 		{
 			if(this.connected)
 			{
-				onebyte.Capacity = 1024;
+				//onebyte.Capacity = 1024;
 				this.usedbytes = write(this.sockf,onebyte,count);
 			}
 		}
