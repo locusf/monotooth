@@ -46,6 +46,7 @@ namespace ServerDemo
 			servconn.Read(bld);
 			bld = new System.Text.StringBuilder("Hello to you too there!");
 			servconn.Write(bld);
+			try{
 			monotooth.Model.Socket.BluetoothStream bs = new monotooth.Model.Socket.BluetoothStream(servconn.Connection);
 			BinaryFormatter bin = new BinaryFormatter();
 			DemoClass demo = new DemoClass();
@@ -53,6 +54,10 @@ namespace ServerDemo
 			demo.joo = "Response, serialized.";
 			bin.Serialize(bs,demo);
 			bs.Close();
+			} catch(SerializationException se)
+			{
+				se.Equals(se);
+			}
 		}
 	}
 }
