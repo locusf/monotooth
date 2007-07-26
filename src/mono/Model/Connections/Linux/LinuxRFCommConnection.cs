@@ -79,7 +79,7 @@ namespace monotooth.Model.Connections
 			if(this.connected)
 			{
 				//onebyte.Capacity = 1024;
-				this.usedbytes = read(this.sockf,onebyte,count);
+				this.usedbytes = customread(this.sockf,onebyte,offset,count);
 				if(this.usedbytes == -1)
 				{
 				perror("Could not read from socket!");
@@ -93,7 +93,7 @@ namespace monotooth.Model.Connections
 			if(this.connected)
 			{
 				//onebyte.Capacity = 1024;
-				this.usedbytes = write(this.sockf,onebyte,count);
+				this.usedbytes = customwrite(this.sockf,onebyte,offset,count);
 				if(this.usedbytes == -1)
 				{
 					perror("Could not write to socket with offset!");
@@ -132,7 +132,11 @@ namespace monotooth.Model.Connections
 		[DllImport("monotooth")]
 		private static extern int rfcomm_connect(monotooth.Model.BluetoothAddress from, monotooth.Model.BluetoothAddress to, int channel);
 		[DllImport("monotooth")]
-		private static extern int rfcomm_listen(monotooth.Model.BluetoothAddress from, int channel, int backlog);		
+		private static extern int rfcomm_listen(monotooth.Model.BluetoothAddress from, int channel, int backlog);
+		[DllImport("monotooth")]
+		private static extern int customread(int fd, System.Text.StringBuilder buf, int off, int len);
+		[DllImport("monotooth")]
+		private static extern int customwrite(int fd, System.Text.StringBuilder buf, int off, int len);
 		[DllImport("bluetooth")]
 		private static extern int close(int sockf);		
 		[DllImport("bluetooth")]

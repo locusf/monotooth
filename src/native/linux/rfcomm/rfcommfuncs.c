@@ -59,3 +59,34 @@ int rfcomm_listen(bdaddr_t* from, int channel, int conns)
 	return sok;	
 }
 
+int customread(int fd, char* buf, int off, int len)
+{
+    int done = 0;
+ 
+   while(done < len) {
+       int count = read (fd, buf+off+done, len-done);
+ 
+        if (count < 0) {            
+            perror("Failed to write");
+            return -1;
+        }
+     done += count;
+    }
+    return done;
+}
+
+int customwrite(int fd, char* buf, int off, int len)
+{
+    int done = 0;
+ 
+   while(done < len) {
+       int count = write (fd, buf+off+done, len-done);
+ 
+        if (count < 0) {            
+            perror("Failed to write");
+            return -1;
+        }
+     done += count;
+    }
+    return done;
+}
