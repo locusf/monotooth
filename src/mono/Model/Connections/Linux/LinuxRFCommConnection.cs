@@ -54,6 +54,11 @@ namespace monotooth.Model.Connections
 			{
 			//bytes.Capacity = 1024;
 			this.usedbytes = write(this.sockf,bytes,bytes.Capacity);
+			if(this.usedbytes == -1)
+			{
+				perror("Could not write to socket!");
+			}
+			
 			}
 		}
 		public void Read(System.Text.StringBuilder bytes)
@@ -62,6 +67,10 @@ namespace monotooth.Model.Connections
 			{
 			//bytes.Capacity = 1024;
 			this.usedbytes = read(this.sockf,bytes,bytes.Capacity);
+			if(this.usedbytes == -1)
+			{
+				perror("Could not read from socket!");
+			}
 			}
 		}
 		///
@@ -71,6 +80,11 @@ namespace monotooth.Model.Connections
 			{
 				//onebyte.Capacity = 1024;
 				this.usedbytes = read(this.sockf,onebyte,count);
+				if(this.usedbytes == -1)
+				{
+				perror("Could not read from socket!");
+				}
+			
 			}
 		}
 		///
@@ -80,6 +94,11 @@ namespace monotooth.Model.Connections
 			{
 				//onebyte.Capacity = 1024;
 				this.usedbytes = write(this.sockf,onebyte,count);
+				if(this.usedbytes == -1)
+				{
+					perror("Could not write to socket with offset!");
+				}
+			
 			}
 		}
 		public void listen(int channel)
@@ -120,6 +139,8 @@ namespace monotooth.Model.Connections
 		private static extern int read(int sockf,System.Text.StringBuilder buf, int len);
 		[DllImport("bluetooth")]
 		private static extern int write(int sockf,System.Text.StringBuilder buf, int len);
+		[DllImport("c")]
+		private static extern void perror(string msg);
 		/*[DllImport("c")]
 		private static extern int pread(int sockf, System.Text.StringBuilder buf, int len, int offset);
 		[DllImport("c")]

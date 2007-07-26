@@ -45,19 +45,14 @@ namespace ServerDemo
 			servconn.RegisterService("Testing service","Testing service","Testing service",13,uuid);
 			servconn.Read(bld);
 			bld = new System.Text.StringBuilder("Hello to you too there!");
-			servconn.Write(bld);
-			try{
+			servconn.Write(bld);			
 			monotooth.Model.Socket.BluetoothStream bs = new monotooth.Model.Socket.BluetoothStream(servconn.Connection);
 			BinaryFormatter bin = new BinaryFormatter();
 			DemoClass demo = new DemoClass();
 			Console.WriteLine(((DemoClass)bin.Deserialize(bs)).joo);
 			demo.joo = "Response, serialized.";
 			bin.Serialize(bs,demo);
-			bs.Close();
-			} catch(SerializationException se)
-			{
-				se.Equals(se);
-			}
+			bs.Close();			
 		}
 	}
 }

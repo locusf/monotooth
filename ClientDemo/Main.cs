@@ -57,18 +57,14 @@ namespace ClientDemo
 			bld = new System.Text.StringBuilder();
 			servconn.Read(bld);
 			Console.WriteLine(bld.ToString());
-			try{
+			
 			monotooth.Model.Socket.BluetoothStream bs = new monotooth.Model.Socket.BluetoothStream(servconn.Connection);
 			DemoClass demo = new DemoClass();
 			demo.joo = "Hello via bluetooth stream!";
 			BinaryFormatter bin = new BinaryFormatter();
 			bin.Serialize(bs, demo);
 			Console.WriteLine(((DemoClass)bin.Deserialize(bs)).joo);
-			bs.Close();
-			} catch(SerializationException se)
-			{
-				se.Equals(se);
-			}
+			bs.Close();			
 			}
 	}
 }
