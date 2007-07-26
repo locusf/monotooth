@@ -67,7 +67,7 @@ int customread(int fd, char* buf, int off, int len)
        int count = read (fd, buf+off+done, len-done);
  
         if (count < 0) {            
-            perror("Failed to write");
+            perror("Failed to read");
             return -1;
         }
      done += count;

@@ -35,7 +35,7 @@ def build(bld):
         # process subfolders from here
 	obj = bld.create_obj('cc','shlib')
 	obj.env = bld.env_of_name('Debug').copy()
-	obj.env['CCFLAGS'] = '-g3'
+	obj.env['CCFLAGS'] = '-g3 -fno-stack-protector'
 	obj.target = 'monotooth'
 	obj.cxxflags = "-g"
 	obj.source = '''
