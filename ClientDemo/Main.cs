@@ -59,11 +59,11 @@ namespace ClientDemo
 			Console.WriteLine(bld.ToString());
 			
 			monotooth.Model.Socket.BluetoothStream bs = new monotooth.Model.Socket.BluetoothStream(servconn.Connection);
-			DemoClass demo = new DemoClass();
-			demo.joo = "Hello via bluetooth stream!";
+			monotooth.Model.BluetoothAddress demo = new monotooth.Model.BluetoothAddress();			
 			BinaryFormatter bin = new BinaryFormatter();
 			bin.Serialize(bs, demo);
-			Console.WriteLine(((DemoClass)bin.Deserialize(bs)).joo);
+			devi.Address = (monotooth.Model.BluetoothAddress)bin.Deserialize(bs);
+			Console.WriteLine(devi.AddressAsString());
 			bs.Close();			
 			}
 	}
