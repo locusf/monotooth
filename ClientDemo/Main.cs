@@ -56,14 +56,13 @@ namespace ClientDemo
 			servconn.Write(bld);
 			bld = new System.Text.StringBuilder();
 			servconn.Read(bld);
-			Console.WriteLine(bld.ToString());
-			
-			monotooth.Model.Socket.BluetoothStream bs = new monotooth.Model.Socket.BluetoothStream(servconn.Connection);
-			monotooth.Model.BluetoothAddress demo = new monotooth.Model.BluetoothAddress();			
+			Console.WriteLine(bld.ToString());			
+			monotooth.Model.Socket.BluetoothStream bs = new monotooth.Model.Socket.BluetoothStream(servconn.Connection);						
 			BinaryFormatter bin = new BinaryFormatter();
-			bin.Serialize(bs, demo);
-			devi.Address = (monotooth.Model.BluetoothAddress)bin.Deserialize(bs);
-			Console.WriteLine(devi.AddressAsString());
+			System.String s = "Hello serialized bluetooth stream!";
+			bin.Serialize(bs, s);
+			String ret = (String)bin.Deserialize(bs);
+			Console.WriteLine(ret);
 			bs.Close();			
 			}
 	}

@@ -48,11 +48,10 @@ namespace ServerDemo
 			servconn.Write(bld);			
 			monotooth.Model.Socket.BluetoothStream bs = new monotooth.Model.Socket.BluetoothStream(servconn.Connection);
 			BinaryFormatter bin = new BinaryFormatter();
-			monotooth.Model.BluetoothAddress demo = new monotooth.Model.BluetoothAddress();
-			devi.Address = (monotooth.Model.BluetoothAddress)bin.Deserialize(bs);
-			Console.WriteLine(devi.AddressAsString());
-			demo = devi.StringAsAddress("00:01:02:03:04:05");
-			bin.Serialize(bs,demo);
+			System.String s = "Hello serialized";
+			System.String ret = (System.String)bin.Deserialize(bs);
+			Console.WriteLine(ret);			
+			bin.Serialize(bs,s);
 			bs.Close();			
 		}
 	}
