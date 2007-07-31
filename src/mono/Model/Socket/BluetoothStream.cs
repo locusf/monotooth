@@ -50,28 +50,22 @@ namespace monotooth.Model.Socket
 		{
 			Dispose (true);		
 		}        
-        public int Read([In, Out] byte[] bytes)
-        {
-        	return Read(bytes,0,bytes.Length);
-        }
+        
         public override int Read([In, Out] byte[] buffer, int offset, int count)
         {
         	IntPtr ptr = Marshal.AllocHGlobal(Marshal.SizeOf(buffer[0])*buffer.Length);
         	this.sock.ReadWithOffset(ptr,offset,count);        	
             Marshal.Copy(ptr,buffer,0,buffer.Length);
+            Marshal.FreeHGlobal(ptr);
             return this.sock.BytesUsed;
         }
-        
- 		public void Write(byte[] buf)
- 		{
- 			Write(buf,0,buf.Length);
- 		}
+        		
         public override void Write(byte[] buffer, int offset, int count)
         {
         	IntPtr ptr = Marshal.AllocHGlobal(Marshal.SizeOf(buffer[0])*buffer.Length);
         	Marshal.Copy(buffer,0,ptr,buffer.Length);
         	this.sock.WriteWithOffset(ptr,offset,count);
-        	
+        	Marshal.FreeHGlobal(ptr);
         }
         public override long Seek(long offset, SeekOrigin origin)
         {
