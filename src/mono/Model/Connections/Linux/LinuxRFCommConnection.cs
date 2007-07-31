@@ -76,7 +76,7 @@ namespace monotooth.Model.Connections
 			}
 		}
 		///
-		public void ReadWithOffset(System.Text.StringBuilder onebyte, int offset, int count)
+		public void ReadWithOffset(IntPtr onebyte, int offset, int count)
 		{
 			if(this.connected)
 			{
@@ -91,7 +91,7 @@ namespace monotooth.Model.Connections
 			}
 		}
 		///
-		public void WriteWithOffset(System.Text.StringBuilder onebyte, int offset, int count)
+		public void WriteWithOffset(IntPtr onebyte, int offset, int count)
 		{
 			if(this.connected)
 			{
@@ -138,9 +138,9 @@ namespace monotooth.Model.Connections
 		[DllImport("monotooth")]
 		private static extern int rfcomm_listen(monotooth.Model.BluetoothAddress from, int channel, int backlog);
 		[DllImport("monotooth")]
-		private static extern int customread(int fd, System.Text.StringBuilder buf, int off, int len);
+		private static extern int customread(int fd, IntPtr buf, int off, int len);
 		[DllImport("monotooth")]
-		private static extern int customwrite(int fd, System.Text.StringBuilder buf, int off, int len);
+		private static extern int customwrite(int fd, IntPtr buf, int off, int len);
 		[DllImport("bluetooth")]
 		private static extern int close(int sockf);		
 		[DllImport("bluetooth")]

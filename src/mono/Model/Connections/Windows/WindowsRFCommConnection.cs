@@ -42,10 +42,10 @@ namespace monotooth.Model.Connections
 		public void Read(System.Text.StringBuilder bytes)
 		{
 		}
-		public void ReadWithOffset(System.Text.StringBuilder onebyte, int offset, int count)
+		public void ReadWithOffset(IntPtr onebyte, int offset, int count)
 		{
 		}
-		public void WriteWithOffset(System.Text.StringBuilder onebyte, int offset, int count)
+		public void WriteWithOffset(IntPtr onebyte, int offset, int count)
 		{
 		}
 		public void listen(int channel)
