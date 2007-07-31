@@ -61,8 +61,6 @@ namespace ClientDemo
 			BinaryFormatter bin = new BinaryFormatter();
 			System.String s = "Hello serialized bluetooth stream!";
 			bin.Serialize(bs, s);
-			String ret = (String)bin.Deserialize(bs);
-			Console.WriteLine(ret);
 			bs.Close();			
 			}
 	}
