@@ -81,8 +81,7 @@ namespace monotooth.Model.Connections
 			if(this.connected)
 			{
 				//onebyte.Capacity = 1024;
-				this.usedbytes = customread(this.sockf,onebyte,offset,count);
-				Console.WriteLine("Readoff: "+onebyte.ToString());
+				this.usedbytes = customread(this.sockf,onebyte,offset,count);				
 				if(this.usedbytes == -1)
 				{
 				perror("Could not read from socket!");
@@ -94,10 +93,8 @@ namespace monotooth.Model.Connections
 		public void WriteWithOffset(IntPtr onebyte, int offset, int count)
 		{
 			if(this.connected)
-			{
-				//onebyte.Capacity = 1024;
-				this.usedbytes = customwrite(this.sockf,onebyte,offset,count);
-				Console.WriteLine("Wroteoff: "+onebyte.ToString());
+			{				
+				this.usedbytes = customwrite(this.sockf,onebyte,offset,count);				
 				if(this.usedbytes == -1)
 				{
 					perror("Could not write to socket with offset!");
