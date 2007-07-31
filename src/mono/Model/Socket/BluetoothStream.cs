@@ -49,17 +49,7 @@ namespace monotooth.Model.Socket
         void IDisposable.Dispose ()
 		{
 			Dispose (true);		
-		}
-        private System.Text.StringBuilder ConvertBytesToStringBuilder(byte[] buf)
-        {
-        	System.Text.UTF8Encoding enc = new System.Text.UTF8Encoding();
-        	return new System.Text.StringBuilder(enc.GetString(buf));
-        }
-        private byte[] ConvertStringBuilderToBytes(System.Text.StringBuilder bld)
-        {
-        	System.Text.UTF8Encoding enc = new System.Text.UTF8Encoding();
-        	return enc.GetBytes(bld.ToString());
-        }
+		}        
         public int Read([In, Out] byte[] bytes)
         {
         	return Read(bytes,0,bytes.Length);
