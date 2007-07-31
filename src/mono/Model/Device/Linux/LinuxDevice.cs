@@ -117,7 +117,8 @@ namespace monotooth.Model.Device
 		/// <summary>Returns an address as string. </summary>
 		/// <returns>A string from the address.</returns>
 		public static string AddressAsString(monotooth.Model.BluetoothAddress ba)
-		{			
+		{		
+			if(ba == null) throw new ArgumentException("ba","May not be null!");
 			System.Text.StringBuilder bld = new System.Text.StringBuilder(18);
 			monotooth.Model.BluetoothAddress b = new monotooth.Model.BluetoothAddress();
 			baswap(b,ba);
@@ -130,7 +131,7 @@ namespace monotooth.Model.Device
 		public static monotooth.Model.BluetoothAddress StringAsAddressStatic(string addr)
 		{
 			
-			if(addr.LastIndexOfAny(new char[1]{':'})==14)
+			if(addr.LastIndexOfAny(new char[1]{':'})==15 && addr.Length == 17)
 			{
 			monotooth.Model.BluetoothAddress ba = new monotooth.Model.BluetoothAddress();
 			Marshal.PtrToStructure(strtoba(addr),ba);
@@ -141,10 +142,10 @@ namespace monotooth.Model.Device
 		}
 		/// <summary>Returns a <c>monotooth.Model.BluetoothAddress</c> from a string, using a native function. </summary>
 		/// <returns>New address. </returns>
-		/// <remarks>Will return an 0-address if the address string is not in the 48-bit form. </remarks>
+		/// <remarks>Will return a 0-address, if the address string is not in the 48-bit form. </remarks>
 		public monotooth.Model.BluetoothAddress StringAsAddress(string addr)
 		{
-			if(addr.LastIndexOfAny(new char[1]{':'})==15)
+			if(addr.LastIndexOfAny(new char[1]{':'})==15 && addr.Length == 17)
 			{
 			monotooth.Model.BluetoothAddress ba = new monotooth.Model.BluetoothAddress();
 			Marshal.PtrToStructure(strtoba(addr),ba);

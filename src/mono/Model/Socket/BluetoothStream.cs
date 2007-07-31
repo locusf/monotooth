@@ -53,6 +53,8 @@ namespace monotooth.Model.Socket
         
         public override int Read([In, Out] byte[] buffer, int offset, int count)
         {
+        	if (offset < 0) throw new ArgumentException("offset","May not be less than zero!");
+        	if (offset > buffer.Length) throw new ArgumentException("offset","Trying to read outside of buffer!");        	
         	IntPtr ptr = Marshal.AllocHGlobal(Marshal.SizeOf(buffer[0])*buffer.Length);
         	this.sock.ReadWithOffset(ptr,offset,count);        	
             Marshal.Copy(ptr,buffer,0,buffer.Length);
@@ -62,20 +64,19 @@ namespace monotooth.Model.Socket
         		
         public override void Write(byte[] buffer, int offset, int count)
         {
+        	if (offset < 0) throw new ArgumentException("offset","May not be less than zero!");
+        	if (offset > buffer.Length) throw new ArgumentException("offset","Trying to write to outside of buffer!");
         	IntPtr ptr = Marshal.AllocHGlobal(Marshal.SizeOf(buffer[0])*buffer.Length);
         	Marshal.Copy(buffer,0,ptr,buffer.Length);
         	this.sock.WriteWithOffset(ptr,offset,count);
         	Marshal.FreeHGlobal(ptr);
         }
         public override long Seek(long offset, SeekOrigin origin)
-        {
-        	// NetworkStream objects do not support seeking.
-			throw new NotSupportedException ();
-        	
+        {        	
+			throw new NotSupportedException ();        	
         }
         public override void SetLength(long length)
-        {
-        	// NetworkStream objects do not support setting of length.			
+        {        	
 			throw new NotSupportedException ();
         }
 	}

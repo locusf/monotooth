@@ -92,7 +92,7 @@ namespace monotooth.Model.Device
 		/// <remarks>Will return an 0-address if the address string is not in the 48-bit form. </remarks>
 		public monotooth.Model.BluetoothAddress StringAsAddress(string addr)
 		{
-			if(addr.LastIndexOfAny(new char[1]{':'})==15)
+			if(addr.LastIndexOfAny(new char[1]{':'})==15 && addr.Length == 17)
 			{
 			monotooth.Model.BluetoothAddress ba = new monotooth.Model.BluetoothAddress();
 			Marshal.PtrToStructure(strtoba(addr),ba);
