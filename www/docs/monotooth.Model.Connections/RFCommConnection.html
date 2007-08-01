@@ -134,6 +134,22 @@
                   <a href="#M:monotooth.Model.Connections.RFCommConnection.listen(System.Int32,System.Int32)">listen</a>
                 </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>)<div>Listens for a RFCOMM connection in the specified channel and maximum connections. </div></td>
             </tr>
+            <tr valign="top">
+              <td>
+              </td>
+              <td>
+                <b>
+                  <a href="#M:monotooth.Model.Connections.RFCommConnection.ReadWithOffset(System.IntPtr,System.Int32,System.Int32)">ReadWithOffset</a>
+                </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IntPtr">IntPtr</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>)<div>Read bytes to IntPtr with offset. </div></td>
+            </tr>
+            <tr valign="top">
+              <td>
+              </td>
+              <td>
+                <b>
+                  <a href="#M:monotooth.Model.Connections.RFCommConnection.WriteWithOffset(System.IntPtr,System.Int32,System.Int32)">WriteWithOffset</a>
+                </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IntPtr">IntPtr</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>)<div>Write bytes from IntPtr with offset. </div></td>
+            </tr>
           </table>
         </div>
       </div>
@@ -225,6 +241,58 @@
                 <i>maxconns</i>
               </dt>
               <dd>Number of connections to listen.</dd>
+            </dl>
+          </div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">To be added.</div>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="M:monotooth.Model.Connections.RFCommConnection.ReadWithOffset(System.IntPtr,System.Int32,System.Int32)" class="MemberName">ReadWithOffset Method</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>ReadWithOffset</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IntPtr">IntPtr</a> onebyte, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> offset, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> count)</div>
+        <div class="MemberBox">
+          <p>Read bytes to IntPtr with offset. </p>
+          <h4 class="Subsection">Parameters</h4>
+          <div class="SubsectionBox">
+            <dl>
+              <dt>
+                <i>onebyte</i>
+              </dt>
+              <dd>A pointer that describes a byte array to read from socket.</dd>
+              <dt>
+                <i>offset</i>
+              </dt>
+              <dd>Offset of the data.</dd>
+              <dt>
+                <i>count</i>
+              </dt>
+              <dd>The number of bytes to read.</dd>
+            </dl>
+          </div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">To be added.</div>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="M:monotooth.Model.Connections.RFCommConnection.WriteWithOffset(System.IntPtr,System.Int32,System.Int32)" class="MemberName">WriteWithOffset Method</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>WriteWithOffset</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IntPtr">IntPtr</a> onebyte, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> offset, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> count)</div>
+        <div class="MemberBox">
+          <p>Write bytes from IntPtr with offset. </p>
+          <h4 class="Subsection">Parameters</h4>
+          <div class="SubsectionBox">
+            <dl>
+              <dt>
+                <i>onebyte</i>
+              </dt>
+              <dd>A pointer that describes a byte array to write to socket.</dd>
+              <dt>
+                <i>offset</i>
+              </dt>
+              <dd>Offset of the data.</dd>
+              <dt>
+                <i>count</i>
+              </dt>
+              <dd>The number of bytes to read.</dd>
             </dl>
           </div>
           <h4 class="Subsection">Remarks</h4>
