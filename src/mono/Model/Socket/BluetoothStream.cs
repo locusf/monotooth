@@ -50,7 +50,10 @@ namespace monotooth.Model.Socket
 		{
 			Dispose (true);		
 		}        
-        
+        /// <summary>Read information from the stream to a byte array.</summary>
+        /// <param name="buffer">A buffer to read bytes to.</param>
+        /// <param name="offset">An offset to read from.</param>
+        /// <param name="count">The number of bytes to read.</param>
         public override int Read([In, Out] byte[] buffer, int offset, int count)
         {
         	if (offset < 0) throw new ArgumentException("offset","May not be less than zero!");
@@ -61,8 +64,11 @@ namespace monotooth.Model.Socket
             Marshal.FreeHGlobal(ptr);
             return this.sock.BytesUsed;
         }
-        		
-        public override void Write(byte[] buffer, int offset, int count)
+        /// <summary>Read information to the stream from a byte array.</summary>
+        /// <param name="buffer">A buffer that contains bytes to be written.</param>
+        /// <param name="offset">An offset to write to.</param>
+        /// <param name="count">The number of bytes to write.</param>
+        public override void Write(byte[] buffer, int offset, int count)        
         {
         	if (offset < 0) throw new ArgumentException("offset","May not be less than zero!");
         	if (offset > buffer.Length) throw new ArgumentException("offset","Trying to write to outside of buffer!");

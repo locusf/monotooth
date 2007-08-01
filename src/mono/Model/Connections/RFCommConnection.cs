@@ -18,9 +18,15 @@ namespace monotooth.Model.Connections
 		/// <param name="channel">The RFCOMM channel to listen to. </param>	
 		/// <param name="maxconns">Number of connections to listen.</param>
 		void listen(int channel, int maxconns);
-		///
+		/// <summary>Read bytes to IntPtr with offset. </summary>
+		/// <param name="onebyte">A pointer that describes a byte array to read from socket.</param>
+		/// <param name="offset">Offset of the data.</param>
+		/// <param name="count">The number of bytes to read.</param>
 		void ReadWithOffset(IntPtr onebyte, int offset, int count);
-		///
+		/// <summary>Write bytes from IntPtr with offset. </summary>
+		/// <param name="onebyte">A pointer that describes a byte array to write to socket.</param>
+		/// <param name="offset">Offset of the data.</param>
+		/// <param name="count">The number of bytes to read.</param>		
 		void WriteWithOffset(IntPtr onebyte, int offset, int count);
 		/// <summary>Tells wether this connection is connected or not. </summary>
 		/// <value>true/false</value>

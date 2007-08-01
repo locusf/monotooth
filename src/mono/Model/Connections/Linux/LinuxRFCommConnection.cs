@@ -23,7 +23,7 @@ namespace monotooth.Model.Connections
 		}
 		public void connect(int channel)
 		{
-			if (channel < 0) throw new ArgumentException("channel","Should not be less than zero!");
+			if (channel < 0 && channel > 30) throw new ArgumentException("channel","Should not be less than zero and more than 30!");
 			this.sockf = rfcomm_connect(this.fromaddr,this.toaddr,channel);
 			this.chan = channel;
 			this.connected = true;
@@ -94,7 +94,7 @@ namespace monotooth.Model.Connections
 		///
 		public void WriteWithOffset(IntPtr onebyte, int offset, int count)
 		{
-			if(offset < 0 ) throw new ArgumentException("offset","Should not be less than zero!");
+			if(offset < 0 ) throw new ArgumentException("offset","Should not be less than zero and more than 30!");
 			if(this.connected)
 			{				
 				this.usedbytes = customwrite(this.sockf,onebyte,offset,count);				
@@ -107,7 +107,7 @@ namespace monotooth.Model.Connections
 		}
 		public void listen(int channel)
 		{
-			if (channel < 0) throw new ArgumentException("channel","Should not be less than zero!");
+			if (channel < 0 && channel > 30) throw new ArgumentException("channel","Should not be less than zero and more than 30!");
 			this.chan = channel;
 			if(!isConnected())
 			{
@@ -121,7 +121,7 @@ namespace monotooth.Model.Connections
 		}
 		public void listen(int channel, int maxconns)
 		{
-			if (channel < 0) throw new ArgumentException("channel","Should not be less than zero!");
+			if (channel < 0 && channel > 30) throw new ArgumentException("channel","Should not be less than zero and more than 30!");
 			if (maxconns < 0) throw new ArgumentException("maxconns","Should not be less than zero!");
 			this.chan = channel;
 			if(!isConnected())
