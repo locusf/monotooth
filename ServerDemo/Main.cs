@@ -42,6 +42,7 @@ namespace ServerDemo
 			uint uuid = (uint)0xABCD;
 			Console.WriteLine(uuid);
 			System.Text.StringBuilder bld = new System.Text.StringBuilder();
+			bld.Capacity = 1024;
 			servconn.RegisterService("Testing service","Testing service","Testing service",13,uuid);
 			servconn.Read(bld);
 			bld = new System.Text.StringBuilder("Hello to you too there!");

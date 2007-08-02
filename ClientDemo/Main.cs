@@ -55,6 +55,7 @@ namespace ClientDemo
 			System.Text.StringBuilder bld = new System.Text.StringBuilder("Hello there!");
 			servconn.Write(bld);
 			bld = new System.Text.StringBuilder();
+			bld.Capacity = 1024;
 			servconn.Read(bld);
 			Console.WriteLine(bld.ToString());			
 			monotooth.Model.Socket.BluetoothStream bs = new monotooth.Model.Socket.BluetoothStream(servconn.Connection);						
