@@ -25,7 +25,7 @@ namespace monotooth.Model.Device
 			Marshal.FreeHGlobal(ptr);
 			} else
 			{
-				Console.WriteLine("You do not have a bluetooth device in your system.");
+				throw new Exception("You do not have a bluetooth device on your system.");
 			}
 		}
 		
@@ -101,8 +101,7 @@ namespace monotooth.Model.Device
 			return pool;
 			} else 
 			{
-			Console.WriteLine("You do not have a bluetooth device in your system.");
-			return null;
+			throw new Exception("You do not have a bluetooth device on your system.");
 			}
 		}
 		
