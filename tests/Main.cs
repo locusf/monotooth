@@ -3,7 +3,7 @@ using System;
 using System.Text;
 using System.Runtime.InteropServices;
 using System.IO;
-using Mono.Unix;
+
 namespace MonoTooth
 {
 	class MainClass
