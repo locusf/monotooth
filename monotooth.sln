@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+# SharpDevelop 2.2.0.2595
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "monotooth", "monotooth.csproj", "{C3DA1C7C-638A-4DEF-A9F6-669C6E38F8DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientDemo", "ClientDemo\ClientDemo.csproj", "{7FEAAD20-CD63-4929-B1CE-9C50CEA5D63F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C3DA1C7C-638A-4DEF-A9F6-669C6E38F8DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3DA1C7C-638A-4DEF-A9F6-669C6E38F8DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3DA1C7C-638A-4DEF-A9F6-669C6E38F8DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3DA1C7C-638A-4DEF-A9F6-669C6E38F8DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FEAAD20-CD63-4929-B1CE-9C50CEA5D63F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FEAAD20-CD63-4929-B1CE-9C50CEA5D63F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FEAAD20-CD63-4929-B1CE-9C50CEA5D63F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FEAAD20-CD63-4929-B1CE-9C50CEA5D63F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+EndGlobal

@@ -10,7 +10,8 @@ namespace monotooth.Model.Connections
 		/// <c>GetFactory</c> method creates an OS specific factory for service connections.
 		public static ServiceConnectionFactory GetFactory()
 		{
-			if ((System.Environment.OSVersion.Platform.value__ == 128) || (System.Environment.OSVersion.Platform.value__ == 4))
+			int p = (int) System.Environment.OSVersion.Platform;
+			if (( p == 128) || (p == 4))
 			{
 				return new LinuxServiceConnectionFactory();
 			}

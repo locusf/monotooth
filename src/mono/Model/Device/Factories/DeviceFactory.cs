@@ -11,8 +11,9 @@ namespace monotooth.Model.Device
 		/// <returns>A device factory. </returns>
 		public static DeviceFactory GetFactory()
 		{
-			if ((System.Environment.OSVersion.Platform.value__ == 128) || (System.Environment.OSVersion.Platform.value__ == 4))
-			{
+			int p = (int) System.Environment.OSVersion.Platform;
+			if (( p == 128) || (p == 4))
+			{	
 				return new LinuxDeviceFactory();
 			} else 
 			{

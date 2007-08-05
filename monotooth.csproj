@@ -1,0 +1,100 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{C3DA1C7C-638A-4DEF-A9F6-669C6E38F8DB}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <OutputType>Library</OutputType>
+    <RootNamespace>monotooth</RootNamespace>
+    <AssemblyName>monotooth</AssemblyName>
+    <ReferencePath>C:\monotooth\src\mono\</ReferencePath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>False</DebugSymbols>
+    <DebugType>None</DebugType>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <DefineConstants>TRACE</DefineConstants>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
+  <ItemGroup>
+    <Compile Include="src\mono\AssemblyInfo.cs" />
+    <Compile Include="src\mono\Model\BluetoothAddress.cs" />
+    <Compile Include="src\mono\Model\Connections\Factories\Linux\LinuxRFCommConnectionFactory.cs" />
+    <Compile Include="src\mono\Model\Connections\Factories\Linux\LinuxServiceConnectionFactory.cs" />
+    <Compile Include="src\mono\Model\Connections\Factories\RFCommConnectionFactory.cs" />
+    <Compile Include="src\mono\Model\Connections\Factories\ServiceConnectionFactory.cs" />
+    <Compile Include="src\mono\Model\Connections\Factories\Windows\WindowsRFCommConnectionFactory.cs" />
+    <Compile Include="src\mono\Model\Connections\HCIConnection.cs" />
+    <Compile Include="src\mono\Model\Connections\IConnection.cs" />
+    <Compile Include="src\mono\Model\Connections\L2CAPConnection.cs" />
+    <Compile Include="src\mono\Model\Connections\Linux\LinuxHCIConnection.cs" />
+    <Compile Include="src\mono\Model\Connections\Linux\LinuxL2CAPConnection.cs" />
+    <Compile Include="src\mono\Model\Connections\Linux\LinuxRFCommConnection.cs" />
+    <Compile Include="src\mono\Model\Connections\Linux\LinuxServiceConnection.cs" />
+    <Compile Include="src\mono\Model\Connections\RFCommConnection.cs" />
+    <Compile Include="src\mono\Model\Connections\ServiceConnection.cs" />
+    <Compile Include="src\mono\Model\Connections\Windows\WindowsL2CAPConnection.cs" />
+    <Compile Include="src\mono\Model\Connections\Windows\WindowsRFCommConnection.cs" />
+    <Compile Include="src\mono\Model\Device\DevicePool.cs" />
+    <Compile Include="src\mono\Model\Device\Factories\DeviceFactory.cs" />
+    <Compile Include="src\mono\Model\Device\IDevice.cs" />
+    <Compile Include="src\mono\Model\Device\ILocalDevice.cs" />
+    <Compile Include="src\mono\Model\Device\IRemoteDevice.cs" />
+    <Compile Include="src\mono\Model\Device\Linux\LinuxDevice.cs" />
+    <Compile Include="src\mono\Model\Device\Linux\LinuxDeviceFactory.cs" />
+    <Compile Include="src\mono\Model\Device\Linux\LinuxRemoteDevice.cs" />
+    <Compile Include="src\mono\Model\Device\LocalDevice.cs" />
+    <Compile Include="src\mono\Model\Device\Windows\WindowsDevice.cs" />
+    <Compile Include="src\mono\Model\Device\Windows\WindowsDeviceFactory.cs" />
+    <Compile Include="src\mono\Model\Service\Service.cs" />
+    <Compile Include="src\mono\Model\Service\ServicePool.cs" />
+    <Compile Include="src\mono\Model\Socket\BluetoothStream.cs" />
+    <None Include="src\native\linux\hci\hcifuncs.c" />
+    <None Include="src\native\linux\hci\hcifuncs.h" />
+    <None Include="src\native\linux\include\includes.h" />
+    <None Include="src\native\linux\l2cap\l2capfuncs.c" />
+    <None Include="src\native\linux\l2cap\l2capfuncs.h" />
+    <None Include="src\native\linux\libmonotooth.c" />
+    <None Include="src\native\linux\rfcomm\rfcommfuncs.c" />
+    <None Include="src\native\linux\rfcomm\rfcommfuncs.h" />
+    <None Include="src\native\linux\sdp\sdpfuncs.c" />
+    <None Include="src\native\linux\sdp\sdpfuncs.h" />
+    <None Include="src\native\linux\tests\test_read_local_device.c" />
+    <None Include="src\native\linux\tests\test_register_service.c" />
+    <None Include="src\native\linux\tests\test_search_services_from.c" />
+    <None Include="src\native\linux\wscript" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="src" />
+    <Folder Include="src\mono" />
+    <Folder Include="src\mono\Model" />
+    <Folder Include="src\mono\Model\Connections" />
+    <Folder Include="src\mono\Model\Connections\Factories" />
+    <Folder Include="src\mono\Model\Connections\Factories\Linux" />
+    <Folder Include="src\mono\Model\Connections\Factories\Windows" />
+    <Folder Include="src\mono\Model\Connections\Linux" />
+    <Folder Include="src\mono\Model\Connections\Windows" />
+    <Folder Include="src\mono\Model\Device" />
+    <Folder Include="src\mono\Model\Device\Factories" />
+    <Folder Include="src\mono\Model\Device\Linux" />
+    <Folder Include="src\mono\Model\Device\Windows" />
+    <Folder Include="src\mono\Model\Native Interface" />
+    <Folder Include="src\mono\Model\Service" />
+    <Folder Include="src\mono\Model\Socket" />
+    <Folder Include="src\native" />
+    <Folder Include="src\native\linux" />
+    <Folder Include="src\native\linux\hci" />
+    <Folder Include="src\native\linux\include" />
+    <Folder Include="src\native\linux\l2cap" />
+    <Folder Include="src\native\linux\rfcomm" />
+    <Folder Include="src\native\linux\sdp" />
+    <Folder Include="src\native\linux\tests" />
+  </ItemGroup>
+</Project>

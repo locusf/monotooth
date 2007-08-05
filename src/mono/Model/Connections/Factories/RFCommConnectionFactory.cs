@@ -11,7 +11,8 @@ namespace monotooth.Model.Connections
 		/// <returns>OS-dependend RFCOMM connection factory</returns>
 		public static RFCommConnectionFactory GetFactory()
 		{
-			if ((System.Environment.OSVersion.Platform.value__ == 128) || (System.Environment.OSVersion.Platform.value__ == 4))
+			int p = (int) System.Environment.OSVersion.Platform;
+			if (( p == 128) || (p == 4))
 			{
 				return new LinuxRFCommConnectionFactory();
 			} else 
