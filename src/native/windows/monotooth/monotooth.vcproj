@@ -200,14 +200,6 @@
 				RelativePath=".\monotooth.h"
 				>
 			</File>
-			<File
-				RelativePath=".\resource.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Stdafx.h"
-				>
-			</File>
 		</Filter>
 		<Filter
 			Name="Resource Files"

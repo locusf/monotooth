@@ -7,8 +7,9 @@
 
 #pragma comment (lib, "irprops.lib")
 
-class Class1
+typedef struct
 	{
-
-	};
-__declspec(dllexport) int inquire();
+		BYTE addr[6];
+		char* friendlyname;
+	} FoundDevice;
+__declspec(dllexport) FoundDevice** inquire();
