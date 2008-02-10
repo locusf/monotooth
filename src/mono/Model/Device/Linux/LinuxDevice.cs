@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 using System;
 
-namespace monotooth.Model.Device
+namespace monotooth.Device
 {
 	
 	/// <summary> The linux implementation of <c>IDevice</c></summary>	
@@ -15,8 +15,8 @@ namespace monotooth.Model.Device
 			if(this.dev_id != -1)
 			{
 			int dd = hci_open_dev(this.dev_id);
-			this.address = new monotooth.Model.BluetoothAddress();
-			IntPtr ptr = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(monotooth.Model.BluetoothAddress)));
+			this.address = new monotooth.BluetoothAddress();
+			IntPtr ptr = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(monotooth.BluetoothAddress)));
 			hci_devba(this.dev_id,ptr);
 			Marshal.PtrToStructure(ptr,this.address);		
 			System.Text.StringBuilder bld = new System.Text.StringBuilder(248);
@@ -31,7 +31,7 @@ namespace monotooth.Model.Device
 		
 		// Instance variables
 		private int dev_id = -1;
-		private monotooth.Model.BluetoothAddress address;
+		private monotooth.BluetoothAddress address;
 		private string name;
 		public int Device_Indentifier
 		{
@@ -41,7 +41,7 @@ namespace monotooth.Model.Device
 			}
 		}
 		/// <summary> Implemented properties from IDevice, this property defines address. </summary>
-		public monotooth.Model.BluetoothAddress Address 
+		public monotooth.BluetoothAddress Address 
 		{
 			get { return this.address; }
 			set { this.address = value; }
@@ -115,11 +115,11 @@ namespace monotooth.Model.Device
 		}
 		/// <summary>Returns an address as string. </summary>
 		/// <returns>A string from the address.</returns>
-		public static string AddressAsString(monotooth.Model.BluetoothAddress ba)
+		public static string AddressAsString(monotooth.BluetoothAddress ba)
 		{		
 			if(ba == null) throw new ArgumentException("ba","May not be null!");
 			System.Text.StringBuilder bld = new System.Text.StringBuilder(18);
-			monotooth.Model.BluetoothAddress b = new monotooth.Model.BluetoothAddress();
+			monotooth.BluetoothAddress b = new monotooth.BluetoothAddress();
 			baswap(b,ba);
 			ba2str(b,bld);			
 			return bld.ToString();
@@ -127,30 +127,30 @@ namespace monotooth.Model.Device
 		/// <summary>Returns an address as string. </summary>
 		/// <returns>A string from the address.</returns>
 		/// <param name="addr"> string presentation of the address. </param>
-		public static monotooth.Model.BluetoothAddress StringAsAddressStatic(string addr)
+		public static monotooth.BluetoothAddress StringAsAddressStatic(string addr)
 		{
 			
 			if(addr.LastIndexOfAny(new char[1]{':'})==15 && addr.Length == 17)
 			{
-			monotooth.Model.BluetoothAddress ba = new monotooth.Model.BluetoothAddress();
+			monotooth.BluetoothAddress ba = new monotooth.BluetoothAddress();
 			Marshal.PtrToStructure(strtoba(addr),ba);
 			return ba;
 			} else {
-			return new monotooth.Model.BluetoothAddress();
+			return new monotooth.BluetoothAddress();
 			}
 		}
-		/// <summary>Returns a <c>monotooth.Model.BluetoothAddress</c> from a string, using a native function. </summary>
+		/// <summary>Returns a <c>monotooth.BluetoothAddress</c> from a string, using a native function. </summary>
 		/// <returns>New address. </returns>
 		/// <remarks>Will return a 0-address, if the address string is not in the 48-bit form. </remarks>
-		public monotooth.Model.BluetoothAddress StringAsAddress(string addr)
+		public monotooth.BluetoothAddress StringAsAddress(string addr)
 		{
 			if(addr.LastIndexOfAny(new char[1]{':'})==15 && addr.Length == 17)
 			{
-			monotooth.Model.BluetoothAddress ba = new monotooth.Model.BluetoothAddress();
+			monotooth.BluetoothAddress ba = new monotooth.BluetoothAddress();
 			Marshal.PtrToStructure(strtoba(addr),ba);
 			return ba;
 			} else {
-			return new monotooth.Model.BluetoothAddress();
+			return new monotooth.BluetoothAddress();
 			}
 		}		
 		
@@ -170,7 +170,7 @@ namespace monotooth.Model.Device
 		[DllImport("bluetooth")]
 		private static extern int close(int sockf);
 		[DllImport("bluetooth")]
-		private static extern int hci_read_remote_name(int dd, monotooth.Model.BluetoothAddress bdaddr, int len, System.Text.StringBuilder b, int timeout);
+		private static extern int hci_read_remote_name(int dd, monotooth.BluetoothAddress bdaddr, int len, System.Text.StringBuilder b, int timeout);
 		[DllImport("bluetooth")]
 		private static extern int hci_read_local_name(int dd, int len, System.Text.StringBuilder b,int timeout);
 		[DllImport("monotooth")]
@@ -181,11 +181,11 @@ namespace monotooth.Model.Device
 			Utility functions
 		*/
 		[DllImport("bluetooth")]
-		private static extern int ba2str(monotooth.Model.BluetoothAddress ba, System.Text.StringBuilder bld);
+		private static extern int ba2str(monotooth.BluetoothAddress ba, System.Text.StringBuilder bld);
 		[DllImport("bluetooth")]
 		private static extern IntPtr strtoba(string addr);
 		[DllImport("bluetooth")]
-		private static extern void baswap(monotooth.Model.BluetoothAddress ba, monotooth.Model.BluetoothAddress ba2);
+		private static extern void baswap(monotooth.BluetoothAddress ba, monotooth.BluetoothAddress ba2);
 		/*
 		
 		Native library helper classes
@@ -197,7 +197,7 @@ namespace monotooth.Model.Device
 		{
 			public InquiryInformation()
 			{}
-			public monotooth.Model.BluetoothAddress bdaddr;
+			public monotooth.BluetoothAddress bdaddr;
 			public byte pscan_rep_mode;
 			public byte pscan_period_mode;
 			public byte pscan_mode;

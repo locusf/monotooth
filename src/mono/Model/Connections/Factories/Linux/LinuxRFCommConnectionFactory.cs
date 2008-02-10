@@ -1,7 +1,7 @@
 
 using System;
 
-namespace monotooth.Model.Connections
+namespace monotooth.Connections
 {
 	
 	
@@ -11,7 +11,7 @@ namespace monotooth.Model.Connections
 		public LinuxRFCommConnectionFactory()
 		{
 		}
-		public override monotooth.Model.Connections.RFCommConnection CreateRFCommConnection(monotooth.Model.BluetoothAddress from, monotooth.Model.BluetoothAddress to)
+		public override monotooth.Connections.RFCommConnection CreateRFCommConnection(monotooth.BluetoothAddress from, monotooth.BluetoothAddress to)
 		{
 			LinuxRFCommConnection conn = new LinuxRFCommConnection();
 			conn.from = from;

@@ -1,7 +1,7 @@
 
 using System;
 using System.Runtime.InteropServices;
-namespace monotooth.Model.Service
+namespace monotooth.Service
 {
 		/// <summary>A structure to describe a service.</summary>
 		[StructLayout (LayoutKind.Sequential, Pack = 1)]

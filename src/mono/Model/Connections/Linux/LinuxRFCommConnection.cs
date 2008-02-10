@@ -1,7 +1,7 @@
 
 using System;
 using System.Runtime.InteropServices;
-namespace monotooth.Model.Connections
+namespace monotooth.Connections
 {
 	
 	
@@ -137,9 +137,9 @@ namespace monotooth.Model.Connections
 		*/
 		
 		[DllImport("monotooth")]
-		private static extern int rfcomm_connect(monotooth.Model.BluetoothAddress from, monotooth.Model.BluetoothAddress to, int channel);
+		private static extern int rfcomm_connect(monotooth.BluetoothAddress from, monotooth.BluetoothAddress to, int channel);
 		[DllImport("monotooth")]
-		private static extern int rfcomm_listen(monotooth.Model.BluetoothAddress from, int channel, int backlog);
+		private static extern int rfcomm_listen(monotooth.BluetoothAddress from, int channel, int backlog);
 		[DllImport("monotooth")]
 		private static extern int customread(int fd, IntPtr buf, int off, int len);
 		[DllImport("monotooth")]
@@ -171,8 +171,8 @@ namespace monotooth.Model.Connections
 				return sockf;
 			}
 		}
-		private monotooth.Model.BluetoothAddress fromaddr;
-		public monotooth.Model.BluetoothAddress from
+		private monotooth.BluetoothAddress fromaddr;
+		public monotooth.BluetoothAddress from
 		{
 			get
 			{
@@ -183,8 +183,8 @@ namespace monotooth.Model.Connections
 				this.fromaddr = value;
 			}
 		}
-		private monotooth.Model.BluetoothAddress toaddr;
-		public monotooth.Model.BluetoothAddress to
+		private monotooth.BluetoothAddress toaddr;
+		public monotooth.BluetoothAddress to
 		{
 			get
 			{

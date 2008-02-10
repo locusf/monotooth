@@ -1,7 +1,7 @@
 
 using System;
 
-namespace monotooth.Model.Device
+namespace monotooth.Device
 {
 	
 	/// <summary>A simple class to hold the devices in. </summary>

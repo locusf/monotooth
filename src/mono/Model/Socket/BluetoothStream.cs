@@ -3,19 +3,19 @@ using System;
 using System.IO;
 using System.Runtime.InteropServices;
 
-namespace monotooth.Model.Socket
+namespace monotooth.Socket
 {
 	
 	/// <summary>A simple stream to handle bluetooth streams. </summary>
 	public class BluetoothStream : Stream, IDisposable
 	{
-		private monotooth.Model.Connections.RFCommConnection sock;
+		private monotooth.Connections.RFCommConnection sock;
 		private BluetoothStream()
 		{
 		}		
 		/// <summary>The default constructor.</summary>
 		/// <param name="conn">The used connection that this stream will use. </param>
-		public BluetoothStream(monotooth.Model.Connections.RFCommConnection conn)
+		public BluetoothStream(monotooth.Connections.RFCommConnection conn)
 		{
 			this.sock = conn;
 		}

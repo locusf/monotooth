@@ -1,7 +1,7 @@
 
 using System;
 
-namespace monotooth.Model.Connections
+namespace monotooth.Connections
 {
 	
 	
@@ -11,7 +11,7 @@ namespace monotooth.Model.Connections
 		public LinuxServiceConnectionFactory()
 		{
 		}
-		public override monotooth.Model.Connections.ServiceConnection CreateServiceConnection(monotooth.Model.Connections.RFCommConnection conn)
+		public override monotooth.Connections.ServiceConnection CreateServiceConnection(monotooth.Connections.RFCommConnection conn)
 		{
 			return new LinuxServiceConnection(conn);
 		}

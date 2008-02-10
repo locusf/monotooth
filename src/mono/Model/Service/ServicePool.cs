@@ -1,7 +1,7 @@
 
 using System;
 
-namespace monotooth.Model.Service
+namespace monotooth.Service
 {
 	
 	/// <summary>A simple collection that holds services.</summary>
@@ -14,24 +14,24 @@ namespace monotooth.Model.Service
 		}
 		/// <summary>Add a service to this pool.</summary>
 		/// <param name="ser">A service to be added to the pool. </param>
-		public virtual void Add(monotooth.Model.Service.Service ser)
+		public virtual void Add(monotooth.Service.Service ser)
 		{
 			this.List.Add(ser);
 		}
 		/// <summary>Removes a service from the pool. </summary>
 		/// <param name="ser">A service to be removed from the pool. </param>
-		public virtual void Remove(monotooth.Model.Service.Service ser)
+		public virtual void Remove(monotooth.Service.Service ser)
 		{
 			this.List.Remove(ser);			
 		}		
 		/// <summary>The index-operator for this pool</summary>
 		/// <param name="index">The index.</param>
 		/// <value>A service</value>
-		public virtual monotooth.Model.Service.Service this[int index]
+		public virtual monotooth.Service.Service this[int index]
 		{
 			get
 			{
-				return (monotooth.Model.Service.Service)this.List[index];
+				return (monotooth.Service.Service)this.List[index];
 			}
 			set
 			{

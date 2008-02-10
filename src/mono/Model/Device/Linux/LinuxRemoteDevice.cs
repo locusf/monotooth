@@ -1,7 +1,7 @@
 
 using System;
 using System.Runtime.InteropServices;
-namespace monotooth.Model.Device
+namespace monotooth.Device
 {
 	
 	
@@ -11,17 +11,17 @@ namespace monotooth.Model.Device
 		private LinuxRemoteDevice()
 		{
 		}
-		public LinuxRemoteDevice(monotooth.Model.BluetoothAddress ba, string name)
+		public LinuxRemoteDevice(monotooth.BluetoothAddress ba, string name)
 		{
 			this.address = ba;
 			this.name = name;
 		}
 		// Instance variables
-		private monotooth.Model.BluetoothAddress address;
+		private monotooth.BluetoothAddress address;
 		private string name;
-		private monotooth.Model.Service.ServicePool services;
+		private monotooth.Service.ServicePool services;
 		/// <summary> Implemented properties from IDevice, this property defines address. </summary>
-		public monotooth.Model.BluetoothAddress Address 
+		public monotooth.BluetoothAddress Address 
 		{
 			get { return this.address; }
 			set { this.address = value; }
@@ -33,19 +33,19 @@ namespace monotooth.Model.Device
 			set { this.name = value; }
 		}			
 		/// <summary> Implemented properties from IDevice, this property defines a pool of Services. </summary>
-		public monotooth.Model.Service.ServicePool Services
+		public monotooth.Service.ServicePool Services
 		{
 			get { return this.services; }
 			set { this.services = value; }
 		}
 		/// <summary> Inquires services from a this device. The service UUID can also be specified. </summary>
 		/// <param name="uuid">An unsigned integer to describe a certain service. </param>
-		public monotooth.Model.Service.ServicePool InquireServices(uint uuid)
+		public monotooth.Service.ServicePool InquireServices(uint uuid)
 		{			
 			IntPtr element,services;			
 			services = search_services_from_with_uuid(this.Address,uuid);			
-			monotooth.Model.Service.ServicePool pool = new monotooth.Model.Service.ServicePool();
-			monotooth.Model.Service.Service serv = new monotooth.Model.Service.Service();			
+			monotooth.Service.ServicePool pool = new monotooth.Service.ServicePool();
+			monotooth.Service.Service serv = new monotooth.Service.Service();			
 			int count = 0;
 			while(Marshal.ReadIntPtr(services,count*IntPtr.Size) != IntPtr.Zero)
 			{
@@ -62,7 +62,7 @@ namespace monotooth.Model.Device
 					element = Marshal.ReadIntPtr(services,i*IntPtr.Size);
 					if(element != IntPtr.Zero)
 					{
-					serv = (monotooth.Model.Service.Service) Marshal.PtrToStructure(element,typeof(monotooth.Model.Service.Service));
+					serv = (monotooth.Service.Service) Marshal.PtrToStructure(element,typeof(monotooth.Service.Service));
 					if(serv.rfcomm_port<32 && serv.rfcomm_port != 0 && serv.name.Length > 1)
 					{
 					pool.Add(serv);
@@ -87,24 +87,24 @@ namespace monotooth.Model.Device
 			ba2str(this.address,bld);			
 			return bld.ToString();
 		}
-		/// <summary>Returns a <c>monotooth.Model.BluetoothAddress</c> from a string, using a native function. </summary>
+		/// <summary>Returns a <c>monotooth.BluetoothAddress</c> from a string, using a native function. </summary>
 		/// <returns>New address. </returns>
 		/// <remarks>Will return an 0-address if the address string is not in the 48-bit form. </remarks>
-		public monotooth.Model.BluetoothAddress StringAsAddress(string addr)
+		public monotooth.BluetoothAddress StringAsAddress(string addr)
 		{
 			if(addr.LastIndexOfAny(new char[1]{':'})==15 && addr.Length == 17)
 			{
-			monotooth.Model.BluetoothAddress ba = new monotooth.Model.BluetoothAddress();
+			monotooth.BluetoothAddress ba = new monotooth.BluetoothAddress();
 			Marshal.PtrToStructure(strtoba(addr),ba);
 			return ba;
 			} else {
-			return new monotooth.Model.BluetoothAddress();
+			return new monotooth.BluetoothAddress();
 			}
 		}
 		[DllImport("monotooth")]
-		private static extern IntPtr search_services_from_with_uuid(monotooth.Model.BluetoothAddress ba, uint uuid);
+		private static extern IntPtr search_services_from_with_uuid(monotooth.BluetoothAddress ba, uint uuid);
 		[DllImport("bluetooth")]
-		private static extern int ba2str(monotooth.Model.BluetoothAddress ba, System.Text.StringBuilder bld);
+		private static extern int ba2str(monotooth.BluetoothAddress ba, System.Text.StringBuilder bld);
 		[DllImport("bluetooth")]
 		private static extern IntPtr strtoba(string addr);
 	}

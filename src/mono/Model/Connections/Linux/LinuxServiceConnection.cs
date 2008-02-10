@@ -2,7 +2,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace monotooth.Model.Connections
+namespace monotooth.Connections
 {
 	
 	
@@ -12,12 +12,12 @@ namespace monotooth.Model.Connections
 		private LinuxServiceConnection()
 		{
 		}
-		public LinuxServiceConnection(monotooth.Model.Connections.RFCommConnection conn)
+		public LinuxServiceConnection(monotooth.Connections.RFCommConnection conn)
 		{
 			this.usedconn = conn;
 		}
-		private monotooth.Model.Connections.RFCommConnection usedconn;
-		public monotooth.Model.Connections.RFCommConnection Connection
+		private monotooth.Connections.RFCommConnection usedconn;
+		public monotooth.Connections.RFCommConnection Connection
 		{
 			get
 			{
@@ -30,14 +30,14 @@ namespace monotooth.Model.Connections
 		}
 		public void connect(uint uuid)
 		{			
-			monotooth.Model.Device.DeviceFactory fac = monotooth.Model.Device.DeviceFactory.GetFactory();
-			monotooth.Model.Device.ILocalDevice localdev = fac.CreateLocalDevice();
-			monotooth.Model.Device.DevicePool devpool = localdev.Inquire();
-			foreach(monotooth.Model.Device.IRemoteDevice remotedev in devpool)
+			monotooth.Device.DeviceFactory fac = monotooth.Device.DeviceFactory.GetFactory();
+			monotooth.Device.ILocalDevice localdev = fac.CreateLocalDevice();
+			monotooth.Device.DevicePool devpool = localdev.Inquire();
+			foreach(monotooth.Device.IRemoteDevice remotedev in devpool)
 			{
-			monotooth.Model.Service.ServicePool servpool = remotedev.InquireServices(uuid);
-			monotooth.Model.Connections.RFCommConnectionFactory rfcommfac = monotooth.Model.Connections.RFCommConnectionFactory.GetFactory();
-			monotooth.Model.Connections.RFCommConnection conn =  rfcommfac.CreateRFCommConnection(localdev.Address,remotedev.Address);
+			monotooth.Service.ServicePool servpool = remotedev.InquireServices(uuid);
+			monotooth.Connections.RFCommConnectionFactory rfcommfac = monotooth.Connections.RFCommConnectionFactory.GetFactory();
+			monotooth.Connections.RFCommConnection conn =  rfcommfac.CreateRFCommConnection(localdev.Address,remotedev.Address);
 			if(servpool.Count>0)
 			{			
 				this.usedconn = conn;
@@ -92,7 +92,7 @@ namespace monotooth.Model.Connections
 				return this.usedconn.SocketDescriptor;
 			}
 		}		
-		public monotooth.Model.BluetoothAddress from
+		public monotooth.BluetoothAddress from
 		{
 			get
 			{
@@ -105,7 +105,7 @@ namespace monotooth.Model.Connections
 			
 		}		
 		
-		public monotooth.Model.BluetoothAddress to
+		public monotooth.BluetoothAddress to
 		{
 			get
 			{

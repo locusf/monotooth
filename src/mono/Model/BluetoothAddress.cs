@@ -2,7 +2,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Runtime.Serialization;
 using System.Text;
-namespace monotooth.Model
+namespace monotooth
 {	
 		/// <summary>A class that describes a bluetooth address. This class is compatible with bluez structure
 		/// bdaddr_t. </summary>

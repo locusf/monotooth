@@ -29,16 +29,16 @@ namespace ServerDemo
 		}
 		public static void Main(string[] args)
 		{
-			monotooth.Model.Device.DeviceFactory fac = monotooth.Model.Device.DeviceFactory.GetFactory();
-			Console.WriteLine((fac is monotooth.Model.Device.LinuxDeviceFactory));
-			Console.WriteLine((fac is monotooth.Model.Device.WindowsDeviceFactory));			
-			monotooth.Model.Device.ILocalDevice devi = fac.CreateLocalDevice();
+			monotooth.Device.DeviceFactory fac = monotooth.Device.DeviceFactory.GetFactory();
+			Console.WriteLine((fac is monotooth.Device.LinuxDeviceFactory));
+			Console.WriteLine((fac is monotooth.Device.WindowsDeviceFactory));			
+			monotooth.Device.ILocalDevice devi = fac.CreateLocalDevice();
 			Console.WriteLine("Information of the local device: ");
 			Console.WriteLine("Name: "+devi.FriendlyName+ " Address: "+ devi.AddressAsString());
-			monotooth.Model.Connections.RFCommConnectionFactory connfac = monotooth.Model.Connections.RFCommConnectionFactory.GetFactory();
-			monotooth.Model.Connections.RFCommConnection conn = connfac.CreateRFCommConnection(devi.Address,devi.Address);
-			monotooth.Model.Connections.ServiceConnectionFactory servfac = monotooth.Model.Connections.ServiceConnectionFactory.GetFactory();
-			monotooth.Model.Connections.ServiceConnection servconn = servfac.CreateServiceConnection(conn);
+			monotooth.Connections.RFCommConnectionFactory connfac = monotooth.Connections.RFCommConnectionFactory.GetFactory();
+			monotooth.Connections.RFCommConnection conn = connfac.CreateRFCommConnection(devi.Address,devi.Address);
+			monotooth.Connections.ServiceConnectionFactory servfac = monotooth.Connections.ServiceConnectionFactory.GetFactory();
+			monotooth.Connections.ServiceConnection servconn = servfac.CreateServiceConnection(conn);
 			uint uuid = (uint)0xABCD;
 			Console.WriteLine(uuid);
 			System.Text.StringBuilder bld = new System.Text.StringBuilder();
@@ -47,7 +47,7 @@ namespace ServerDemo
 			servconn.Read(bld);
 			bld = new System.Text.StringBuilder("Hello to you too there!");
 			servconn.Write(bld);			
-			monotooth.Model.Socket.BluetoothStream bs = new monotooth.Model.Socket.BluetoothStream(servconn.Connection);
+			monotooth.Socket.BluetoothStream bs = new monotooth.Socket.BluetoothStream(servconn.Connection);
 			BinaryFormatter bin = new BinaryFormatter();			
 			System.String ret = (System.String)bin.Deserialize(bs);
 			Console.WriteLine(ret);

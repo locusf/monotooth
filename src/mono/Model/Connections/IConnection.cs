@@ -1,7 +1,7 @@
 
 using System;
 
-namespace monotooth.Model.Connections
+namespace monotooth.Connections
 {
 	
 	/// <summary>The superinterface that all connections must use.</summary>
@@ -29,14 +29,14 @@ namespace monotooth.Model.Connections
 		}
 		/// <summary>Bluetooth address that describes the from-part of the connection. </summary>
 		/// <value>A <c>BluetoothAddress</c> with the from-part of the connection.</value>
-		monotooth.Model.BluetoothAddress from
+		monotooth.BluetoothAddress from
 		{
 			get;		
 			set;
 		}
 		/// <summary>Bluetooth address that describes the to-part of the connection. </summary>
 		/// <value>A <c>BluetoothAddress</c> with the to-part of the connection.</value>	
-		monotooth.Model.BluetoothAddress to
+		monotooth.BluetoothAddress to
 		{
 			get;
 			set;

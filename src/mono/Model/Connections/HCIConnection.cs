@@ -1,7 +1,7 @@
 
 using System;
 
-namespace monotooth.Model.Connections
+namespace monotooth.Connections
 {
 	
 	/// <summary>A HCI connection interface.</summary>

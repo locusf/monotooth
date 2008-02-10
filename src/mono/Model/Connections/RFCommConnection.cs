@@ -1,7 +1,7 @@
 
 using System;
 
-namespace monotooth.Model.Connections
+namespace monotooth.Connections
 {
 	
 	/// <summary>The superinterface for RFCOMM connections. </summary>

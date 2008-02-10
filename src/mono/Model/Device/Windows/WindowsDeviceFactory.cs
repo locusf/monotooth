@@ -1,7 +1,7 @@
 
 using System;
 
-namespace monotooth.Model.Device
+namespace monotooth.Device
 {
 	
 	

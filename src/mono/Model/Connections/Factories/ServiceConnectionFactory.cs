@@ -1,7 +1,7 @@
 
 using System;
 
-namespace monotooth.Model.Connections
+namespace monotooth.Connections
 {
 	
 	/// An abstract class for creating service connection factories
@@ -22,6 +22,6 @@ namespace monotooth.Model.Connections
 		}
 		/// An abstract method to create service connections
 		/// <returns>OS-specific service connection</returns>
-		public abstract monotooth.Model.Connections.ServiceConnection CreateServiceConnection(monotooth.Model.Connections.RFCommConnection conn);
+		public abstract monotooth.Connections.ServiceConnection CreateServiceConnection(monotooth.Connections.RFCommConnection conn);
 	}
 }

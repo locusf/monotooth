@@ -1,7 +1,7 @@
 
 using System;
 
-namespace monotooth.Model.Connections
+namespace monotooth.Connections
 {
 	
 	
@@ -62,8 +62,8 @@ namespace monotooth.Model.Connections
 				return sockf;
 			}
 		}
-		private monotooth.Model.BluetoothAddress fromaddr;
-		public monotooth.Model.BluetoothAddress from
+		private monotooth.BluetoothAddress fromaddr;
+		public monotooth.BluetoothAddress from
 		{
 			get
 			{
@@ -74,8 +74,8 @@ namespace monotooth.Model.Connections
 			this.fromaddr = value;
 			}
 		}
-		private monotooth.Model.BluetoothAddress toaddr;
-		public monotooth.Model.BluetoothAddress to
+		private monotooth.BluetoothAddress toaddr;
+		public monotooth.BluetoothAddress to
 		{
 			get
 			{

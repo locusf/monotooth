@@ -1,7 +1,7 @@
 
 using System;
 
-namespace monotooth.Model.Connections
+namespace monotooth.Connections
 {
 	
 	/// A factory class that makes RFCOMM connections.
@@ -21,6 +21,6 @@ namespace monotooth.Model.Connections
 			}
 		}
 		/// An abstract method that is used to create RFCOMM connections
-		public abstract monotooth.Model.Connections.RFCommConnection CreateRFCommConnection(monotooth.Model.BluetoothAddress from, monotooth.Model.BluetoothAddress to);
+		public abstract monotooth.Connections.RFCommConnection CreateRFCommConnection(monotooth.BluetoothAddress from, monotooth.BluetoothAddress to);
 	}
 }

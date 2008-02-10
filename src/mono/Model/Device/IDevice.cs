@@ -1,7 +1,7 @@
 
 using System;
 
-namespace monotooth.Model.Device
+namespace monotooth.Device
 {
 	
 	/// <summary>The superinterface for all devices. The sole purpose for this
@@ -11,7 +11,7 @@ namespace monotooth.Model.Device
 	{
 		/// <summary>The devices address. </summary>
 		/// <value>A 48-bit bluetooth address. </value>
-		monotooth.Model.BluetoothAddress Address 
+		monotooth.BluetoothAddress Address 
 		{
 			get;
 			set;
@@ -29,6 +29,6 @@ namespace monotooth.Model.Device
 		/// <summary>Converts a string presentation of a bluetooth address to a <c>BluetoothAddress</c>.</summary>
 		/// <param name="addr"> A bluetooth address as string. </param>
 		/// <returns>A bluetooth address wrapped to a class. </returns>
-		monotooth.Model.BluetoothAddress StringAsAddress(string addr);
+		monotooth.BluetoothAddress StringAsAddress(string addr);
 	}
 }

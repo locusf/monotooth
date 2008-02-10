@@ -1,7 +1,7 @@
 
 using System;
 
-namespace monotooth.Model.Connections
+namespace monotooth.Connections
 {
 	/// <summary>A superinterface for service-oriented connections.</summary>	
 	public interface ServiceConnection : IConnection
@@ -19,7 +19,7 @@ namespace monotooth.Model.Connections
 		/// <remarks>The UUID of the service is now implemented for simplicity as an unsigned integer.</remarks>
 		void RegisterService(string name, string description, string vendor, int rfcomm_channel, uint uuid);
 		/// <summary>The connection that was used for this service connection.</summary>
-		monotooth.Model.Connections.RFCommConnection Connection
+		monotooth.Connections.RFCommConnection Connection
 		{
 			get;
 		}
