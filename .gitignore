@@ -6,3 +6,6 @@ git-daemon-export-ok
 *.dll
 *.exe
 *.mdb
+*.csproj
+bin
+obj
