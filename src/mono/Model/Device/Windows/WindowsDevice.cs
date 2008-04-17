@@ -64,39 +64,31 @@ namespace monotooth.Device
 		public DevicePool Inquire()
 		{
 			DevicePool pool = new DevicePool();
-			BLUETOOTH_DEVICE_SEARCH_PARAMS bdsp = new BLUETOOTH_DEVICE_SEARCH_PARAMS();
-			IntPtr pbdsp,pbdi;
-			pbdsp = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(BLUETOOTH_DEVICE_SEARCH_PARAMS)));
-			pbdi = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(BLUETOOTH_DEVICE_INFO)));
-			bdsp.dwSize = (uint)Marshal.SizeOf(typeof(BLUETOOTH_DEVICE_SEARCH_PARAMS));
-			bdsp.fReturnAuthenticated = true;
-			bdsp.fReturnConnected = true;
-			bdsp.fReturnRemembered = true;
-			bdsp.fReturnUnknown = true;
-			bdsp.fIssueInquiry = true;
-			bdsp.cTimeoutMultiplier = 10;
-			bdsp.hRadio = Marshal.AllocHGlobal(0);
-			BLUETOOTH_DEVICE_INFO bdi = new BLUETOOTH_DEVICE_INFO();
-			bdi.dwSize = (uint)Marshal.SizeOf(typeof(BLUETOOTH_DEVICE_INFO));
-			Marshal.StructureToPtr(bdsp,pbdsp,true);
-			Marshal.StructureToPtr(bdi,pbdi,true);
-			IntPtr hbf = Marshal.AllocHGlobal(IntPtr.Size);
-			hbf = BluetoothFindFirstDevice(pbdsp,pbdi);
+			IntPtr lpwsaqueryset = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(WSAQUERYSET)));
+			WSAQUERYSET wsaqueryset = new WSAQUERYSET();
+			wsaqueryset.dwSize = (UInt32)Marshal.SizeOf(typeof(WSAQUERYSET));
+			wsaqueryset.dwNameSpace = (UInt32)16;
+			Marshal.StructureToPtr(wsaqueryset,lpwsaqueryset,false);
+			UInt32 flags = (UInt32)0x0002;
+			flags |= (UInt32)(0x1000|0x0010|0x0100);
+			IntPtr handle = new IntPtr();
+			
+			int status = 0;
+			status = WSALookupServiceBegin(lpwsaqueryset,flags,handle);
+			if (status == -1)
+			{
+				int error = WSAGetLastError();
+				if (error == 10108) // No device attached
+				{
+					throw new Exception("You do not have a bluetooth device on your system.");					
+				}
+			}
 			UInt32 err = GetLastError();
 			Console.WriteLine("ERROR: "+err);
 			System.Text.StringBuilder bld = new System.Text.StringBuilder(512);			
 			UInt32 bytes = FormatMessage((UInt32)0x00001000, IntPtr.Zero, err, 0,bld,511,IntPtr.Zero);
 			Console.WriteLine("ERROR as String: "+bld.ToString());
-			if (hbf != IntPtr.Zero)
-			{
-				while(true)
-				{
-					BLUETOOTH_DEVICE_INFO binfo = (BLUETOOTH_DEVICE_INFO)Marshal.PtrToStructure(pbdi,typeof(BLUETOOTH_DEVICE_INFO));
-					Console.WriteLine(new string(binfo.szName));
-					if(BluetoothFindNextDevice(hbf,bdi)==false) break;
-				}
-				BluetoothFindDeviceClose(hbf);
-			}
+			
 			return pool;
 		}
 		public string AddressAsString()
@@ -106,6 +98,12 @@ namespace monotooth.Device
 		public monotooth.BluetoothAddress StringAsAddress(string addr)
 		{
 			return null;
+		}
+		[StructLayout(LayoutKind.Sequential)]
+		private struct WSAQUERYSET
+		{
+			public System.UInt32 dwSize;
+			public System.UInt32 dwNameSpace;
 		}
 		[StructLayout(LayoutKind.Sequential)]
 		private struct BLUETOOTH_DEVICE_SEARCH_PARAMS
@@ -175,6 +173,10 @@ namespace monotooth.Device
 			public UInt16 wMilliseconds;
 		}
 		// Imported native functions
+		[DllImport("Ws2_32.dll")]
+		private static extern int WSAGetLastError();
+		[DllImport("Ws2_32.dll")]
+		private static extern int WSALookupServiceBegin(IntPtr lpqsRestrictions,UInt32 dwControlFlags, IntPtr lphLookup);
 		[DllImport("irprops.cpl")]
 		private static extern IntPtr BluetoothFindFirstDevice(IntPtr btsp, IntPtr btdi);
 		[DllImport("irprops.cpl")]

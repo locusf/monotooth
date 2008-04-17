@@ -29,6 +29,9 @@ namespace ClientDemo
 		}
 		public static void Main(string[] args)
 		{
+			monotooth.Device.ILocalDevice dev = monotooth.Device.LocalDevice.Default;
+			dev.Inquire();
+			/*
 			monotooth.Device.DeviceFactory fac = monotooth.Device.DeviceFactory.GetFactory();
 			Console.WriteLine((fac is monotooth.Device.LinuxDeviceFactory));
 			Console.WriteLine((fac is monotooth.Device.WindowsDeviceFactory));			
@@ -62,7 +65,7 @@ namespace ClientDemo
 			BinaryFormatter bin = new BinaryFormatter();
 			System.String s = "Hello serialized bluetooth stream!";
 			bin.Serialize(bs, s);
-			bs.Close();			
+			bs.Close();			*/
 			}
 	}
 }
