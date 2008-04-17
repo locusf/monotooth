@@ -1,7 +1,7 @@
 
 using System;
 using System.Runtime.InteropServices;
-namespace monotooth.Model.Device
+namespace monotooth.Device
 {
 	
 	
@@ -35,12 +35,12 @@ namespace monotooth.Model.Device
 			}
 		}
 		// Instance variables
-		private monotooth.Model.BluetoothAddress address;
+		private monotooth.BluetoothAddress address;
 		private string name;
-		private monotooth.Model.Connections.IConnection conn;
-		private monotooth.Model.Service.ServicePool services;
+		private monotooth.Connections.IConnection conn;
+		private monotooth.Service.ServicePool services;
 		// Implemented properties from IDevice
-		public monotooth.Model.BluetoothAddress Address 
+		public monotooth.BluetoothAddress Address 
 		{
 			get { return this.address; }
 			set { this.address = value; }
@@ -50,12 +50,12 @@ namespace monotooth.Model.Device
 			get { return this.name; }
 			set { this.name = value; }
 		}
-		public monotooth.Model.Connections.IConnection Connection
+		public monotooth.Connections.IConnection Connection
 		{
 			get { return this.conn; }
 			set { this.conn = value;}
 		}
-		public monotooth.Model.Service.ServicePool Services
+		public monotooth.Service.ServicePool Services
 		{
 			get { return this.services; }
 			set { this.services = value; }
@@ -103,7 +103,7 @@ namespace monotooth.Model.Device
 		{
 			return "";
 		}
-		public monotooth.Model.BluetoothAddress StringAsAddress(string addr)
+		public monotooth.BluetoothAddress StringAsAddress(string addr)
 		{
 			return null;
 		}
