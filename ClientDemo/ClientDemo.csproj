@@ -28,10 +28,9 @@
     <None Include="ClientDemo.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="monotooth">
-      <HintPath>..\bin\Debug\monotooth.dll</HintPath>
-      <SpecificVersion>False</SpecificVersion>
-      <Private>True</Private>
-    </Reference>
+    <ProjectReference Include="..\monotooth.csproj">
+      <Project>{C3DA1C7C-638A-4DEF-A9F6-669C6E38F8DB}</Project>
+      <Name>monotooth</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>
