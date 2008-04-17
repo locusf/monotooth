@@ -1,7 +1,7 @@
 
 using System;
 using System.Runtime.InteropServices;
-namespace monotooth.Device
+namespace monotooth.Model.Device
 {
 	
 	
@@ -10,15 +10,37 @@ namespace monotooth.Device
 		
 		public WindowsDevice()
 		{
-			
+			BLUETOOTH_FIND_RADIO_PARAMS parms = new BLUETOOTH_FIND_RADIO_PARAMS();
+			parms.dwSize = (uint)Marshal.SizeOf(typeof(BLUETOOTH_FIND_RADIO_PARAMS));
+			IntPtr handle = Marshal.AllocHGlobal(Marshal.SizeOf(IntPtr.Size));
+			IntPtr pparms = Marshal.AllocHGlobal(Marshal.SizeOf(parms.dwSize));
+			Marshal.StructureToPtr(parms,pparms,true);
+			BluetoothFindFirstRadio( pparms,handle);
+			if(handle != IntPtr.Zero)
+			{
+				BLUETOOTH_RADIO_INFO rInfo = new BLUETOOTH_RADIO_INFO();
+				rInfo.dwSize = (uint) Marshal.SizeOf(typeof(BLUETOOTH_RADIO_INFO));
+				IntPtr pRadioInfo = Marshal.AllocHGlobal((int)rInfo.dwSize);
+				Marshal.StructureToPtr(rInfo,pRadioInfo,true);
+				uint ret = BluetoothGetRadioInfo(handle,pRadioInfo);
+				UInt32 err = GetLastError();
+				Console.WriteLine("ERROR: "+err);
+				System.Text.StringBuilder bld = new System.Text.StringBuilder(512);			
+				UInt32 bytes = FormatMessage((UInt32)0x00001000, IntPtr.Zero, err, 0,bld,511,IntPtr.Zero);
+				Console.WriteLine("ERROR as String: "+bld.ToString());
+				if(ret == 0)
+				{
+					Console.WriteLine(new string(rInfo.szName));
+				}
+			}
 		}
 		// Instance variables
-		private monotooth.BluetoothAddress address;
+		private monotooth.Model.BluetoothAddress address;
 		private string name;
-		private monotooth.Connections.IConnection conn;
-		private monotooth.Service.ServicePool services;
+		private monotooth.Model.Connections.IConnection conn;
+		private monotooth.Model.Service.ServicePool services;
 		// Implemented properties from IDevice
-		public monotooth.BluetoothAddress Address 
+		public monotooth.Model.BluetoothAddress Address 
 		{
 			get { return this.address; }
 			set { this.address = value; }
@@ -28,12 +50,12 @@ namespace monotooth.Device
 			get { return this.name; }
 			set { this.name = value; }
 		}
-		public monotooth.Connections.IConnection Connection
+		public monotooth.Model.Connections.IConnection Connection
 		{
 			get { return this.conn; }
 			set { this.conn = value;}
 		}
-		public monotooth.Service.ServicePool Services
+		public monotooth.Model.Service.ServicePool Services
 		{
 			get { return this.services; }
 			set { this.services = value; }
@@ -42,47 +64,50 @@ namespace monotooth.Device
 		public DevicePool Inquire()
 		{
 			DevicePool pool = new DevicePool();
-			
+			BLUETOOTH_DEVICE_SEARCH_PARAMS bdsp = new BLUETOOTH_DEVICE_SEARCH_PARAMS();
+			IntPtr pbdsp,pbdi;
+			pbdsp = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(BLUETOOTH_DEVICE_SEARCH_PARAMS)));
+			pbdi = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(BLUETOOTH_DEVICE_INFO)));
+			bdsp.dwSize = (uint)Marshal.SizeOf(typeof(BLUETOOTH_DEVICE_SEARCH_PARAMS));
+			bdsp.fReturnAuthenticated = true;
+			bdsp.fReturnConnected = true;
+			bdsp.fReturnRemembered = true;
+			bdsp.fReturnUnknown = true;
+			bdsp.fIssueInquiry = true;
+			bdsp.cTimeoutMultiplier = 10;
+			bdsp.hRadio = Marshal.AllocHGlobal(0);
+			BLUETOOTH_DEVICE_INFO bdi = new BLUETOOTH_DEVICE_INFO();
+			bdi.dwSize = (uint)Marshal.SizeOf(typeof(BLUETOOTH_DEVICE_INFO));
+			Marshal.StructureToPtr(bdsp,pbdsp,true);
+			Marshal.StructureToPtr(bdi,pbdi,true);
+			IntPtr hbf = Marshal.AllocHGlobal(IntPtr.Size);
+			hbf = BluetoothFindFirstDevice(pbdsp,pbdi);
+			UInt32 err = GetLastError();
+			Console.WriteLine("ERROR: "+err);
+			System.Text.StringBuilder bld = new System.Text.StringBuilder(512);			
+			UInt32 bytes = FormatMessage((UInt32)0x00001000, IntPtr.Zero, err, 0,bld,511,IntPtr.Zero);
+			Console.WriteLine("ERROR as String: "+bld.ToString());
+			if (hbf != IntPtr.Zero)
+			{
+				while(true)
+				{
+					BLUETOOTH_DEVICE_INFO binfo = (BLUETOOTH_DEVICE_INFO)Marshal.PtrToStructure(pbdi,typeof(BLUETOOTH_DEVICE_INFO));
+					Console.WriteLine(new string(binfo.szName));
+					if(BluetoothFindNextDevice(hbf,bdi)==false) break;
+				}
+				BluetoothFindDeviceClose(hbf);
+			}
 			return pool;
 		}
 		public string AddressAsString()
 		{
 			return "";
 		}
-		public monotooth.BluetoothAddress StringAsAddress(string addr)
+		public monotooth.Model.BluetoothAddress StringAsAddress(string addr)
 		{
 			return null;
 		}
 		[StructLayout(LayoutKind.Sequential)]
-		private struct BTHNS_INQUIRYBLOB
-		{
-			public UInt32 LAP;
-			public Byte length;
-		}
-		[StructLayout(LayoutKind.Sequential)]
-		private struct WSAQUERYSET
-		{
-			public UInt32 dwSize;
-			public string lpszServiceInstanceName;
-			public GUID lpServiceClassId;
-			
-		}
-		[StructLayout(LayoutKind.Sequential)]
-		private struct GUID
-		{
-			public UInt32 Data1;
-			public UInt16 Data2;			
-			public UInt16 Data3;
-			[MarshalAs(UnmanagedType.ByValArray,SizeConst=8)]
-			public byte[] Data4;
-		}
-		[StructLayout(LayoutKind.Sequential)]
-		private struct BLOB
-		{
-			public UInt32 cbSize;
-			public IntPtr pBlobData;
-		}
-		/*[StructLayout(LayoutKind.Sequential)]
 		private struct BLUETOOTH_DEVICE_SEARCH_PARAMS
 		{
 			public System.UInt32 dwSize;
@@ -163,7 +188,6 @@ namespace monotooth.Device
 		[DllImport("kernel32")]
 		private static extern System.UInt32 GetLastError();
 		[DllImport("kernel32")]
-		private static extern System.UInt32 FormatMessage(UInt32 dwFlags, IntPtr source, UInt32 dwMessageId, UInt32 dwLanguageId, System.Text.StringBuilder lpbuffer, UInt32 nSize, IntPtr Arguments);*/
-		
+		private static extern System.UInt32 FormatMessage(UInt32 dwFlags, IntPtr source, UInt32 dwMessageId, UInt32 dwLanguageId, System.Text.StringBuilder lpbuffer, UInt32 nSize, IntPtr Arguments);
 	}
 }
