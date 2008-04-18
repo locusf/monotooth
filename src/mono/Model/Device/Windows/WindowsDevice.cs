@@ -10,29 +10,7 @@ namespace monotooth.Device
 		
 		public WindowsDevice()
 		{
-			BLUETOOTH_FIND_RADIO_PARAMS parms = new BLUETOOTH_FIND_RADIO_PARAMS();
-			parms.dwSize = (uint)Marshal.SizeOf(typeof(BLUETOOTH_FIND_RADIO_PARAMS));
-			IntPtr handle = Marshal.AllocHGlobal(Marshal.SizeOf(IntPtr.Size));
-			IntPtr pparms = Marshal.AllocHGlobal(Marshal.SizeOf(parms.dwSize));
-			Marshal.StructureToPtr(parms,pparms,true);
-			BluetoothFindFirstRadio( pparms,handle);
-			if(handle != IntPtr.Zero)
-			{
-				BLUETOOTH_RADIO_INFO rInfo = new BLUETOOTH_RADIO_INFO();
-				rInfo.dwSize = (uint) Marshal.SizeOf(typeof(BLUETOOTH_RADIO_INFO));
-				IntPtr pRadioInfo = Marshal.AllocHGlobal((int)rInfo.dwSize);
-				Marshal.StructureToPtr(rInfo,pRadioInfo,true);
-				uint ret = BluetoothGetRadioInfo(handle,pRadioInfo);
-				UInt32 err = GetLastError();
-				Console.WriteLine("ERROR: "+err);
-				System.Text.StringBuilder bld = new System.Text.StringBuilder(512);			
-				UInt32 bytes = FormatMessage((UInt32)0x00001000, IntPtr.Zero, err, 0,bld,511,IntPtr.Zero);
-				Console.WriteLine("ERROR as String: "+bld.ToString());
-				if(ret == 0)
-				{
-					Console.WriteLine(new string(rInfo.szName));
-				}
-			}
+			
 		}
 		// Instance variables
 		private monotooth.BluetoothAddress address;
@@ -66,16 +44,24 @@ namespace monotooth.Device
 			DevicePool pool = new DevicePool();
 			IntPtr lpwsaqueryset = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(WSAQUERYSET)));
 			WSAQUERYSET wsaqueryset = new WSAQUERYSET();
-			wsaqueryset.dwSize = (UInt32)Marshal.SizeOf(typeof(WSAQUERYSET));
-			wsaqueryset.dwNameSpace = (UInt32)16;
+			wsaqueryset.dwSize = Marshal.SizeOf(typeof(WSAQUERYSET));
+			wsaqueryset.dwNameSpace = 16;
 			Marshal.StructureToPtr(wsaqueryset,lpwsaqueryset,false);
-			UInt32 flags = (UInt32)0x0002;
-			flags |= (UInt32)(0x1000|0x0010|0x0100);
-			IntPtr handle = new IntPtr();
+			int flags = (int)0x0002;
+			flags |= (int)(0x1000|0x0010|0x0100);
+			Int32 handle = 0;
 			
-			int status = 0;
-			status = WSALookupServiceBegin(lpwsaqueryset,flags,handle);
-			if (status == -1)
+			int result = 0;
+			try
+			{
+			result = WSALookupServiceBegin(wsaqueryset,flags,ref handle);
+			} catch (AccessViolationException ave)
+			{
+				Console.WriteLine(ave.ToString());
+			} finally
+			{
+			
+			if (result == -1)
 			{
 				int error = WSAGetLastError();
 				if (error == 10108) // No device attached
@@ -83,12 +69,35 @@ namespace monotooth.Device
 					throw new Exception("You do not have a bluetooth device on your system.");					
 				}
 			}
+			while (0 == result)
+    		{
+        		Int32 dwBuffer = 0x10000; 
+        		IntPtr pBuffer = Marshal.AllocHGlobal(dwBuffer);
+                
+		        WSAQUERYSET qsResult = new WSAQUERYSET() ;
+                    
+        		result = WSALookupServiceNext(handle, flags, 
+                ref dwBuffer, pBuffer);
+        
+        		if (0==result)
+        		{
+            		Marshal.PtrToStructure(pBuffer, qsResult);
+            		Console.WriteLine(qsResult.szServiceInstanceName);
+        		}
+        		else
+        		{
+            	continue;
+        	}
+        	Marshal.FreeHGlobal(pBuffer);
+    		}
 			UInt32 err = GetLastError();
 			Console.WriteLine("ERROR: "+err);
 			System.Text.StringBuilder bld = new System.Text.StringBuilder(512);			
 			UInt32 bytes = FormatMessage((UInt32)0x00001000, IntPtr.Zero, err, 0,bld,511,IntPtr.Zero);
 			Console.WriteLine("ERROR as String: "+bld.ToString());
+			Marshal.FreeHGlobal(lpwsaqueryset);
 			
+			}
 			return pool;
 		}
 		public string AddressAsString()
@@ -99,12 +108,73 @@ namespace monotooth.Device
 		{
 			return null;
 		}
-		[StructLayout(LayoutKind.Sequential)]
-		private struct WSAQUERYSET
-		{
-			public System.UInt32 dwSize;
-			public System.UInt32 dwNameSpace;
-		}
+		   [StructLayout(LayoutKind.Sequential)]
+    	public class WSAData 
+    	{
+        public Int16 wVersion;
+        public Int16 wHighVersion;  
+        public String szDescription;  
+        public String szSystemStatus;  
+        public Int16 iMaxSockets;  
+        public Int16 iMaxUdpDg;  
+        public IntPtr lpVendorInfo;
+    	}
+
+    	[ StructLayout( LayoutKind.Sequential, CharSet=CharSet.Auto )]
+    	public class WSAQUERYSET
+    	{
+        public Int32 dwSize = 0;  
+        public String szServiceInstanceName = null;  
+        public IntPtr lpServiceClassId;  
+        public IntPtr lpVersion;  
+        public String lpszComment;  
+        public Int32 dwNameSpace;  
+        public IntPtr lpNSProviderId;  
+        public String lpszContext;  
+        public Int32 dwNumberOfProtocols;  
+        public IntPtr lpafpProtocols;  
+        public String lpszQueryString;  
+        public Int32 dwNumberOfCsAddrs;  
+        public IntPtr lpcsaBuffer;  
+        public Int32 dwOutputFlags;  
+        public IntPtr lpBlob;
+    	} 
+    
+    	[DllImport("Ws2_32.DLL", CharSet = CharSet.Auto, 
+    	SetLastError=true)]
+    	private extern static
+        Int32 WSAStartup( Int16 wVersionRequested, 
+            WSAData wsaData );
+
+    	[DllImport("Ws2_32.DLL", CharSet = CharSet.Auto, 
+    	SetLastError=true)]
+    	private extern static	
+        Int32 WSACleanup();
+
+    	[DllImport("Ws2_32.dll", CharSet = CharSet.Auto, 
+    	SetLastError=true)]
+    	private extern static
+        Int32 WSALookupServiceBegin(WSAQUERYSET qsRestrictions,
+            Int32 dwControlFlags, ref Int32 lphLookup);
+
+
+    	[DllImport("Ws2_32.dll", CharSet = CharSet.Auto, 
+    	SetLastError=true)]
+    	private extern static
+        Int32 WSALookupServiceNext(Int32 hLookup,
+            Int32 dwControlFlags,
+            ref Int32 lpdwBufferLength,
+            IntPtr pqsResults);
+
+    	[DllImport("Ws2_32.dll", CharSet = CharSet.Auto, 
+    	SetLastError=true)]
+    	private extern static
+        Int32 WSALookupServiceEnd(Int32 hLookup);
+    	
+    	[DllImport("Ws2_32.dll", CharSet = CharSet.Auto, 
+    	SetLastError=true)]
+    	private extern static
+    		Int32 WSAGetLastError();
 		[StructLayout(LayoutKind.Sequential)]
 		private struct BLUETOOTH_DEVICE_SEARCH_PARAMS
 		{
@@ -173,10 +243,6 @@ namespace monotooth.Device
 			public UInt16 wMilliseconds;
 		}
 		// Imported native functions
-		[DllImport("Ws2_32.dll")]
-		private static extern int WSAGetLastError();
-		[DllImport("Ws2_32.dll")]
-		private static extern int WSALookupServiceBegin(IntPtr lpqsRestrictions,UInt32 dwControlFlags, IntPtr lphLookup);
 		[DllImport("irprops.cpl")]
 		private static extern IntPtr BluetoothFindFirstDevice(IntPtr btsp, IntPtr btdi);
 		[DllImport("irprops.cpl")]
