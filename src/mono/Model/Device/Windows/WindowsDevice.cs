@@ -46,6 +46,7 @@ namespace monotooth.Device
 			WSAQUERYSET wsaqueryset = new WSAQUERYSET();
 			wsaqueryset.dwSize = Marshal.SizeOf(typeof(WSAQUERYSET));
 			wsaqueryset.dwNameSpace = 16;
+			WSAData data = new WSAData();
 			Marshal.StructureToPtr(wsaqueryset,lpwsaqueryset,false);
 			int flags = (int)0x0002;
 			flags |= (int)(0x1000|0x0010|0x0100);
@@ -54,7 +55,12 @@ namespace monotooth.Device
 			int result = 0;
 			try
 			{
-			result = WSALookupServiceBegin(wsaqueryset,flags,ref handle);
+				result = WSAStartup(2,data);
+				if(result != 0)
+				{
+					throw new Exception("WSA Error, make sure you have the newest version (at least 2.0) of Winsock2!");
+				}
+				result = WSALookupServiceBegin(wsaqueryset,flags,ref handle);
 			} catch (AccessViolationException ave)
 			{
 				Console.WriteLine(ave.ToString());
@@ -82,7 +88,7 @@ namespace monotooth.Device
         		if (0==result)
         		{
             		Marshal.PtrToStructure(pBuffer, qsResult);
-            		Console.WriteLine(qsResult.szServiceInstanceName);
+            		Console.WriteLine(qsResult.lpcsaBuffer);
         		}
         		else
         		{
@@ -96,7 +102,7 @@ namespace monotooth.Device
 			UInt32 bytes = FormatMessage((UInt32)0x00001000, IntPtr.Zero, err, 0,bld,511,IntPtr.Zero);
 			Console.WriteLine("ERROR as String: "+bld.ToString());
 			Marshal.FreeHGlobal(lpwsaqueryset);
-			
+			WSACleanup();
 			}
 			return pool;
 		}
