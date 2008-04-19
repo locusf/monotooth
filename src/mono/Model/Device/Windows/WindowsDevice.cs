@@ -94,12 +94,14 @@ namespace monotooth.Device
             		sockaddr sa = new sockaddr();
             		Marshal.PtrToStructure(addr.RemoteAddr.lpSockaddr,sa);  
             		String saddr = "";
+            		monotooth.BluetoothAddress ba = new BluetoothAddress();
             		for (int i = 5; i >= 0; i--)
             		{
-            			saddr += (String.Format("{0:X}",sa.sa_data[i]))+(i==0?"":":");
-            			
-            		}
-            		Console.WriteLine(saddr);
+            			ba.b[i] = (uint)sa.sa_data[i];            			
+            		}            		
+            		WindowsRemoteDevice dev = new WindowsRemoteDevice(ba, qsResult.szServiceInstanceName);
+            		pool.Add(dev);
+            		
         		}
         		else
         		{

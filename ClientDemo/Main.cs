@@ -29,8 +29,18 @@ namespace ClientDemo
 		}
 		public static void Main(string[] args)
 		{
-			monotooth.Device.ILocalDevice dev = monotooth.Device.LocalDevice.Default;
-			dev.Inquire();
+			monotooth.Device.ILocalDevice devi = monotooth.Device.LocalDevice.Default;			
+			monotooth.Device.DevicePool pool = devi.Inquire();						
+			foreach(monotooth.Device.IRemoteDevice dev in pool)
+			{
+				Console.WriteLine("Name: "+ dev.FriendlyName + " Address:"+ dev.AddressAsString()+"\n Now searching for services..");
+				dev.Services = dev.InquireServices((uint)0x0);
+				Console.WriteLine("Services in :"+dev.FriendlyName);
+				foreach(monotooth.Service.Service serv in dev.Services)
+				{
+					Console.WriteLine("Service name: "+serv.name+"\nService description: "+serv.description+"\nService Port: "+serv.rfcomm_port);									
+				}
+			}
 			/*
 			monotooth.Device.DeviceFactory fac = monotooth.Device.DeviceFactory.GetFactory();
 			Console.WriteLine((fac is monotooth.Device.LinuxDeviceFactory));

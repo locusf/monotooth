@@ -53,6 +53,7 @@
     <Compile Include="src\mono\Model\Device\LocalDevice.cs" />
     <Compile Include="src\mono\Model\Device\Windows\WindowsDevice.cs" />
     <Compile Include="src\mono\Model\Device\Windows\WindowsDeviceFactory.cs" />
+    <Compile Include="src\mono\Model\Device\Windows\WindowsRemoteDevice.cs" />
     <Compile Include="src\mono\Model\Service\Service.cs" />
     <Compile Include="src\mono\Model\Service\ServicePool.cs" />
     <Compile Include="src\mono\Model\Socket\BluetoothStream.cs" />
