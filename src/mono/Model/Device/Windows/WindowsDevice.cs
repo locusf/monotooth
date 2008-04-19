@@ -88,7 +88,18 @@ namespace monotooth.Device
         		if (0==result)
         		{
             		Marshal.PtrToStructure(pBuffer, qsResult);
-            		Console.WriteLine(qsResult.lpcsaBuffer);
+            		Console.WriteLine(qsResult.szServiceInstanceName);
+            		CS_ADDR_INFO addr = new CS_ADDR_INFO();
+            		Marshal.PtrToStructure(qsResult.lpcsaBuffer, addr);
+            		sockaddr sa = new sockaddr();
+            		Marshal.PtrToStructure(addr.RemoteAddr.lpSockaddr,sa);  
+            		String saddr = "";
+            		for (int i = 5; i >= 0; i--)
+            		{
+            			saddr += (String.Format("{0:X}",sa.sa_data[i]))+(i==0?"":":");
+            			
+            		}
+            		Console.WriteLine(saddr);
         		}
         		else
         		{
@@ -106,6 +117,16 @@ namespace monotooth.Device
 			}
 			return pool;
 		}
+		private string Ba2Str(ulong ba)
+		{
+			byte[] bytes = new byte[6];
+			for( int i=0; i<6; i++ ) {
+        		bytes[5-i] = (byte) ((ba >> (i*8)) & 0xff);
+        		Console.WriteLine(String.Format("{0,2:X}",( (ba >> (i*8)) & ((byte)0xff) )));
+    		}
+			String ret = String.Format("{0:X}:{1:X}:{2:X}:{3:X}:{4:X}:{5:X}",bytes[0], bytes[1], bytes[2], bytes[3], bytes[4], bytes[5]);
+			return ret;
+		}
 		public string AddressAsString()
 		{
 			return "";
@@ -114,7 +135,35 @@ namespace monotooth.Device
 		{
 			return null;
 		}
-		   [StructLayout(LayoutKind.Sequential)]
+		[StructLayout(LayoutKind.Sequential)]
+		public class sockaddr
+		{
+			public ushort sa_family;
+			[MarshalAs(UnmanagedType.ByValArray,SizeConst=14)]
+			public byte[] sa_data;
+		}
+		[StructLayout(LayoutKind.Sequential)]
+		public class SOCKET_ADDRESS
+		{
+			public IntPtr lpSockaddr;
+			public int iSockaddrLength;
+		}
+		[StructLayout(LayoutKind.Sequential)]
+		public class CS_ADDR_INFO
+		{
+			public SOCKET_ADDRESS LocalAddr;
+			public SOCKET_ADDRESS RemoteAddr;
+			public int iSocketType;
+			public int iProtocol;
+		}
+		[StructLayout(LayoutKind.Sequential)]
+		public class SOCKADDR_BTH
+		{
+		public ushort addressFamily;
+		public ulong btAddr;
+		public ulong port;
+		}
+		[StructLayout(LayoutKind.Sequential)]
     	public class WSAData 
     	{
         public Int16 wVersion;
