@@ -38,6 +38,7 @@ def build(bld):
 	obj.env['CCFLAGS'] = '-g3 -fno-stack-protector'
 	obj.target = 'monotooth'
 	obj.cxxflags = "-g"
+	obj.includes = '/usr/include .'
 	obj.source = '''
 	hci/hcifuncs.c
 	sdp/sdpfuncs.c

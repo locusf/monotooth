@@ -63,7 +63,7 @@ namespace monotooth.Device
 					throw new Exception("WSA Error, make sure you have the newest version (at least 2.2) of Winsock2!");
 				}
 				result = WSALookupServiceBegin(wsaqueryset,flags,ref handle);
-			} catch (AccessViolationException ave)
+			} catch (Exception ave)
 			{
 				Console.WriteLine(ave.ToString());
 			} finally

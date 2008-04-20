@@ -21,14 +21,14 @@
       <Entry build="True" name="ClientDemo" configuration="Release" />
     </Configuration>
   </Configurations>
-  <DeployTargets />
-  <StartMode startupentry="monotooth" single="True">
+  <StartMode startupentry="ClientDemo" single="True">
     <Execute type="None" entry="monotooth" />
     <Execute type="None" entry="tests" />
     <Execute type="None" entry="tests-run" />
     <Execute type="None" entry="ServerDemo" />
     <Execute type="None" entry="ClientDemo" />
   </StartMode>
+  <DeployTargets />
   <Entries>
     <Entry filename="./monotooth.mdp" />
     <Entry filename="./tests/tests.mdp" />
