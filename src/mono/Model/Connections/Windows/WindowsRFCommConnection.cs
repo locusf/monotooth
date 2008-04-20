@@ -54,7 +54,7 @@ namespace monotooth.Connections
 		public void listen(int channel, int maxconns)
 		{
 		}
-		private int sockf;
+		private int sockf = 0;
 		public int SocketDescriptor
 		{
 			get
@@ -98,7 +98,7 @@ namespace monotooth.Connections
 				this.chan = value;
 			}
 		}
-		private int usedbytes;
+		private int usedbytes = 0;
 		public int BytesUsed
 		{
 			get

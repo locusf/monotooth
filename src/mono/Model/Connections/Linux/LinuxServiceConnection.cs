@@ -54,7 +54,7 @@ namespace monotooth.Connections
 		public void disconnect()
 		{
 		}
-		private bool isconnected;
+		private bool isconnected = false;
 		public void Write(System.Text.StringBuilder bld)
 		{
 			if(this.usedconn.Connected)

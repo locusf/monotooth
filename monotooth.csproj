@@ -42,6 +42,7 @@
     <Compile Include="src\mono\Model\Connections\ServiceConnection.cs" />
     <Compile Include="src\mono\Model\Connections\Windows\WindowsL2CAPConnection.cs" />
     <Compile Include="src\mono\Model\Connections\Windows\WindowsRFCommConnection.cs" />
+    <Compile Include="src\mono\Model\Connections\Windows\WindowsServiceConnection.cs" />
     <Compile Include="src\mono\Model\Device\DevicePool.cs" />
     <Compile Include="src\mono\Model\Device\Factories\DeviceFactory.cs" />
     <Compile Include="src\mono\Model\Device\IDevice.cs" />

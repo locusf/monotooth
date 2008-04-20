@@ -11,7 +11,7 @@ namespace monotooth.Connections
 		public LinuxHCIConnection()
 		{
 		}
-		private int sockf;
+		private int sockf = 0;
 		public int SocketDescriptor
 		{
 			get

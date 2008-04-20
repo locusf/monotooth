@@ -47,6 +47,8 @@ namespace monotooth.Device
 			wsaqueryset.dwSize = Marshal.SizeOf(typeof(WSAQUERYSET));
 			wsaqueryset.dwNameSpace = 16;
 			WSAData data = new WSAData();
+			data.wHighVersion = 2;
+			data.wVersion = 2;
 			Marshal.StructureToPtr(wsaqueryset,lpwsaqueryset,false);
 			int flags = (int)0x0002;
 			flags |= (int)(0x1000|0x0010|0x0100);
@@ -55,10 +57,10 @@ namespace monotooth.Device
 			int result = 0;
 			try
 			{
-				result = WSAStartup(2,data);
+				result = WSAStartup(36,data);
 				if(result != 0)
 				{
-					throw new Exception("WSA Error, make sure you have the newest version (at least 2.0) of Winsock2!");
+					throw new Exception("WSA Error, make sure you have the newest version (at least 2.2) of Winsock2!");
 				}
 				result = WSALookupServiceBegin(wsaqueryset,flags,ref handle);
 			} catch (AccessViolationException ave)
@@ -92,8 +94,7 @@ namespace monotooth.Device
             		CS_ADDR_INFO addr = new CS_ADDR_INFO();
             		Marshal.PtrToStructure(qsResult.lpcsaBuffer, addr);
             		sockaddr sa = new sockaddr();
-            		Marshal.PtrToStructure(addr.RemoteAddr.lpSockaddr,sa);  
-            		String saddr = "";
+            		Marshal.PtrToStructure(addr.RemoteAddr.lpSockaddr,sa);              		
             		monotooth.BluetoothAddress ba = new BluetoothAddress();
             		for (int i = 5; i >= 0; i--)
             		{
