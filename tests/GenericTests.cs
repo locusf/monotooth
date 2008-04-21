@@ -22,6 +22,7 @@ namespace tests
 		{
 			monotooth.Device.ILocalDevice dev = monotooth.Device.LocalDevice.Default;
 			dev.Inquire();
+			System.Console.WriteLine("Device ");
 		}
 		
 		[TestFixtureSetUp]

@@ -55,19 +55,14 @@ namespace monotooth.Device
 			Int32 handle = 0;
 			
 			int result = 0;
-			try
+			
+			result = WSAStartup(36,data);
+			if(result != 0)
 			{
-				result = WSAStartup(36,data);
-				if(result != 0)
-				{
-					throw new Exception("WSA Error, make sure you have the newest version (at least 2.2) of Winsock2!");
-				}
-				result = WSALookupServiceBegin(wsaqueryset,flags,ref handle);
-			} catch (Exception ave)
-			{
-				Console.WriteLine(ave.ToString());
-			} finally
-			{
+				throw new Exception("WSA Error, make sure you have the newest version (at least 2.2) of Winsock2!");
+			}
+			result = WSALookupServiceBegin(wsaqueryset,flags,ref handle);
+			
 			
 			if (result == -1)
 			{
@@ -90,7 +85,6 @@ namespace monotooth.Device
         		if (0==result)
         		{
             		Marshal.PtrToStructure(pBuffer, qsResult);
-            		Console.WriteLine(qsResult.szServiceInstanceName);
             		CS_ADDR_INFO addr = new CS_ADDR_INFO();
             		Marshal.PtrToStructure(qsResult.lpcsaBuffer, addr);
             		sockaddr sa = new sockaddr();
@@ -103,17 +97,15 @@ namespace monotooth.Device
             		WindowsRemoteDevice dev = new WindowsRemoteDevice(ba, qsResult.szServiceInstanceName);
             		pool.Add(dev);
             		
-        		}
-        		else
+        		} else
         		{
-        		WSALookupServiceEnd(handle);
-            	continue;
+        		WSALookupServiceEnd(handle);            	
         		}
         		Marshal.FreeHGlobal(pBuffer);
-    		}
+			}
+			    		
 			Marshal.FreeHGlobal(lpwsaqueryset);
 			WSACleanup();
-			}
 			return pool;
 		}	
 		public string AddressAsString()
