@@ -98,7 +98,7 @@ namespace monotooth.Device
             		monotooth.BluetoothAddress ba = new BluetoothAddress();
             		for (int i = 5; i >= 0; i--)
             		{
-            			ba.b[i] = (uint)sa.sa_data[i];            			
+            			ba.b[i] = sa.sa_data[i];            			
             		}            		
             		WindowsRemoteDevice dev = new WindowsRemoteDevice(ba, qsResult.szServiceInstanceName);
             		pool.Add(dev);
@@ -106,30 +106,16 @@ namespace monotooth.Device
         		}
         		else
         		{
+        		WSALookupServiceEnd(handle);
             	continue;
-        	}
-        	Marshal.FreeHGlobal(pBuffer);
+        		}
+        		Marshal.FreeHGlobal(pBuffer);
     		}
-			UInt32 err = GetLastError();
-			Console.WriteLine("ERROR: "+err);
-			System.Text.StringBuilder bld = new System.Text.StringBuilder(512);			
-			UInt32 bytes = FormatMessage((UInt32)0x00001000, IntPtr.Zero, err, 0,bld,511,IntPtr.Zero);
-			Console.WriteLine("ERROR as String: "+bld.ToString());
 			Marshal.FreeHGlobal(lpwsaqueryset);
 			WSACleanup();
 			}
 			return pool;
-		}
-		private string Ba2Str(ulong ba)
-		{
-			byte[] bytes = new byte[6];
-			for( int i=0; i<6; i++ ) {
-        		bytes[5-i] = (byte) ((ba >> (i*8)) & 0xff);
-        		Console.WriteLine(String.Format("{0,2:X}",( (ba >> (i*8)) & ((byte)0xff) )));
-    		}
-			String ret = String.Format("{0:X}:{1:X}:{2:X}:{3:X}:{4:X}:{5:X}",bytes[0], bytes[1], bytes[2], bytes[3], bytes[4], bytes[5]);
-			return ret;
-		}
+		}	
 		public string AddressAsString()
 		{
 			return "";
@@ -299,21 +285,6 @@ namespace monotooth.Device
 			public UInt16 wMinute;
 			public UInt16 wSecond;
 			public UInt16 wMilliseconds;
-		}
-		// Imported native functions
-		[DllImport("irprops.cpl")]
-		private static extern IntPtr BluetoothFindFirstDevice(IntPtr btsp, IntPtr btdi);
-		[DllImport("irprops.cpl")]
-		private static extern bool BluetoothFindNextDevice(IntPtr hfind, BLUETOOTH_DEVICE_INFO pbtdi);
-		[DllImport("irprops.cpl")]
-		private static extern void BluetoothFindDeviceClose(IntPtr hfind);
-		[DllImport("irprops.cpl")]
-		private static extern IntPtr BluetoothFindFirstRadio(IntPtr parms, IntPtr handle);
-		[DllImport("irprops.cpl")]
-		private static extern uint BluetoothGetRadioInfo(IntPtr hRadio, IntPtr pRadioInfo);
-		[DllImport("kernel32")]
-		private static extern System.UInt32 GetLastError();
-		[DllImport("kernel32")]
-		private static extern System.UInt32 FormatMessage(UInt32 dwFlags, IntPtr source, UInt32 dwMessageId, UInt32 dwLanguageId, System.Text.StringBuilder lpbuffer, UInt32 nSize, IntPtr Arguments);
+		}		
 	}
 }
