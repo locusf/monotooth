@@ -60,23 +60,16 @@ namespace monotooth.Device
 			if( this.dev_id != -1)
 			{
 			int sock = hci_open_dev(this.dev_id);
-			DevicePool pool = new DevicePool();
-			//int count=0;			
+			DevicePool pool = new DevicePool();				
 			inquiry_info info = new inquiry_info();		
-			IntPtr devs = IntPtr.Zero;
-			
+			IntPtr devs = IntPtr.Zero;			
 			byte[] lap = new byte[] { 0x33, 0x8b, 0x9e};
 			int max_rsp = 255;
 			int length = 8;
-			int flags = 1;
-			
+			int flags = 1;			
 			int count = hci_inquiry(this.dev_id, length, max_rsp, lap, out devs,flags);
 			if(!(devs==IntPtr.Zero))
-			{
-			/*while (Marshal.ReadIntPtr(devs,count*IntPtr.Size) != IntPtr.Zero)
-			{
-				++count;
-			}*/
+			{			
 			IntPtr element = devs;
 			if (count>0)
 			{
@@ -91,25 +84,16 @@ namespace monotooth.Device
 					monotooth.BluetoothAddress ba = new BluetoothAddress();
 					ba.b = info.bdaddr;
 					if(hci_read_remote_name(sock,ba,bld2.Capacity,bld2,0)==0)
-					{					
-						
+					{						
 						LinuxRemoteDevice dev = new LinuxRemoteDevice(ba,bld2.ToString());
 						pool.Add(dev);						
 					} else {
 						LinuxRemoteDevice dev = new LinuxRemoteDevice(ba,"NONAME");
 						pool.Add(dev);
 					}
-					// this catch is meant to skip invalid pointers
-					//} catch(NullReferenceException nre)
-					//{
-						
-						//nre.Equals(nre);
-					//}
-					//Marshal.FreeHGlobal(element);
 				}
 			}
 			}			
-			//Marshal.FreeHGlobal(devs);			
 			close(sock);
 			return pool;
 			} else 
@@ -131,6 +115,7 @@ namespace monotooth.Device
 		public static string AddressAsString(monotooth.BluetoothAddress ba)
 		{		
 			if(ba == null) throw new ArgumentException("ba","May not be null!");
+			if(ba.b.Length == 0) throw new ArgumentException("ba","May not be empty!");
 			System.Text.StringBuilder bld = new System.Text.StringBuilder(18);
 			monotooth.BluetoothAddress b = new monotooth.BluetoothAddress();
 			baswap(b,ba);
@@ -174,7 +159,6 @@ namespace monotooth.Device
 		*/
 		
 		[DllImport("bluetooth")]
-		// Use this call to get the local device id (dev_id), p = IntPtr.Zero
 		private static extern int hci_get_route(IntPtr p);		
 		[DllImport("bluetooth")]
 		private static extern int hci_devba(int dev_id,IntPtr ba);
@@ -187,14 +171,7 @@ namespace monotooth.Device
 		[DllImport("bluetooth")]
 		private static extern int hci_read_local_name(int dd, int len, System.Text.StringBuilder b,int timeout);
 		[DllImport("bluetooth")]
-		private static extern int hci_inquiry(int dev_id, int len, int num_rsp, byte[] lap,out IntPtr ii, int flags);
-		[DllImport("monotooth")]
-		// Search for devices with this function
-		private static extern IntPtr inquire_devices();		
-		
-		/*
-			Utility functions
-		*/
+		private static extern int hci_inquiry(int dev_id, int len, int num_rsp, byte[] lap,out IntPtr ii, int flags);		
 		[DllImport("bluetooth")]
 		private static extern int ba2str(monotooth.BluetoothAddress ba, System.Text.StringBuilder bld);
 		[DllImport("bluetooth")]
@@ -213,19 +190,6 @@ namespace monotooth.Device
 			{}
 			[MarshalAs(UnmanagedType.ByValArray,SizeConst=6)]
 			public byte[] bdaddr;
-			public byte pscan_rep_mode;
-			public byte pscan_period_mode;
-			public byte pscan_mode;
-			[MarshalAs(UnmanagedType.ByValArray,SizeConst=3)]
-			public byte[] dev_class;
-			public ushort clock_offset;
-		}
-		[StructLayout (LayoutKind.Sequential)]
-		private class InquiryInformation
-		{
-			public InquiryInformation()
-			{}
-			public monotooth.BluetoothAddress bdaddr;
 			public byte pscan_rep_mode;
 			public byte pscan_period_mode;
 			public byte pscan_mode;
