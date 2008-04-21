@@ -13,10 +13,10 @@ namespace monotooth
 		/// <summary>The default constructor. Initializes the address as BDADDR_ANY. </summary>
 		public BluetoothAddress()
 		{
-			this.b = new uint[6]{ 0, 0, 0, 0, 0, 0};
+			this.b = new byte[6]{ 0, 0, 0, 0, 0, 0};
 		}
 		/// <summary>The array of unsigned integers to hold the 48-bit address. </summary>
 		[MarshalAs (UnmanagedType.ByValArray, SizeConst=6)]
-		public uint[] b;		
+		public byte[] b;		
 		}
 }

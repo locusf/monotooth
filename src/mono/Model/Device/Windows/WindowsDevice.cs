@@ -98,7 +98,7 @@ namespace monotooth.Device
             		monotooth.BluetoothAddress ba = new BluetoothAddress();
             		for (int i = 5; i >= 0; i--)
             		{
-            			ba.b[i] = (uint)sa.sa_data[i];            			
+            			ba.b[i] = sa.sa_data[i];            			
             		}            		
             		WindowsRemoteDevice dev = new WindowsRemoteDevice(ba, qsResult.szServiceInstanceName);
             		pool.Add(dev);
