@@ -1,5 +1,6 @@
 
 using System;
+using System.Runtime.InteropServices;
 
 namespace monotooth.Connections
 {
@@ -106,5 +107,20 @@ namespace monotooth.Connections
 				return usedbytes;
 			}
 		}
+		[StructLayout(LayoutKind.Sequential)]
+		private class SockAddr
+		{
+			public ushort sa_family;
+			[MarshalAs(UnmanagedType.ByValArray,SizeConst=14)]
+			public byte[] sa_data;
+		}
+		[DllImport("Ws2_32.dll")]
+		private static extern int socket(int af, int type, int protocol);
+		[DllImport("Ws2_32.dll")]
+		private static extern int bind(int sockf, SockAddr addr, int len=30);
+		[DllImport("Ws2_32.dll",EntryPoint="connect")]
+		private static extern int connecti(int sockf, SockAddr addr, int len=30);
+		[DllImport("Ws2_32.dll")]
+		private static extern int accept();
 	}
 }
