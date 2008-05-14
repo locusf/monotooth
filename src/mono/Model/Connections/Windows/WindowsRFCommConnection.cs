@@ -117,9 +117,9 @@ namespace monotooth.Connections
 		[DllImport("Ws2_32.dll")]
 		private static extern int socket(int af, int type, int protocol);
 		[DllImport("Ws2_32.dll")]
-		private static extern int bind(int sockf, SockAddr addr, int len=30);
+		private static extern int bind(int sockf, SockAddr addr, int len);
 		[DllImport("Ws2_32.dll",EntryPoint="connect")]
-		private static extern int connecti(int sockf, SockAddr addr, int len=30);
+		private static extern int connecti(int sockf, SockAddr addr, int len);
 		[DllImport("Ws2_32.dll")]
 		private static extern int accept();
 	}
