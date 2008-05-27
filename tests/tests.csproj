@@ -24,10 +24,6 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="GenericTests.cs" />
-    <Compile Include="LinuxImplementationTest.cs" />
-    <Compile Include="LinuxLocalDeviceTest.cs" />
-    <Compile Include="MonotoothTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="nunit.core" />
