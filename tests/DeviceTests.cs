@@ -15,22 +15,24 @@ namespace tests
 	[TestFixture]
 	public class DeviceTests
 	{
+		private monotooth.Device.ILocalDevice dev;
 		[Test]
-		public void TestMethod()
-		{
-			// TODO: Add your test.
+		public void TestInquiry()
+		{			
+			monotooth.Device.DevicePool pool = dev.Inquire();
+			Assert.IsNotEmpty(pool, "There are some devices in this pool if there are any devices around the bluetooth device");
 		}
 		
 		[TestFixtureSetUp]
 		public void Init()
-		{
-			// TODO: Add Init code.
+		{			
+			dev = monotooth.Device.LocalDevice.Default;		
 		}
 		
 		[TestFixtureTearDown]
 		public void Dispose()
-		{
-			// TODO: Add tear down code.
+		{		
+			dev = null;
 		}
 	}
 }

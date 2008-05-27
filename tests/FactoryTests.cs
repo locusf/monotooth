@@ -15,22 +15,34 @@ namespace tests
 	[TestFixture]
 	public class FactoryTests
 	{
+		private monotooth.Device.DeviceFactory devfac;
+		private monotooth.Connections.RFCommConnectionFactory connfac;
 		[Test]
-		public void TestMethod()
+		public void TestDeviceProduct()
 		{
-			// TODO: Add your test.
+			monotooth.Device.ILocalDevice dev = devfac.CreateLocalDevice();
+			Assert.IsNotNull(dev);
+		}
+		
+		[Test]
+		public void TestConnectionProduct()
+		{
+			monotooth.Connections.RFCommConnection conn = connfac.CreateRFCommConnection();			
+			Assert.IsNotNull(conn);
 		}
 		
 		[TestFixtureSetUp]
 		public void Init()
 		{
-			// TODO: Add Init code.
+			devfac = monotooth.Device.DeviceFactory.GetFactory();
+			connfac = monotooth.Connections.RFCommConnectionFactory.GetFactory();			
 		}
 		
 		[TestFixtureTearDown]
 		public void Dispose()
 		{
-			// TODO: Add tear down code.
+			devfac = null;
+			connfac = null;
 		}
 	}
 }
