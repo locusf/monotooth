@@ -24,6 +24,10 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="ConnectionTest.cs" />
+    <Compile Include="DeviceTests.cs" />
+    <Compile Include="FactoryTests.cs" />
+    <Compile Include="StreamTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="nunit.core" />
