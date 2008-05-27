@@ -27,7 +27,7 @@ namespace tests
 		[Test]
 		public void TestConnectionProduct()
 		{
-			monotooth.Connections.RFCommConnection conn = connfac.CreateRFCommConnection();			
+			monotooth.Connections.RFCommConnection conn = connfac.CreateRFCommConnection(new monotooth.BluetoothAddress(), new monotooth.BluetoothAddress());
 			Assert.IsNotNull(conn);
 		}
 		
