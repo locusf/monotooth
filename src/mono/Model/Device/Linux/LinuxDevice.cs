@@ -102,55 +102,7 @@ namespace monotooth.Device
 			}
 		}
 		
-		/// <summary>Returns the devices address as string. </summary>
-		/// <returns>A string with the native address of the device. </returns>
-		public string AddressAsString()
-		{
-			System.Text.StringBuilder bld = new System.Text.StringBuilder(18);			
-			ba2str(this.address,bld);			
-			return bld.ToString();
-		}
-		/// <summary>Returns an address as string. </summary>
-		/// <returns>A string from the address.</returns>
-		public static string AddressAsString(monotooth.BluetoothAddress ba)
-		{		
-			if(ba == null) throw new ArgumentException("ba","May not be null!");
-			if(ba.b.Length == 0) throw new ArgumentException("ba","May not be empty!");
-			System.Text.StringBuilder bld = new System.Text.StringBuilder(18);
-			monotooth.BluetoothAddress b = new monotooth.BluetoothAddress();
-			baswap(b,ba);
-			ba2str(b,bld);			
-			return bld.ToString();
-		}
-		/// <summary>Returns an address as string. </summary>
-		/// <returns>A string from the address.</returns>
-		/// <param name="addr"> string presentation of the address. </param>
-		public static monotooth.BluetoothAddress StringAsAddressStatic(string addr)
-		{
-			
-			if(addr.LastIndexOfAny(new char[1]{':'})==15 && addr.Length == 17)
-			{
-			monotooth.BluetoothAddress ba = new monotooth.BluetoothAddress();
-			Marshal.PtrToStructure(strtoba(addr),ba);
-			return ba;
-			} else {
-			return new monotooth.BluetoothAddress();
-			}
-		}
-		/// <summary>Returns a <c>monotooth.BluetoothAddress</c> from a string, using a native function. </summary>
-		/// <returns>New address. </returns>
-		/// <remarks>Will return a 0-address, if the address string is not in the 48-bit form. </remarks>
-		public monotooth.BluetoothAddress StringAsAddress(string addr)
-		{
-			if(addr.LastIndexOfAny(new char[1]{':'})==15 && addr.Length == 17)
-			{
-			monotooth.BluetoothAddress ba = new monotooth.BluetoothAddress();
-			Marshal.PtrToStructure(strtoba(addr),ba);
-			return ba;
-			} else {
-			return new monotooth.BluetoothAddress();
-			}
-		}		
+		
 		
 		/*		
 		

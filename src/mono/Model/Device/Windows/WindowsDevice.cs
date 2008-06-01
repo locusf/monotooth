@@ -109,14 +109,7 @@ namespace monotooth.Device
 			WSACleanup();
 			return pool;
 		}	
-		public string AddressAsString()
-		{
-			return "";
-		}
-		public monotooth.BluetoothAddress StringAsAddress(string addr)
-		{
-			return new monotooth.BluetoothAddress();
-		}
+		
 		[StructLayout(LayoutKind.Sequential)]
 		public class sockaddr
 		{

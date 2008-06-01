@@ -21,13 +21,9 @@ namespace tests
 		{			
 			monotooth.Device.DevicePool pool = dev.Inquire();
 			
-			Assert.IsNotEmpty(pool, "There are some devices in this pool if there are any devices around the bluetooth device");
+			Assert.IsNotEmpty(pool, "If this test fails then there are no bluetooth devices around or they are hidden. Or then inquiry doesn't work :)");
 		}
-		[Test]		
-		public void TestStringToAddress()
-		{
-			Assert.IsNotNull(dev.StringAsAddress("00:00:00:00:00:00"),"Should not return null");			
-		}
+		
 		[TestFixtureSetUp]
 		public void Init()
 		{			

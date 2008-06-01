@@ -1,21 +1,26 @@
 <Project name="tests" fileversion="2.0" language="C#" clr-version="Net_1_1" ctype="DotNetProject">
   <Configurations active="Debug">
     <Configuration name="Debug" ctype="DotNetProjectConfiguration">
-      <Output directory="./bin/Debug" assembly="tests" />
+      <Output directory="bin/Debug" assembly="tests" />
       <Build debugmode="True" target="Library" />
       <Execution runwithwarnings="True" commandlineparameters="--trace" consolepause="True" runtime="MsNet" clr-version="Net_1_1" />
       <CodeGeneration compiler="Csc" warninglevel="4" optimize="True" unsafecodeallowed="False" generateoverflowchecks="True" mainclass="" generatexmldocumentation="False" ctype="CSharpCompilerParameters" />
     </Configuration>
     <Configuration name="Release" ctype="DotNetProjectConfiguration">
-      <Output directory="./bin/Release" assembly="tests" />
+      <Output directory="bin/Release" assembly="tests" />
       <Build debugmode="False" target="Library" />
       <Execution runwithwarnings="True" consolepause="True" runtime="MsNet" clr-version="Net_1_1" />
       <CodeGeneration compiler="Csc" warninglevel="4" optimize="True" unsafecodeallowed="False" generateoverflowchecks="True" mainclass="" generatexmldocumentation="False" ctype="CSharpCompilerParameters" />
     </Configuration>
   </Configurations>
   <Contents>
-    <File name="./LinuxImplementationTest.cs" subtype="Code" buildaction="Compile" />
-    <File name="./LinuxLocalDeviceTest.cs" subtype="Code" buildaction="Compile" />
+    <File name="." subtype="Directory" buildaction="Compile" />
+    <File name="AssemblyInfo.cs" subtype="Code" buildaction="Compile" />
+    <File name="ConnectionTest.cs" subtype="Code" buildaction="Compile" />
+    <File name="DeviceTests.cs" subtype="Code" buildaction="Compile" />
+    <File name="FactoryTests.cs" subtype="Code" buildaction="Compile" />
+    <File name="StreamTest.cs" subtype="Code" buildaction="Compile" />
+    <File name="AddressTests.cs" subtype="Code" buildaction="Compile" />
   </Contents>
   <References>
     <ProjectReference type="Project" localcopy="True" refto="monotooth" />

@@ -22,13 +22,6 @@ namespace monotooth.Device
 		{
 			get;
 			set;
-		}		
-		/// <summary>Returns the 48-bit bluetooth address of this device as a string .</summary>
-		/// <returns>String presentation of this devices bluetooth address.</returns>
-		string AddressAsString();		
-		/// <summary>Converts a string presentation of a bluetooth address to a <c>BluetoothAddress</c>.</summary>
-		/// <param name="addr"> A bluetooth address as string. </param>
-		/// <returns>A bluetooth address wrapped to a class. </returns>
-		monotooth.BluetoothAddress StringAsAddress(string addr);
+		}
 	}
 }
