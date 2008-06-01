@@ -52,9 +52,14 @@ namespace monotooth
 		{		
 			if(ba == null) throw new ArgumentException("ba","May not be null!");
 			if(ba.b.Length == 0) throw new ArgumentException("ba","May not be empty!");
-			
-			
-			return "";
+			string ret = "";
+			foreach (byte b in ba.b)
+			{
+				ret+=Convert.ToString(b,16)+":";
+			}
+			ret = ret.Remove(ret.Length-1,1);
+			ret = ret.ToUpper();
+			return ret;
 		}
 		}
 }

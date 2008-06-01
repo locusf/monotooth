@@ -33,6 +33,10 @@ namespace tests
 		[Test()]
 		public void TestAddressAsString()
 		{
+			monotooth.BluetoothAddress batest = new monotooth.BluetoothAddress();
+			batest.b = new byte[]{128,127,126,125,124,123};
+			string teststring = monotooth.BluetoothAddress.AddressAsString(batest);
+			Assert.AreEqual("80:7F:7E:7D:7C:7B",teststring,"Good input address won't get in to a string!");
 		}
 	}
 }
