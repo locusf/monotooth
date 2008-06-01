@@ -1,6 +1,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+
 namespace monotooth.Device
 {
 	
@@ -114,7 +115,7 @@ namespace monotooth.Device
 		}
 		public monotooth.BluetoothAddress StringAsAddress(string addr)
 		{
-			return null;
+			return new monotooth.BluetoothAddress();
 		}
 		[StructLayout(LayoutKind.Sequential)]
 		public class sockaddr

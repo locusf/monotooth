@@ -20,9 +20,14 @@ namespace tests
 		public void TestInquiry()
 		{			
 			monotooth.Device.DevicePool pool = dev.Inquire();
+			
 			Assert.IsNotEmpty(pool, "There are some devices in this pool if there are any devices around the bluetooth device");
 		}
-		
+		[Test]		
+		public void TestStringToAddress()
+		{
+			Assert.IsNotNull(dev.StringAsAddress("00:00:00:00:00:00"),"Should not return null");			
+		}
 		[TestFixtureSetUp]
 		public void Init()
 		{			
