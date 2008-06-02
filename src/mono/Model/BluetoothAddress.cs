@@ -52,10 +52,16 @@ namespace monotooth
 		{		
 			if(ba == null) throw new ArgumentException("ba","May not be null!");
 			if(ba.b.Length == 0) throw new ArgumentException("ba","May not be empty!");
+			if(ba.b.Length != 6) throw new ArgumentException("ba","Too short for address format!");
 			string ret = "";
 			foreach (byte b in ba.b)
 			{
-				ret+=Convert.ToString(b,16)+":";
+				if (b < 16)
+				{
+					ret+="0"+Convert.ToString(b,16)+":";
+				} else {					
+					ret+=Convert.ToString(b,16)+":";
+				}
 			}
 			ret = ret.Remove(ret.Length-1,1);
 			ret = ret.ToUpper();
