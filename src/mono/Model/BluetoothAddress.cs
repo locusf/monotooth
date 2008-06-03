@@ -16,34 +16,48 @@ namespace monotooth
 		{
 			this.b = new byte[6]{ 0, 0, 0, 0, 0, 0};
 		}
+		public BluetoothAddress(string address)
+		{
+			this.b = StringAsAddress(address);
+		}
+		public BluetoothAddress(byte[] array)
+		{
+			this.b = array;
+		}
 		/// <summary>The array of unsigned integers to hold the 48-bit address. </summary>
 		[MarshalAs (UnmanagedType.ByValArray, SizeConst=6)]
-		public byte[] b;		
+		private byte[] b;		
+		public byte[] Array
+		{
+			get { return this.b; }
+			set { this.b = value;}
+		}
 		/// <summary>Returns a <c>monotooth.BluetoothAddress</c> from a string. </summary>
 		/// <returns>New address. </returns>
 		/// <remarks>Will return a 0-address, if the address string is not in the 48-bit form. </remarks>
-		public static monotooth.BluetoothAddress StringAsAddress(string addr)
+		private byte[] StringAsAddress(string addr)
 		{			
 			string[] splits = addr.Split(new char[]{':'});
 			int i = 0;
-			monotooth.BluetoothAddress ba = new BluetoothAddress();			
+			byte[] barr = new byte[6];
 			if (splits.Length == 6)
 			{
 				foreach(string split in splits)
 				{
 					int block = (int)Int32.Parse(split,NumberStyles.HexNumber);
+					
 					if (block >= 0 && block <= 255)
 					{
-					ba.b[i] = (byte)block;
+					barr[i] = (byte)block;
 					i++;
 					} else
 					{
-						return new monotooth.BluetoothAddress();
+						return new byte[6]{ 0, 0, 0, 0, 0, 0};
 					}
 				}
-				return ba;
+				return barr;
 			} else {
-			return new monotooth.BluetoothAddress();
+			return new byte[6]{ 0, 0, 0, 0, 0, 0};
 			}
 		}		
 		/// <summary>Returns an address as string. </summary>

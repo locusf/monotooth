@@ -82,7 +82,7 @@ namespace monotooth.Device
 					element = (IntPtr)((int)element+Marshal.SizeOf(typeof(inquiry_info)));
 					System.Text.StringBuilder bld2 = new System.Text.StringBuilder(248);	
 					monotooth.BluetoothAddress ba = new BluetoothAddress();
-					ba.b = info.bdaddr;
+					ba.Array = info.bdaddr;
 					if(hci_read_remote_name(sock,ba,bld2.Capacity,bld2,0)==0)
 					{						
 						LinuxRemoteDevice dev = new LinuxRemoteDevice(ba,bld2.ToString());

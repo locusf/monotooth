@@ -30,10 +30,11 @@ namespace ClientDemo
 		public static void Main(string[] args)
 		{
 			monotooth.Device.ILocalDevice devi = monotooth.Device.LocalDevice.Default;			
-			monotooth.Device.DevicePool pool = devi.Inquire();						
+			monotooth.Device.DevicePool pool = devi.Inquire();	
+			monotooth.BluetoothAddress addr = new monotooth.BluetoothAddress("00:01:02:03:04:05");
 			foreach(monotooth.Device.IRemoteDevice dev in pool)
 			{
-				Console.WriteLine("Name: "+ dev.FriendlyName + " Address:"+ dev.AddressAsString()+"\n Now searching for services..");				
+				Console.WriteLine("Name: "+ dev.FriendlyName + " Address:"+ monotooth.BluetoothAddress.AddressAsString(dev.Address)+"\n Now searching for services..");				
 				Console.WriteLine("Services in :"+dev.FriendlyName);
 			}
 			/*

@@ -55,5 +55,22 @@ namespace monotooth.Device
 			throw new NotImplementedException();
 		}
 		
+<<<<<<< HEAD:src/mono/Model/Device/Windows/WindowsRemoteDevice.cs
+=======
+		public string AddressAsString()
+		{
+			String ret = "";
+			for (int i = this.address.Array.Length-1; i >=0; i--)
+			{
+				ret += String.Format("{0:X2}",this.Address.Array[i])+(i==0?"":":");
+			}
+			return ret;
+		}
+		
+		public BluetoothAddress StringAsAddress(string addr)
+		{
+			throw new NotImplementedException();
+		}
+>>>>>>> 9201d062a9b744551fa29f125d658f3717b1520c:src/mono/Model/Device/Windows/WindowsRemoteDevice.cs
 	}
 }
