@@ -23,10 +23,12 @@
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
   <ItemGroup>
+    <Compile Include="AddressTests.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="ConnectionTest.cs" />
     <Compile Include="DeviceTests.cs" />
     <Compile Include="FactoryTests.cs" />
+    <Compile Include="ServiceTest.cs" />
     <Compile Include="StreamTest.cs" />
   </ItemGroup>
   <ItemGroup>
