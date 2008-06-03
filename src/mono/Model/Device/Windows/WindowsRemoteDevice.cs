@@ -58,9 +58,9 @@ namespace monotooth.Device
 		public string AddressAsString()
 		{
 			String ret = "";
-			for (int i = this.address.b.Length-1; i >=0; i--)
+			for (int i = this.address.Array.Length-1; i >=0; i--)
 			{
-				ret += String.Format("{0:X2}",this.Address.b[i])+(i==0?"":":");
+				ret += String.Format("{0:X2}",this.Address.Array[i])+(i==0?"":":");
 			}
 			return ret;
 		}

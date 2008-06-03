@@ -23,7 +23,7 @@ namespace tests
 			foreach (monotooth.Device.IRemoteDevice rdev in pool)
 			{
 				Assert.IsNotEmpty(rdev.FriendlyName,"Could not get the name of this remote device!");
-				Assert.IsNotEmpty(rdev.Address.b, "Could not get the address of this remote device!");
+				Assert.IsNotEmpty(rdev.Address.Array, "Could not get the address of this remote device!");
 				monotooth.Service.ServicePool spool = rdev.InquireServices((uint)0x0);
 				foreach (monotooth.Service.Service serv in spool)
 				{
