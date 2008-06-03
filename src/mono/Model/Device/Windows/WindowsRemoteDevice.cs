@@ -55,19 +55,5 @@ namespace monotooth.Device
 			throw new NotImplementedException();
 		}
 		
-		public string AddressAsString()
-		{
-			String ret = "";
-			for (int i = this.address.b.Length-1; i >=0; i--)
-			{
-				ret += String.Format("{0:X2}",this.Address.b[i])+(i==0?"":":");
-			}
-			return ret;
-		}
-		
-		public BluetoothAddress StringAsAddress(string addr)
-		{
-			throw new NotImplementedException();
-		}
 	}
 }
