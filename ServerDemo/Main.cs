@@ -34,7 +34,7 @@ namespace ServerDemo
 			Console.WriteLine((fac is monotooth.Device.WindowsDeviceFactory));			
 			monotooth.Device.ILocalDevice devi = fac.CreateLocalDevice();
 			Console.WriteLine("Information of the local device: ");
-			Console.WriteLine("Name: "+devi.FriendlyName+ " Address: "+ devi.AddressAsString());
+			Console.WriteLine("Name: "+devi.FriendlyName+ " Address: "+ monotooth.BluetoothAddress.AddressAsString(devi.Address));
 			monotooth.Connections.RFCommConnectionFactory connfac = monotooth.Connections.RFCommConnectionFactory.GetFactory();
 			monotooth.Connections.RFCommConnection conn = connfac.CreateRFCommConnection(devi.Address,devi.Address);
 			monotooth.Connections.ServiceConnectionFactory servfac = monotooth.Connections.ServiceConnectionFactory.GetFactory();
