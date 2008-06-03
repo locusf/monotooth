@@ -22,6 +22,11 @@ namespace tests
 			monotooth.Device.DevicePool pool = dev.Inquire();
 			
 			Assert.IsNotEmpty(pool, "If this test fails then there are no bluetooth devices around or they are hidden. Or then inquiry doesn't work :)");
+			foreach (monotooth.Device.IRemoteDevice rdev in pool)
+			{
+				Assert.IsNotNull(rdev.Address,"Address could not be fetched from remote device!");
+				Assert.IsNotNull(rdev.FriendlyName,"Remote device's friendly name not fetched!");					
+			}
 		}
 		
 		[TestFixtureSetUp]
