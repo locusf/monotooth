@@ -16,20 +16,25 @@ namespace tests
 	public class ConnectionTest
 	{
 		[Test]
-		public void TestMethod()
+		public void TestConnect()
 		{
-			// TODO: Add your test.
+		}
+		[Test]
+		public void TestSend()
+		{
+		}
+		[Test]
+		public void TestReceive()
+		{
 		}
 		[TestFixtureSetUp]
 		public void Init()
 		{
-			// TODO: Add Init code.
 		}
 		
 		[TestFixtureTearDown]
 		public void Dispose()
 		{
-			// TODO: Add tear down code.
 		}
 	}
 }
