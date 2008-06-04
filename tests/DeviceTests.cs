@@ -28,7 +28,12 @@ namespace tests
 				Assert.IsNotNull(rdev.FriendlyName,"Remote device's friendly name not fetched!");					
 			}
 		}
-		
+		[Test]
+		public void TestLocalDeviceInfo()
+		{
+			Assert.IsNotEmpty(dev.Address.Array, "Local device doesn't have an address!");
+			Assert.IsNotEmpty(dev.FriendlyName, "Local device doesn't have a name!");
+		}
 		[TestFixtureSetUp]
 		public void Init()
 		{			
